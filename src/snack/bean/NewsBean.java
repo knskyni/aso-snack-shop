@@ -9,7 +9,7 @@ public class NewsBean implements Serializable{
     private int id;
     private Date createdAt;
     private Date updateAt;
-    private String String;
+    private String subject;
     private String content;
 
     //すべての値のgetter&setter
@@ -31,11 +31,11 @@ public class NewsBean implements Serializable{
     public void setUpdateAt(Date updateAt) {
         this.updateAt = updateAt;
     }
-    public String getString() {
-        return String;
+    public String getSubject() {
+        return subject;
     }
-    public void setString(String string) {
-        String = string;
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
     public String getContent() {
         return content;
