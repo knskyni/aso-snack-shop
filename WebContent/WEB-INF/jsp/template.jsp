@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="./css/bootstrap.min.css">
 </head>
 <body>
+    <jsp:include page="./header.jsp" />
     <section>
         <div class="container">
             <!-- ここにHTMLを書き始める -->
