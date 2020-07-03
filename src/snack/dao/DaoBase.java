@@ -8,46 +8,34 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 public class DaoBase {
-
     protected Connection con = null;
 
-
-    public void connect() throws Exception{
-
-        if( con != null ){
-            return;
-        }
+    public void connect() throws Exception {
+        if(con != null) return;
 
         InitialContext context = null;
-
         try {
             String jndi = "java:comp/env/jdbc/MySQL";
-
             context = new InitialContext();
-
             DataSource dataSource = (DataSource) context.lookup(jndi);
-
             con = dataSource.getConnection();
-
-        }catch(NamingException e) {
-               e.printStackTrace();
-               throw e;
-        }catch(SQLException e) {
-               e.printStackTrace();
-               throw e;
+        } catch(NamingException e) {
+            e.printStackTrace();
+            throw e;
+        } catch(SQLException e) {
+            e.printStackTrace();
+            throw e;
         }
     }
 
     public void close() {
-
-             if(con != null) {
-                    try {
-                         con.close();
-                         con = null;
-                    } catch (SQLException e) {
-                         System.out.println("closeに失敗しました");
+        if(con != null) {
+            try {
+                con.close();
+                con = null;
+            } catch (SQLException e) {
+                System.out.println("closeに失敗しました");
             }
         }
     }
-
 }
