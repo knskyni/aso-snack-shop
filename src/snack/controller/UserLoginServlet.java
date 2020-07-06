@@ -36,7 +36,7 @@ public class UserLoginServlet extends HttpServlet {
         UserBean userInfo = userModel.auth(email,password);
 
         if(userInfo == null) {
-            String msg = "ログインに失敗しました。ログイン内容を確認しました";
+            String msg = "ログインに失敗しました。ログイン内容を確認してください";
 
             request.setAttribute("msg", msg);
 
