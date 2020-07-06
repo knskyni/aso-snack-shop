@@ -31,4 +31,15 @@ public class ErrorHelper {
 
     }
 
+    public static ArrayList<String> get(HashMap<String, ArrayList<String>> errors, String key) {
+
+        ArrayList<String> messages = errors.get(key);
+        if(messages != null) {
+            return messages;
+        } else {
+            return new ArrayList<String>();
+        }
+
+    }
+
 }
