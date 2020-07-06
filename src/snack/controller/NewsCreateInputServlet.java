@@ -1,6 +1,8 @@
 package snack.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.text.StringEscapeUtils;
 
 import snack.bean.NewsBean;
+import snack.helper.ErrorHelper;
 
 @WebServlet("/news/create")
 public class NewsCreateInputServlet extends HttpServlet {
@@ -29,22 +32,35 @@ public class NewsCreateInputServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // フォームから値の受け取り
-        String subject = request.getParameter("subject");
+        String subject = StringEscapeUtils.escapeHtml4(request.getParameter("subject"));
         String content = request.getParameter("content");
 
-        // 値が空で400エラー
-        if(subject.isEmpty() || content.isEmpty()) {
-            response.sendError(400);
+        // エラーメッセージ
+        HashMap<String, ArrayList<String>> errors = new HashMap<String, ArrayList<String>>();
+
+        // 件名が空のとき
+        if(subject.isEmpty()) {
+            errors = ErrorHelper.add(errors, "subject", "入力してください。");
         }
 
-        // 文字数オーバーで414エラー
-        if(subject.length() > 32 || content.length() > 4096) {
-            response.sendError(414);
+        // 内容が空のとき
+        if(content.isEmpty()) {
+            errors = ErrorHelper.add(errors, "content", "入力してください。");
+        }
+
+        // 件名が文字数オーバーのとき
+        if(subject.length() > 32) {
+            errors = ErrorHelper.add(errors, "subject", "1文字以上、32文字以内で入力してください。");
+        }
+
+        // 内容が文字数オーバーのとき
+        if(subject.length() > 4096) {
+            errors = ErrorHelper.add(errors, "content", "1文字以上、4096文字以内で入力してください。");
         }
 
         // 入力内容をBeanに格納
         NewsBean news = new NewsBean();
-        news.setSubject(StringEscapeUtils.escapeHtml4(subject));
+        news.setSubject(subject);
         news.setContent(content);
 
         // 入力内容をセッションに格納
