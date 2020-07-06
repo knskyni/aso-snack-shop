@@ -14,8 +14,7 @@
 <%String msg  = (String)request.getAttribute("msg"); %>
 <body class="text-center">
 
-
-	<style>
+<style>
 	<!--
        html,
 body {
@@ -91,12 +90,11 @@ margin-top: 15px;
 
      			 			<input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="email" required autofocus>
 
-      					<label for="inputPassword" class="sr-only">Password</label
-      					>
+      					<label for="inputPassword" class="sr-only">Password</label>
+
       						<input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
 
-
-      					<button class="btn btn-lg btn-primary btn-block" type="submit" >Sign in</button>
+                        <button class="btn btn-lg btn-primary btn-block" type="submit" >Sign in</button>
 
       					<a href="location.href='/input'" id="new">新規登録はこちら</a>
 
