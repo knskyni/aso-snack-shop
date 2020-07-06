@@ -20,10 +20,12 @@ import snack.helper.ErrorHelper;
 @WebServlet("/news/create")
 public class NewsCreateInputServlet extends HttpServlet {
 
+    private static final String jsp = "../WEB-INF/jsp/news/create_input.jsp";
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        RequestDispatcher rd = request.getRequestDispatcher("../WEB-INF/jsp/news/create_input.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher(jsp);
         rd.forward(request, response);
 
     }
