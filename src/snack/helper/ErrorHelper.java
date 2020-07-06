@@ -42,4 +42,17 @@ public class ErrorHelper {
 
     }
 
+    public static boolean exist(HashMap<String, ArrayList<String>> errors, String key) {
+        if(errors == null) return false;
+        if(!errors.containsKey(key)) return false;
+
+        ArrayList<String> messages = errors.get(key);
+
+        if(messages == null) return false;
+        if(messages.isEmpty()) return false;
+
+        return true;
+
+    }
+
 }
