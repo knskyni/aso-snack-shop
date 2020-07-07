@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
 <body>
-	<jsp:include page="../header.jsp" />
 	<%
 		String errMsg1 = (String)request.getAttribute("msg1");
 		String errMsg2 = (String)request.getAttribute("msg2");
@@ -21,65 +20,65 @@
         <div class="container">
 			<form method="POST" id="check">
 				<div class="row">
-					<div class="col-4"></div>
-					<div class="col-4">
+					<div class="col-2"></div>
+					<div class="col-8">
 						<p>メールアドレス</p>
 					</div>
-					<div class="col-4"></div>
+					<div class="col-2"></div>
 				</div>
 				<div class="row">
-					<div class="col-4"></div>
-					<div class="col-4">
+					<div class="col-2"></div>
+					<div class="col-8">
 						<div  class="form-group">
 							<p><input type="text" name="email" placeholder="メールアドレス" class="form-control"></p>
 						</div>
 					</div>
-					<div class="col-4"></div>
+					<div class="col-2"></div>
 				</div>
 				<div class="row">
-					<div class="col-4"></div>
-					<div class="col-4">
+					<div class="col-2"></div>
+					<div class="col-8">
 						<p class="text-danger" id="msg1">
 							<%if(errMsg1 != null){ %>
 								<%=errMsg1 %>
 							<%} %>
 						</p>
 					</div>
-					<div class="col-4"></div>
+					<div class="col-2"></div>
 				</div>
 				<div class="row">
-					<div class="col-4"></div>
-					<div class="col-4">
+					<div class="col-2"></div>
+					<div class="col-8">
 						<p>パスワード</p>
 					</div>
-					<div class="col-4"></div>
+					<div class="col-2"></div>
 				</div>
 				<div class="row">
-					<div class="col-4"></div>
-					<div class="col-4">
+					<div class="col-2"></div>
+					<div class="col-8">
 						<div class="form-group">
 							<p><input type="password" name="password" placeholder="パスワード" class="form-control"></p>
 						</div>
 					</div>
-					<div class="col-4"></div>
+					<div class="col-2"></div>
 				</div>
 				<div class="row">
-					<div class="col-4"></div>
-					<div class="col-4">
+					<div class="col-2"></div>
+					<div class="col-8">
 						<p class="text-danger" id="msg2">
 							<%if(errMsg2 != null){ %>
 								<%=errMsg2 %>
 							<%} %>
 						</p>
 					</div>
-					<div class="col-4"></div>
+					<div class="col-2"></div>
 				</div>
 				<div class="row">
-					<div class="col-4"></div>
-					<div class="col-4">
+					<div class="col-2"></div>
+					<div class="col-8">
 						<p align="center"><input type="submit" value="ログイン" name="btn" class="btn btn-primary"></p>
 					</div>
-					<div class="col-4"></div>
+					<div class="col-2"></div>
 				</div>
 			</form>
         </div>
