@@ -8,6 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import snack.bean.UserBean;
+import snack.model.UserModel;
 @WebServlet("/admin/login")
 public class AdminLoginServlet extends HttpServlet {
     @Override
@@ -16,5 +20,27 @@ public class AdminLoginServlet extends HttpServlet {
         RequestDispatcher dispatcher =
                 request.getRequestDispatcher("../WEB-INF/jsp/admin/login.jsp");
         dispatcher.forward(request, response);
+    }
+    @Override
+    protected void doPost(HttpServletRequest request,HttpServletResponse response)
+            throws ServletException, IOException{
+        String email = (String)request.getParameter("email");
+        String password = (String)request.getParameter("password");
+
+        UserModel userModel = new UserModel();
+
+        UserBean userBean = userModel.authAdmin(email,password);
+
+        if(userBean.getEmail() != null){
+            HttpSession session = request.getSession(true);
+            session.setAttribute("userBean",userBean);
+            response.sendRedirect("home");
+        }else {
+            request.setAttribute("msg1","*メールアドレスが間違っています");
+            request.setAttribute("msg2","*パスワードが間違っています");
+            RequestDispatcher dispatcher =
+                    request.getRequestDispatcher("../WEB-INF/jsp/admin/login.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 }
