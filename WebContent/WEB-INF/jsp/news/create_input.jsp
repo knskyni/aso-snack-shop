@@ -47,6 +47,7 @@
               <div class="form-group">
                 <label for="content">内容</label>
                 <textarea class="form-control" id="content" name="content" rows="7"><%= StringHelper.nullToBlank(news.getContent()) %></textarea>
+                <small class="form-text text-muted">HTML使用可能、4096文字以内</small>
                 <% if(ErrorHelper.exist(errors, "content")) { %>
                 <div class="invalid-feedback d-block">
                     <ul>
