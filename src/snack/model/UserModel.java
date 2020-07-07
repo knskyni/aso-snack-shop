@@ -22,5 +22,17 @@ public class UserModel {
         }
         return userInfo;
     }
-
+    public UserBean authAdmin(String email,String password) {
+        UserBean userBean = null;
+        UserDao userDao = new UserDao();
+        try{
+            userDao.connect();
+            userBean = userDao.authAdmin(email,password);
+        }catch(Exception e) {
+            e.printStackTrace();
+        }finally {
+            userDao.close();
+        }
+        return userBean;
+    }
 }
