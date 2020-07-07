@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.text.StringEscapeUtils;
-
 import snack.bean.NewsBean;
 import snack.helper.ErrorHelper;
 
@@ -34,7 +32,7 @@ public class NewsCreateInputServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // フォームから値の受け取り
-        String subject = StringEscapeUtils.escapeHtml4(request.getParameter("subject"));
+        String subject = request.getParameter("subject");
         String content = request.getParameter("content");
 
         // エラーメッセージ
