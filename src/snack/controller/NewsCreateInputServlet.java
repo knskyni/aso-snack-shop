@@ -69,7 +69,14 @@ public class NewsCreateInputServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
         session.setAttribute("news", news);
 
-        response.sendRedirect("confirm");
+        // エラーの存在によって遷移先の切り替え
+        if(errors.isEmpty()) {
+            response.sendRedirect("confirm");
+        } else {
+            request.setAttribute("errors", errors);
+            RequestDispatcher rd = request.getRequestDispatcher(jsp);
+            rd.forward(request, response);
+        }
 
     }
 
