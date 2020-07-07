@@ -54,7 +54,7 @@ public class NewsCreateInputServlet extends HttpServlet {
         }
 
         // 内容が文字数オーバーのとき
-        if(subject.length() > 4096) {
+        if(content.length() > 4096) {
             errors = ErrorHelper.add(errors, "content", "1文字以上、4096文字以内で入力してください。");
         }
 
