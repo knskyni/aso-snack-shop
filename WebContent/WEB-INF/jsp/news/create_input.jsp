@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="snack.helper.ErrorHelper" %>
+<%@ page import="snack.bean.NewsBean" %>
+<%
+    HashMap<String, ArrayList<String>> errors = (HashMap<String, ArrayList<String>>)request.getAttribute("errors");
+    NewsBean news = (NewsBean)session.getAttribute("news");
+    if(news == null) news = new NewsBean();
+%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -21,12 +30,30 @@
             <form action="" method="POST">
               <div class="form-group">
                 <label for="subject">件名</label>
-                <input type="text" name="subject" class="form-control" id="subject" placeholder="タイトル" required>
+                <input type="text" name="subject" class="form-control" id="subject" placeholder="タイトル" value="<%= news.getSubject() %>">
                 <small class="form-text text-muted">必須、32文字以内</small>
+                <% if(ErrorHelper.exist(errors, "subject")) { %>
+                <div class="invalid-feedback d-block">
+                    <ul>
+                    <% for(String message : ErrorHelper.get(errors, "subject")) { %>
+                        <li><%= message %></li>
+                    <% } %>
+                    </ul>
+                </div>
+                <% } %>
               </div>
               <div class="form-group">
                 <label for="content">内容</label>
-                <textarea class="form-control" id="content" name="content" rows="7" required></textarea>
+                <textarea class="form-control" id="content" name="content" rows="7"><%= news.getContent() %></textarea>
+                <% if(ErrorHelper.exist(errors, "content")) { %>
+                <div class="invalid-feedback d-block">
+                    <ul>
+                    <% for(String message : ErrorHelper.get(errors, "content")) { %>
+                        <li><%= message %></li>
+                    <% } %>
+                    </ul>
+                </div>
+                <% } %>
               </div>
               <button type="submit" class="btn btn-primary float-right">確認</button>
             </form>
