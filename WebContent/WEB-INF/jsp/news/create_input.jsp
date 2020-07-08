@@ -5,6 +5,7 @@
 <%@ page import="snack.helper.ErrorHelper" %>
 <%@ page import="snack.helper.StringHelper" %>
 <%@ page import="snack.bean.NewsBean" %>
+<%@ page import="org.apache.commons.text.StringEscapeUtils" %>
 
 <%
     HashMap<String, ArrayList<String>> errors = (HashMap<String, ArrayList<String>>)request.getAttribute("errors");
@@ -32,7 +33,7 @@
             <form method="POST">
               <div class="form-group">
                 <label for="subject">件名</label>
-                <input type="text" name="subject" class="form-control" id="subject" placeholder="タイトル" value="<%= StringHelper.nullToBlank(news.getSubject()) %>">
+                <input type="text" name="subject" class="form-control" id="subject" placeholder="タイトル" value="<%= StringEscapeUtils.escapeHtml4(StringHelper.nullToBlank(news.getSubject())) %>">
                 <small class="form-text text-muted">必須、32文字以内</small>
                 <% if(ErrorHelper.exist(errors, "subject")) { %>
                 <div class="invalid-feedback d-block">
@@ -46,7 +47,7 @@
               </div>
               <div class="form-group">
                 <label for="content">内容</label>
-                <textarea class="form-control" id="content" name="content" rows="7"><%= StringHelper.nullToBlank(news.getContent()) %></textarea>
+                <textarea class="form-control" id="content" name="content" rows="7"><%= StringEscapeUtils.escapeHtml4(StringHelper.nullToBlank(news.getContent())) %></textarea>
                 <small class="form-text text-muted">HTML使用可能、4096文字以内</small>
                 <% if(ErrorHelper.exist(errors, "content")) { %>
                 <div class="invalid-feedback d-block">
