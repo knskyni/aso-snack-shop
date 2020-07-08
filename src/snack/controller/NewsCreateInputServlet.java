@@ -18,7 +18,7 @@ import snack.helper.ErrorHelper;
 @WebServlet("/news/create/input")
 public class NewsCreateInputServlet extends HttpServlet {
 
-    private static final String jsp = "../WEB-INF/jsp/news/create_input.jsp";
+    private static final String jsp = "../../WEB-INF/jsp/news/create_input.jsp";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
