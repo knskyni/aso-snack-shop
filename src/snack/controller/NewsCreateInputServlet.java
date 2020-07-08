@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import snack.bean.NewsBean;
 import snack.helper.ErrorHelper;
 
-@WebServlet("/news/create")
+@WebServlet("/news/create/input")
 public class NewsCreateInputServlet extends HttpServlet {
 
     private static final String jsp = "../WEB-INF/jsp/news/create_input.jsp";
