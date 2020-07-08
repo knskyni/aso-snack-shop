@@ -29,7 +29,7 @@
             <h2>お知らせ登録</h2>
             <p>サイト内のお知らせを登録します。</p>
             <hr>
-            <form action="" method="POST">
+            <form method="POST">
               <div class="form-group">
                 <label for="subject">件名</label>
                 <input type="text" name="subject" class="form-control" id="subject" placeholder="タイトル" value="<%= StringHelper.nullToBlank(news.getSubject()) %>">
