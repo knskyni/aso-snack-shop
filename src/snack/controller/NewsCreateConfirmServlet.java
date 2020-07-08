@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import snack.bean.NewsBean;
+import snack.model.NewsModel;
 
 @WebServlet("/news/create/confirm")
 public class NewsCreateConfirmServlet extends HttpServlet {
@@ -31,5 +32,30 @@ public class NewsCreateConfirmServlet extends HttpServlet {
         // JSP表示
         RequestDispatcher rd = request.getRequestDispatcher(jsp);
         rd.forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // セッション
+        HttpSession session = request.getSession(false);
+        NewsBean news = (NewsBean)session.getAttribute("news");
+
+        // Beanの存在確認
+        if(news == null) {
+            response.sendError(400);
+            return;
+        }
+
+        // データベース登録
+        NewsModel newsModel = new NewsModel();
+        boolean result = newsModel.create(news);
+
+        // 遷移
+        if(result) {
+            response.sendRedirect("complete");
+            session.removeAttribute("news");
+        } else {
+            response.sendError(400);
+        }
     }
 }
