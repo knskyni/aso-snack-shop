@@ -53,7 +53,6 @@ public class NewsCreateConfirmServlet extends HttpServlet {
         // 遷移
         if(result) {
             response.sendRedirect("complete");
-            session.removeAttribute("news");
         } else {
             response.sendError(400);
         }
