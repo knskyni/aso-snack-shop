@@ -13,12 +13,14 @@
 </head>
 <body>
     <jsp:include page="./header.jsp" />
+
     <section>
         <div class="container">
             <!-- ここにHTMLを書き始める -->
         </div>
     </section>
 
+    <jsp:include page="./footer.jsp" />
     <!-- JavaScript -->
     <script src="./js/jquery-3.5.1.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
