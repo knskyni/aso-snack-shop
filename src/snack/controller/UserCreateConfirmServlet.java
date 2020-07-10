@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import snack.bean.UserBean;
+import snack.model.UserModel;
 
 /**
  * Servlet implementation class UserCreateConfirmServlet
@@ -43,7 +44,14 @@ public class UserCreateConfirmServlet extends HttpServlet {
 	    HttpSession session = request.getSession(false);
 	    UserBean user = (UserBean)session.getAttribute("user");
 
-	    response.sendRedirect("complete");
+	    UserModel userModel = new UserModel();
+	    boolean result = userModel.insert(user);
+
+	    if(result) {
+            response.sendRedirect("complete");
+        } else {
+            response.sendError(400);
+        }
 
 	}
 
