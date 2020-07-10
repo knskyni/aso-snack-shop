@@ -3,7 +3,10 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.HashMap" %>
 <%@ page import="snack.helper.ErrorHelper" %>
+<%@ page import="snack.helper.StringHelper" %>
 <%@ page import="snack.bean.NewsBean" %>
+<%@ page import="org.apache.commons.text.StringEscapeUtils" %>
+
 <%
     HashMap<String, ArrayList<String>> errors = (HashMap<String, ArrayList<String>>)request.getAttribute("errors");
     NewsBean news = (NewsBean)session.getAttribute("news");
@@ -18,7 +21,7 @@
     <title>Hello, world!</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
 </head>
 <body>
     <jsp:include page="../header.jsp" />
@@ -27,10 +30,10 @@
             <h2>お知らせ登録</h2>
             <p>サイト内のお知らせを登録します。</p>
             <hr>
-            <form action="" method="POST">
+            <form method="POST">
               <div class="form-group">
                 <label for="subject">件名</label>
-                <input type="text" name="subject" class="form-control" id="subject" placeholder="タイトル" value="<%= news.getSubject() %>">
+                <input type="text" name="subject" class="form-control" id="subject" placeholder="タイトル" value="<%= StringEscapeUtils.escapeHtml4(StringHelper.nullToBlank(news.getSubject())) %>">
                 <small class="form-text text-muted">必須、32文字以内</small>
                 <% if(ErrorHelper.exist(errors, "subject")) { %>
                 <div class="invalid-feedback d-block">
@@ -44,7 +47,8 @@
               </div>
               <div class="form-group">
                 <label for="content">内容</label>
-                <textarea class="form-control" id="content" name="content" rows="7"><%= news.getContent() %></textarea>
+                <textarea class="form-control" id="content" name="content" rows="7"><%= StringEscapeUtils.escapeHtml4(StringHelper.nullToBlank(news.getContent())) %></textarea>
+                <small class="form-text text-muted">HTML使用可能、4096文字以内</small>
                 <% if(ErrorHelper.exist(errors, "content")) { %>
                 <div class="invalid-feedback d-block">
                     <ul>
@@ -61,8 +65,8 @@
     </section>
 
     <!-- JavaScript -->
-    <script src="../js/jquery-3.5.1.min.js"></script>
+    <script src="../../js/jquery-3.5.1.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
 </body>
 </html>
