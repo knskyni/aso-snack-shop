@@ -37,4 +37,21 @@ public class NewsModel {
         return newsBean;
     }
 
+    public boolean update(NewsBean news) {
+        NewsDao newsDao = new NewsDao();
+        boolean result = false;
+
+        try {
+            newsDao.connect();
+            result = newsDao.update(news);
+        } catch(Exception e) {
+            e.printStackTrace();
+            result = false;
+        } finally {
+            newsDao.close();
+        }
+
+        return result;
+    }
+
 }
