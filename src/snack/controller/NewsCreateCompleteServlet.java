@@ -29,6 +29,9 @@ public class NewsCreateCompleteServlet extends HttpServlet {
             return;
         }
 
+        // セッションから削除
+        session.removeAttribute("updateNews");
+
         RequestDispatcher rd = request.getRequestDispatcher(jsp);
         rd.forward(request, response);
     }
