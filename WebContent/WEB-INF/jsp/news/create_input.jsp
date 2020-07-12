@@ -12,7 +12,7 @@
     String rootURL = WebHelper.getRootURL(request);
 
     HashMap<String, ArrayList<String>> errors = (HashMap<String, ArrayList<String>>)request.getAttribute("errors");
-    NewsBean news = (NewsBean)session.getAttribute("news");
+    NewsBean news = (NewsBean)session.getAttribute("createNews");
     if(news == null) news = new NewsBean();
 %>
 <!DOCTYPE html>

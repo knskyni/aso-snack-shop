@@ -7,7 +7,7 @@
 <%
     String rootURL = WebHelper.getRootURL(request);
 
-    NewsBean news = (NewsBean)session.getAttribute("news");
+    NewsBean news = (NewsBean)session.getAttribute("createNews");
 %>
 <!DOCTYPE html>
 <html lang="ja">
