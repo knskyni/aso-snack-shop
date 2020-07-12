@@ -65,7 +65,7 @@ public class NewsCreateInputServlet extends HttpServlet {
 
         // 入力内容をセッションに格納
         HttpSession session = request.getSession(false);
-        session.setAttribute("news", news);
+        session.setAttribute("createNews", news);
 
         // エラーの存在によって遷移先の切り替え
         if(errors.isEmpty()) {

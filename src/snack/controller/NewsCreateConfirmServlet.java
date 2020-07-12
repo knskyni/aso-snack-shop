@@ -21,7 +21,7 @@ public class NewsCreateConfirmServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // セッション
         HttpSession session = request.getSession(false);
-        NewsBean news = (NewsBean)session.getAttribute("news");
+        NewsBean news = (NewsBean)session.getAttribute("createNews");
 
         // Beanの存在確認
         if(news == null) {
@@ -38,7 +38,7 @@ public class NewsCreateConfirmServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // セッション
         HttpSession session = request.getSession(false);
-        NewsBean news = (NewsBean)session.getAttribute("news");
+        NewsBean news = (NewsBean)session.getAttribute("createNews");
 
         // Beanの存在確認
         if(news == null) {
