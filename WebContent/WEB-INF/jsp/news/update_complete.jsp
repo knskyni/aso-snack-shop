@@ -6,8 +6,6 @@
 
 <%
     String rootURL = WebHelper.getRootURL(request);
-
-    NewsBean news = (NewsBean)session.getAttribute("news");
 %>
 <!DOCTYPE html>
 <html lang="ja">
@@ -24,8 +22,8 @@
     <jsp:include page="../header.jsp" />
     <section>
         <div class="container">
-            <h2>お知らせ登録</h2>
-            <p>登録完了しました。</p>
+            <h2>お知らせ更新</h2>
+            <p>更新完了しました。</p>
         </div>
     </section>
 

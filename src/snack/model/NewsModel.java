@@ -54,4 +54,21 @@ public class NewsModel {
         return result;
     }
 
+    public boolean delete(int id) {
+        NewsDao newsDao = new NewsDao();
+        boolean result = false;
+
+        try {
+            newsDao.connect();
+            result = newsDao.delete(id);
+        } catch(Exception e) {
+            e.printStackTrace();
+            result = false;
+        } finally {
+            newsDao.close();
+        }
+
+        return result;
+    }
+
 }
