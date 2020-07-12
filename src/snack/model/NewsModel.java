@@ -21,4 +21,20 @@ public class NewsModel {
         return result;
     }
 
+    public NewsBean show(int id) {
+        NewsBean newsBean = null;
+        NewsDao newsDao = new NewsDao();
+
+        try {
+            newsDao.connect();
+            newsBean = newsDao.show(id);
+        } catch(Exception e) {
+            e.printStackTrace();
+        } finally {
+            newsDao.close();
+        }
+
+        return newsBean;
+    }
+
 }
