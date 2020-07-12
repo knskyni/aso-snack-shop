@@ -58,4 +58,29 @@ public class NewsDao extends DaoBase {
         return news;
     }
 
+    public boolean update(NewsBean news) {
+        if(con == null) {
+            return false;
+        }
+
+        PreparedStatement stmt = null;
+        int result = 0;
+
+        try {
+            stmt = con.prepareStatement("UPDATE `news` SET `updated_at` = ?, `subject` = ?, `content` = ? WHERE `id` = ?;");
+
+            stmt.setTimestamp(1, new java.sql.Timestamp(new java.util.Date().getTime()));
+            stmt.setString(2, news.getSubject());
+            stmt.setString(3, news.getContent());
+            stmt.setInt(4, news.getId());
+
+            result = stmt.executeUpdate();
+        } catch(SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return (result == 1) ? true : false;
+    }
+
 }
