@@ -4,10 +4,13 @@
 <%@ page import="java.util.HashMap" %>
 <%@ page import="snack.helper.ErrorHelper" %>
 <%@ page import="snack.helper.StringHelper" %>
+<%@ page import="snack.helper.WebHelper" %>
 <%@ page import="snack.bean.NewsBean" %>
 <%@ page import="org.apache.commons.text.StringEscapeUtils" %>
 
 <%
+    String rootURL = WebHelper.getRootURL(request);
+
     HashMap<String, ArrayList<String>> errors = (HashMap<String, ArrayList<String>>)request.getAttribute("errors");
     NewsBean news = (NewsBean)session.getAttribute("updateNews");
     if(news == null) news = new NewsBean();
@@ -21,7 +24,7 @@
     <title>Hello, world!</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="<%= rootURL %>/css/bootstrap.min.css">
 </head>
 <body>
     <jsp:include page="../header.jsp" />
@@ -65,8 +68,8 @@
     </section>
 
     <!-- JavaScript -->
-    <script src="../../js/jquery-3.5.1.min.js"></script>
+    <script src="<%= rootURL %>/js/jquery-3.5.1.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="../../js/bootstrap.min.js"></script>
+    <script src="<%= rootURL %>/js/bootstrap.min.js"></script>
 </body>
 </html>
