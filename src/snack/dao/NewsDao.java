@@ -1,6 +1,7 @@
 package snack.dao;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import snack.bean.NewsBean;
@@ -29,6 +30,32 @@ public class NewsDao extends DaoBase {
         }
 
         return (result == 1) ? true : false;
+    }
+
+    public NewsBean show(int id) {
+        if(con == null) {
+            return null;
+        }
+
+        PreparedStatement stmt = null;
+        NewsBean news = null;
+
+        try {
+            stmt = con.prepareStatement("SELECT * FROM `news` WHERE `id` = ?;");
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            while(rs.next()) {
+                news = new NewsBean();
+                news.setId(rs.getInt("id"));
+                news.setSubject(rs.getString("subject"));
+                news.setContent(rs.getString("content"));
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        return news;
     }
 
 }
