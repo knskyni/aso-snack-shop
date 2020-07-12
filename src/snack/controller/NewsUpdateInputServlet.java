@@ -37,6 +37,12 @@ public class NewsUpdateInputServlet extends HttpServlet {
         NewsModel newsModel = new NewsModel();
         NewsBean newsBean = newsModel.show(id);
 
+        // データベースに存在しなかった場合に404エラー
+        if(newsBean == null) {
+            response.sendError(404);
+            return;
+        }
+
         // セッションに情報を保存
         HttpSession session = request.getSession(false);
         session.setAttribute("updateNews", newsBean);
