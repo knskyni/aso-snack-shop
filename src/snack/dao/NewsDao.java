@@ -83,4 +83,26 @@ public class NewsDao extends DaoBase {
         return (result == 1) ? true : false;
     }
 
+    public boolean delete(int id) {
+        if(con == null) {
+            return false;
+        }
+
+        PreparedStatement stmt = null;
+        int result = 0;
+
+        try {
+            stmt = con.prepareStatement("UPDATE `news` SET `status` = 0 WHERE `id` = ?;");
+
+            stmt.setInt(1, id);
+
+            result = stmt.executeUpdate();
+        } catch(SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return (result == 1) ? true : false;
+    }
+
 }
