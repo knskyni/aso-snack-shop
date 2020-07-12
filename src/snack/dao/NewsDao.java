@@ -41,7 +41,7 @@ public class NewsDao extends DaoBase {
         NewsBean news = null;
 
         try {
-            stmt = con.prepareStatement("SELECT * FROM `news` WHERE `id` = ?;");
+            stmt = con.prepareStatement("SELECT * FROM `news` WHERE `id` = ? AND `status` = 1;");
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
 
