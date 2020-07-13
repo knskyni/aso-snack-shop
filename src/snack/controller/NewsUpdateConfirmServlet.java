@@ -13,15 +13,15 @@ import javax.servlet.http.HttpSession;
 import snack.bean.NewsBean;
 import snack.model.NewsModel;
 
-@WebServlet("/news/create/confirm")
-public class NewsCreateConfirmServlet extends HttpServlet {
-    private static final String jsp = "../../WEB-INF/jsp/news/create_confirm.jsp";
+@WebServlet("/news/update/confirm")
+public class NewsUpdateConfirmServlet extends HttpServlet {
+    private static final String jsp = "../../WEB-INF/jsp/news/update_confirm.jsp";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // セッション
         HttpSession session = request.getSession(false);
-        NewsBean news = (NewsBean)session.getAttribute("createNews");
+        NewsBean news = (NewsBean)session.getAttribute("updateNews");
 
         // Beanの存在確認
         if(news == null) {
@@ -38,7 +38,7 @@ public class NewsCreateConfirmServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // セッション
         HttpSession session = request.getSession(false);
-        NewsBean news = (NewsBean)session.getAttribute("createNews");
+        NewsBean news = (NewsBean)session.getAttribute("updateNews");
 
         // Beanの存在確認
         if(news == null) {
@@ -48,7 +48,7 @@ public class NewsCreateConfirmServlet extends HttpServlet {
 
         // データベース登録
         NewsModel newsModel = new NewsModel();
-        boolean result = newsModel.create(news);
+        boolean result = newsModel.update(news);
 
         // 遷移
         if(result) {
