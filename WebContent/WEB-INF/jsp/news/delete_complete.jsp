@@ -22,8 +22,8 @@
     <jsp:include page="../header.jsp" />
     <section>
         <div class="container">
-            <h2>お知らせ登録</h2>
-            <p>登録完了しました。</p>
+            <h2>お知らせ削除</h2>
+            <p>削除完了しました。</p>
         </div>
     </section>
 

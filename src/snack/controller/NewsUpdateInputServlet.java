@@ -14,14 +14,38 @@ import javax.servlet.http.HttpSession;
 
 import snack.bean.NewsBean;
 import snack.helper.ErrorHelper;
+import snack.model.NewsModel;
 
-@WebServlet("/news/create/input")
-public class NewsCreateInputServlet extends HttpServlet {
+@WebServlet("/news/update/input")
+public class NewsUpdateInputServlet extends HttpServlet {
 
-    private static final String jsp = "../../WEB-INF/jsp/news/create_input.jsp";
+    private static final String jsp = "../../WEB-INF/jsp/news/update_input.jsp";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        // パラメータからIDを取得
+        int id = 0;
+        try {
+            id = Integer.parseInt(request.getParameter("id"));
+        } catch(Exception e) {
+            response.sendError(400);
+            return;
+        }
+
+        // データベースから情報取得
+        NewsModel newsModel = new NewsModel();
+        NewsBean newsBean = newsModel.show(id);
+
+        // データベースに存在しなかった場合に404エラー
+        if(newsBean == null) {
+            response.sendError(404);
+            return;
+        }
+
+        // セッションに情報を保存
+        HttpSession session = request.getSession(false);
+        session.setAttribute("updateNews", newsBean);
 
         RequestDispatcher rd = request.getRequestDispatcher(jsp);
         rd.forward(request, response);
@@ -58,14 +82,18 @@ public class NewsCreateInputServlet extends HttpServlet {
             errors = ErrorHelper.add(errors, "content", "1文字以上、4096文字以内で入力してください。");
         }
 
+        // セッション取得
+        HttpSession session = request.getSession(false);
+
+        // セッションからBean取得
+        NewsBean news = (NewsBean)session.getAttribute("updateNews");
+
         // 入力内容をBeanに格納
-        NewsBean news = new NewsBean();
         news.setSubject(subject);
         news.setContent(content);
 
         // 入力内容をセッションに格納
-        HttpSession session = request.getSession(false);
-        session.setAttribute("createNews", news);
+        session.setAttribute("news", news);
 
         // エラーの存在によって遷移先の切り替え
         if(errors.isEmpty()) {
