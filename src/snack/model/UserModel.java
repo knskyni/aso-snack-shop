@@ -26,37 +26,33 @@ public class UserModel {
     public UserBean show(int id) {
 
         UserDao userDao = new UserDao();
-
         UserBean userInfo = null;
 
         try {
             userDao.connect();
-
             userInfo = userDao.show(id);
         }catch(Exception e){
-        e.printStackTrace();
+            e.printStackTrace();
         }finally {
-        userDao.close();
+            userDao.close();
         }
-    return userInfo;
+        return userInfo;
     }
 
     public UserBean update(UserBean userUpdateInfo) {
 
         UserDao userDao = new UserDao();
-
         UserBean userInfoBean = null;
 
         try {
             userDao.connect();
-
             userInfoBean = userDao.update(userUpdateInfo);
         }catch(Exception e){
-        e.printStackTrace();
+            e.printStackTrace();
         }finally {
-        userDao.close();
+            userDao.close();
         }
-    return userInfoBean;
+        return userInfoBean;
     }
 
 }
