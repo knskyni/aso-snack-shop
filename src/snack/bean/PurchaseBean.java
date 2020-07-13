@@ -34,8 +34,4 @@ public class PurchaseBean implements Serializable{
     public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
     }
-
-
-
-
 }
