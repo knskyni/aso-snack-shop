@@ -77,7 +77,7 @@ public class UserDao extends DaoBase{
         PreparedStatement stmt = null;
 
             try {
-                stmt = con.prepareStatement("UPDATE `users` SET `last_name` = ? , `first_name` = ? , `last_name_furigana` = ? , `first_name_furigana` = ? , `email` = ? , `postal_code` = ? , `address` = ? , `phone_number` = ? ,`updated_at` = sysdate() WHERE `id` = ?");
+                stmt = con.prepareStatement("UPDATE `users` SET `last_name` = ? , `first_name` = ? , `last_name_furigana` = ? , `first_name_furigana` = ? , `email` = ? , `postal_code` = ? , `address` = ? , `phone_number` = ? ,`updated_at` = ? WHERE `id` = ?");
 
                 stmt.setString(1, userUpdateInfo.getLastName());
                 stmt.setString(2, userUpdateInfo.getFirstName());
@@ -87,7 +87,8 @@ public class UserDao extends DaoBase{
                 stmt.setString(6, userUpdateInfo.getPostalCode());
                 stmt.setString(7, userUpdateInfo.getAddress());
                 stmt.setString(8,userUpdateInfo.getPhoneNumber());
-                stmt.setInt(9,userUpdateInfo.getId());
+                stmt.setTimestamp(9, new java.sql.Timestamp(new java.util.Date().getTime()));
+                stmt.setInt(10,userUpdateInfo.getId());
 
                 stmt.executeUpdate();
 
