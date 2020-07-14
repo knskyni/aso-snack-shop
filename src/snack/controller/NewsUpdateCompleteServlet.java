@@ -12,16 +12,16 @@ import javax.servlet.http.HttpSession;
 
 import snack.bean.NewsBean;
 
-@WebServlet("/news/create/complete")
-public class NewsCreateCompleteServlet extends HttpServlet {
-    private static final String jsp = "../../WEB-INF/jsp/news/create_complete.jsp";
+@WebServlet("/news/update/complete")
+public class NewsUpdateCompleteServlet extends HttpServlet {
+    private static final String jsp = "../../WEB-INF/jsp/news/update_complete.jsp";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // セッション
         HttpSession session = request.getSession(false);
-        NewsBean news = (NewsBean)session.getAttribute("createNews");
+        NewsBean news = (NewsBean)session.getAttribute("updateNews");
 
         // Beanの存在確認
         if(news == null) {
@@ -30,7 +30,7 @@ public class NewsCreateCompleteServlet extends HttpServlet {
         }
 
         // セッションから削除
-        session.removeAttribute("createNews");
+        session.removeAttribute("updateNews");
 
         RequestDispatcher rd = request.getRequestDispatcher(jsp);
         rd.forward(request, response);
