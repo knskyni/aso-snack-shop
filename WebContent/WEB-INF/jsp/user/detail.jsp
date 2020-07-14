@@ -15,7 +15,7 @@
 <body>
 <%
 //セッションから値を取得
-UserBean user = (UserBean)riqest.getAttribute("user");
+UserBean user = (UserBean)request.getAttribute("user");
 %>
     <jsp:include page="../header.jsp" />
     <section>
@@ -65,8 +65,9 @@ UserBean user = (UserBean)riqest.getAttribute("user");
               </div>
               </div>
             <div class="row">
-                <div class="col-sm-6"><button type="button" onclick="location.href='input'" class="btn btn-light" >戻る</button></div>
-                <div class="col-sm-6"><button type="submit" class="btn btn-primary">登録へ</button></div>
+                <div class="col-sm-6"><button type="button" onclick="location.href='menu'" class="btn btn-light" >戻る</button></div>
+                <div class="col-sm-3"><button type="button" onclick="location.href='update'"class="btn btn-primary">変更へ</button></div>
+                <div class="col-sm-3"><button type="button" onclick="location.href='out'"class="btn btn-primary">退会へ</button></div>
             </div>
             </div>
             </form>

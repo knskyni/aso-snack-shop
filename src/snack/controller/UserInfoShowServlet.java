@@ -8,6 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import snack.bean.UserBean;
+import snack.model.UserModel;
 
 /**
  * Servlet implementation class UserInfoShowServlet
@@ -28,16 +32,13 @@ public class UserInfoShowServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    HttpSession session = request.getSession(false);
+        UserBean userInfo = (UserBean)session.getAttribute("userInfo");
+        int id = userInfo.getId();
+	    UserModel userModel = new UserModel();
+        UserBean userbean = userModel.show(id);
+        request.setAttribute("user",userbean);
 	    RequestDispatcher rd = request.getRequestDispatcher("../WEB-INF/jsp/user/detail.jsp");
         rd.forward(request, response);
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }
