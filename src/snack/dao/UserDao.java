@@ -44,17 +44,18 @@ public class UserDao extends DaoBase{
         ResultSet rs = null;
 
         try {
-            stmt = con.prepareStatement("INSERT INTO users(first_name,last_name,first_name_frigana,last_name_frigana,email,password,postal_code,address,tel_number)VALUS(?,?,?,?,?,?,?,?,?");
-
-            stmt.setString(1,userbean.getFirstName());
-            stmt.setString(2,userbean.getLastName());
-            stmt.setString(3,userbean.getFirstNameFurigana());
-            stmt.setString(4,userbean.getLastNameFurigana());
+            stmt = con.prepareStatement("INSERT INTO users(last_name,first_name,last_name_furigana,first_name_furigana,email,password,created_at,updated_at,postal_code,address,phone_number)VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+            stmt.setString(1,userbean.getLastName());
+            stmt.setString(2,userbean.getFirstName());
+            stmt.setString(3,userbean.getLastNameFurigana());
+            stmt.setString(4,userbean.getFirstNameFurigana());
             stmt.setString(5,userbean.getEmail());
             stmt.setString(6,userbean.getPassword());
-            stmt.setString(7,userbean.getPostalCode());
-            stmt.setString(8,userbean.getAddress());
-            stmt.setString(9,userbean.getPhoneNumber());
+            stmt.setTimestamp(7, new java.sql.Timestamp(new java.util.Date().getTime()));
+            stmt.setTimestamp(8, new java.sql.Timestamp(new java.util.Date().getTime()));
+            stmt.setString(9,userbean.getPostalCode());
+            stmt.setString(10,userbean.getAddress());
+            stmt.setString(11,userbean.getPhoneNumber());
 
             stmt.executeUpdate();
             return true;
@@ -64,4 +65,5 @@ public class UserDao extends DaoBase{
             return false;
         }
     }
+
 }
