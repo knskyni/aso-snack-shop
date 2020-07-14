@@ -76,17 +76,15 @@ public class UserCreateInputServlet extends HttpServlet {
         if (!mail.matches("^[a-zA-Z0-9!#$%&'_`/=~\\*\\+\\-\\?\\^\\{\\|\\}]+(\\.[a-zA-Z0-9!#$%&'_`/=~\\*\\+\\-\\?\\^\\{\\|\\}]+)*+(.*)@[a-zA-Z0-9][a-zA-Z0-9\\-]*(\\.[a-zA-Z0-9\\-]+)+$")) {
             errors = ErrorHelper.add(errors,"mail","正しく入力されていません");
         }
-        if (!post.matches("[0-9]{3}-[0-9]{4}$")) {
+        if (!post.matches("[0-9a-zA-Z\\-\\_]+")) {
             errors = ErrorHelper.add(errors,"post","ハイフンがないか半角数字ではありません");
         }
-        //わからない
-        //if (!namber.matches("^¥d{11}$")) {
-          //  errors = ErrorHelper.add(errors,"namber","ハイフンがないか半角数字ではありません");
-        //}
-        //わからない
-        //if (!address.matches("^[ぁ-んァ-ン一-龥^[0-9０-９]+$]")) {
-          //  errors = ErrorHelper.add(errors,"address","住所が正しくではありません");
-        //}
+        if(namber.isEmpty() ||!namber.matches("[0-9a-zA-Z\\-\\_]+")) {
+            errors = ErrorHelper.add(errors, "namber", "*ハイフンを使って電話番号を入力してください");
+        }
+        if(address.isEmpty()) {
+            errors = ErrorHelper.add(errors, "address", "*住所を入力してください");
+        }
         if(Ksei.isEmpty()) {
             errors = ErrorHelper.add(errors, "Ksei", "入力してください。");
         }
