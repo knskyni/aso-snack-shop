@@ -48,11 +48,15 @@ public class WebHelper {
         String fileName = DigestUtils.md5Hex(part.getInputStream());
 
         // 拡張子の取得
-        for(String line : part.getHeader("Content-Disposition").split(";")) {
-            line = line.trim();
-            if(line.startsWith("filename")) {
-                fileName += line.substring(line.indexOf(".")).replaceAll("\"", "");
+        try {
+            for(String line : part.getHeader("Content-Disposition").split(";")) {
+                line = line.trim();
+                if(line.startsWith("filename")) {
+                    fileName += line.substring(line.indexOf(".")).replaceAll("\"", "");
+                }
             }
+        } catch(StringIndexOutOfBoundsException e) {
+            System.out.println("拡張子がないファイルが投稿されました。\"" + fileName + "\"で保存しました。");
         }
 
         // ファイルの保存
