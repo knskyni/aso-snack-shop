@@ -37,18 +37,4 @@ public class NewsModel {
         }
         return news;
     }
-    public NewsBean show(int id){
-        NewsBean newsBean = new NewsBean();
-        NewsDao newsDao = new NewsDao();
-        try {
-            newsDao.connect();
-            newsBean = newsDao.show(id);
-        }catch(Exception e) {
-
-            e.printStackTrace();
-        }finally {
-            newsDao.close();
-        }
-        return newsBean;
-    }
 }

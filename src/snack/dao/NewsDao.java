@@ -55,26 +55,4 @@ public class NewsDao extends DaoBase {
         }
         return news;
     }
-    public NewsBean show(int id){
-        if( con == null ){
-            return null;
-        }
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        NewsBean newsBean = new NewsBean();
-        try{
-            stmt = con.prepareStatement("SELECT updated_at, subject, content FROM news  WHERE id =?");
-            stmt.setInt(1,id);
-            rs = stmt.executeQuery();
-            while( rs.next() ) {
-                newsBean.setUpdatedAt(rs.getDate("updated_at"));
-                newsBean.setSubject(rs.getString("subject"));
-                newsBean.setContent(rs.getString("content"));
-            }
-        }catch(SQLException e) {
-            e.printStackTrace();
-        }
-        return newsBean;
-    }
-
 }
