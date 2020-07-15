@@ -2,6 +2,7 @@ package snack.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import snack.bean.UserBean;
 
@@ -36,4 +37,34 @@ public class UserDao extends DaoBase{
 
     }
 
+	public boolean updatePassword(UserBean updateBean) {
+		if( con == null ){
+			return;
+		}
+
+		PreparedStatement stmt = null;
+		int result = 0;
+
+		try{
+			///////////////////////////////////
+			//SELECT文の発行
+			stmt = con.prepareStatement("UPDATE users SET password=? WHERE id=?");
+
+            stmt.setString(1, updateBean.getPassword());
+			stmt.setInt(2, updateBean.getId());
+
+			result = stmt.executeUpdate();
+		}catch(SQLException e) {
+
+			//エラー発生した場合にコンソールにログを出力する
+			e.printStackTrace();
+		}
+
+		if(result == 1) {
+		    return true;
+		} else {
+		    return false;
+		}
+
+	}
 }
