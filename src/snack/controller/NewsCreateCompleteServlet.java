@@ -21,16 +21,13 @@ public class NewsCreateCompleteServlet extends HttpServlet {
 
         // セッション
         HttpSession session = request.getSession(false);
-        NewsBean news = (NewsBean)session.getAttribute("createNews");
+        NewsBean news = (NewsBean)session.getAttribute("news");
 
         // Beanの存在確認
         if(news == null) {
             response.sendError(400);
             return;
         }
-
-        // セッションから削除
-        session.removeAttribute("createNews");
 
         RequestDispatcher rd = request.getRequestDispatcher(jsp);
         rd.forward(request, response);

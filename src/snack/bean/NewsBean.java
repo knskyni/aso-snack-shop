@@ -8,7 +8,7 @@ public class NewsBean implements Serializable{
     //NewsBeanのすべての値
     private int id;
     private Date createdAt;
-    private Date updatedAt;
+    private Date updateAt;
     private String subject;
     private String content;
 
@@ -26,10 +26,10 @@ public class NewsBean implements Serializable{
         this.createdAt = createdAt;
     }
     public Date getUpdateAt() {
-        return updatedAt;
+        return updateAt;
     }
     public void setUpdateAt(Date updateAt) {
-        this.updatedAt = updateAt;
+        this.updateAt = updateAt;
     }
     public String getSubject() {
         return subject;
