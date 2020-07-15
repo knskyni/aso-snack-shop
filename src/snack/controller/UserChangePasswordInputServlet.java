@@ -10,25 +10,32 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import snack.bean.UserBean;
+import snack.model.UserModel;
 
 @WebServlet("/account/change-password/input")
 public class UserChangePasswordInputServlet extends HttpServlet {
 
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String pass = request.getParameter("newpass");
+        // フォームから値取得
+        String pass = request.getParameter("newpass");
 
-		UserBean updateBean = new UserBean();
-		HttpSession session = request.getSession();
-		UserBean user = (UserBean)session.getAttribute("userInfo");
+        // セッション取得
+        HttpSession session = request.getSession();
 
-		updateBean.setNewpassword(pass);
-		updateBean.setId(user.getId());
+        // ユーザー情報取得・パスワード格納
+        UserBean user = (UserBean)session.getAttribute("userInfo");
+        user.setPassword(pass);
 
-		session.setAttribute("updateBean", updateBean);
+        // データベース
+        UserModel userModel = new UserModel();
+        boolean result = userModel.updatePassword(user);
 
-		response.sendRedirect("/account/change-password/complete");
-		}
-	}
+        if(result) {
+            response.sendRedirect("/account/change-password/complete");
+        } else {
+            response.sendError(400);
+        }
+    }
+}
