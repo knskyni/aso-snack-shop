@@ -23,4 +23,21 @@ public class UserModel {
         return userInfo;
     }
 
+    public boolean updatePassword(UserBean updateBean){
+
+        UserDao userDao = new UserDao();
+        boolean result = false;
+
+        try {
+            userDao.connect();
+            result = userDao.updatePassword(updateBean);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }finally{
+            userDao.close();
+        }
+
+         return result;
+    }
+
 }
