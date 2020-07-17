@@ -24,12 +24,19 @@ public class AdminLoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException{
+
+        //ログイン情報を取得
+
         String email = (String)request.getParameter("email");
         String password = (String)request.getParameter("password");
 
         UserModel userModel = new UserModel();
 
+        //ログイン処理
+
         UserBean userBean = userModel.authAdmin(email,password);
+
+        //ログイン結果の判定
 
         if(userBean.getEmail() != null){
             HttpSession session = request.getSession(true);
