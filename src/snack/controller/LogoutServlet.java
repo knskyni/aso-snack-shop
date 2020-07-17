@@ -16,9 +16,9 @@ public class LogoutServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request,HttpServletResponse response)
                                                 throws ServletException, IOException{
-        HttpSession session = request.getSession(true);
-        UserBean userBean = (UserBean)session.getAttribute("userBean");
-        if(userBean.getFirstName() != null) {
+        HttpSession session = request.getSession(false);
+        UserBean userInfo = (UserBean)session.getAttribute("userInfo");
+        if(userInfo.getFirstName() != null) {
             session.invalidate();
             RequestDispatcher dispatcher =
                     request.getRequestDispatcher("./WEB-INF/jsp/home.jsp");
@@ -26,7 +26,7 @@ public class LogoutServlet extends HttpServlet {
         }else {
             session.invalidate();
             RequestDispatcher dispatcher =
-                    request.getRequestDispatcher("../WEB-INF/jsp/admin/login.jsp");
+                    request.getRequestDispatcher("./WEB-INF/jsp/admin/login.jsp");
             dispatcher.forward(request, response);
         }
     }
