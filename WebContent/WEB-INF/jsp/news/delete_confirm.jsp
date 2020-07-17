@@ -6,6 +6,8 @@
 
 <%
     String rootURL = WebHelper.getRootURL(request);
+
+    NewsBean news = (NewsBean)session.getAttribute("deleteNews");
 %>
 <!DOCTYPE html>
 <html lang="ja">
@@ -22,8 +24,24 @@
     <jsp:include page="../header.jsp" />
     <section>
         <div class="container">
-            <h2>お知らせ登録</h2>
-            <p>登録完了しました。</p>
+            <h2>お知らせ削除</h2>
+            <p>以下のお知らせを削除します。よろしいですか。</p>
+            <hr>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th scope="row">件名</th>
+                        <td><%= StringEscapeUtils.escapeHtml4(news.getSubject()) %></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">内容</th>
+                        <td><%= news.getContent() %></td>
+                    </tr>
+                </tbody>
+            </table>
+            <form method="POST">
+              <button type="submit" class="btn btn-primary float-right">削除</button>
+            </form>
         </div>
     </section>
 
