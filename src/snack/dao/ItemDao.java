@@ -1,5 +1,5 @@
 package snack.dao;
 
-public class ItemDao {
+public class ItemDao extends DaoBase {
 
 }
