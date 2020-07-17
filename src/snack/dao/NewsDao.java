@@ -72,6 +72,7 @@ public class NewsDao extends DaoBase {
             while(rs.next()) {
                 news = new NewsBean();
                 news.setId(rs.getInt("id"));
+                news.setUpdatedAt("updated_at");
                 news.setSubject(rs.getString("subject"));
                 news.setContent(rs.getString("content"));
             }
