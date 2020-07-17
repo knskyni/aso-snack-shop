@@ -55,4 +55,19 @@ public class UserModel {
         return userInfoBean;
     }
 
+    public UserBean reauth(String email, String password) {
+
+        UserDao userDao = new UserDao();
+        UserBean userInfo = null;
+
+        try {
+            userDao.connect();
+            userInfo = userDao.reauth(email,password);
+        }catch(Exception e) {
+            e.printStackTrace();
+        }finally {
+            userDao.close();
+        }
+        return userInfo;
+    }
 }
