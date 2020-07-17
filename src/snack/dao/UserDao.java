@@ -99,6 +99,37 @@ public class UserDao extends DaoBase{
         return userUpdateInfo;
 
     }
+    public UserBean reauth(String email ,String password) {
+        if(con == null) {
+            return null;
+        }
 
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        UserBean userInfo = null;
 
+        try {
+            stmt = con.prepareStatement("SELECT * FROM users WHERE email = ? AND password = ?");
+
+            stmt.setString(1, email);
+            stmt.setString(2 ,password);
+            rs = stmt.executeQuery();
+
+            while(rs.next()) {
+                userInfo = new UserBean();
+                userInfo.setId(rs.getInt("Id"));
+                userInfo.setLastName(rs.getString("last_name"));
+                userInfo.setFirstName(rs.getString("first_name"));
+                userInfo.setLastNameFurigana(rs.getString("last_name_furigana"));
+                userInfo.setFirstNameFurigana(rs.getString("first_name_furigana"));
+                userInfo.setEmail(rs.getString("email"));
+                userInfo.setType(rs.getString("postal_code"));
+                userInfo.setPostalCode(rs.getString("address"));
+                userInfo.setPhoneNumber(rs.getString("phone_number"));
+            }
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        return userInfo;
+      }
 }
