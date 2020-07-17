@@ -39,9 +39,9 @@ public class WebHelper {
         Part part = request.getPart(name);
 
         // ディレクトリ生成
-        File file = new File(path);
-        if(!file.exists()) {
-            file.mkdirs();
+        File directory = new File(path);
+        if(!directory.exists()) {
+            directory.mkdirs();
         }
 
         // ファイルデータのハッシュ値取得（ファイル名に使用）
