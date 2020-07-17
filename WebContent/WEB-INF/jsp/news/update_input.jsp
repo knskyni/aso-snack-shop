@@ -12,7 +12,7 @@
     String rootURL = WebHelper.getRootURL(request);
 
     HashMap<String, ArrayList<String>> errors = (HashMap<String, ArrayList<String>>)request.getAttribute("errors");
-    NewsBean news = (NewsBean)session.getAttribute("createNews");
+    NewsBean news = (NewsBean)session.getAttribute("updateNews");
     if(news == null) news = new NewsBean();
 %>
 <!DOCTYPE html>
@@ -30,8 +30,8 @@
     <jsp:include page="../header.jsp" />
     <section>
         <div class="container">
-            <h2>お知らせ登録</h2>
-            <p>サイト内のお知らせを登録します。</p>
+            <h2>お知らせ更新</h2>
+            <p>公開済みのお知らせを更新します。</p>
             <hr>
             <form method="POST">
               <div class="form-group">
