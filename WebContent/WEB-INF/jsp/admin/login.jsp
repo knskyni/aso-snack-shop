@@ -10,6 +10,12 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <style type="text/css">
+     section{
+    margin-bottom: 10%;
+    margin-top: 10%;
+    }
+    </style>
 </head>
 <body>
 	<%
@@ -19,68 +25,37 @@
     <section>
         <div class="container">
 			<form method="POST" id="check">
-				<div class="row">
-					<div class="col-2"></div>
-					<div class="col-8">
+
+
 						<p>メールアドレス</p>
-					</div>
-					<div class="col-2"></div>
-				</div>
-				<div class="row">
-					<div class="col-2"></div>
-					<div class="col-8">
+
+
 						<div  class="form-group">
 							<p><input type="text" name="email" placeholder="メールアドレス" class="form-control"></p>
 						</div>
-					</div>
-					<div class="col-2"></div>
-				</div>
-				<div class="row">
-					<div class="col-2"></div>
-					<div class="col-8">
+
+
+
 						<p class="text-danger" id="msg1">
 							<%if(errMsg1 != null){ %>
 								<%=errMsg1 %>
 							<%} %>
 						</p>
-					</div>
-					<div class="col-2"></div>
-				</div>
-				<div class="row">
-					<div class="col-2"></div>
-					<div class="col-8">
+
 						<p>パスワード</p>
-					</div>
-					<div class="col-2"></div>
-				</div>
-				<div class="row">
-					<div class="col-2"></div>
-					<div class="col-8">
+
 						<div class="form-group">
 							<p><input type="password" name="password" placeholder="パスワード" class="form-control"></p>
 						</div>
-					</div>
-					<div class="col-2"></div>
-				</div>
-				<div class="row">
-					<div class="col-2"></div>
-					<div class="col-8">
+
 						<p class="text-danger" id="msg2">
 							<%if(errMsg2 != null){ %>
 								<%=errMsg2 %>
 							<%} %>
 						</p>
-					</div>
-					<div class="col-2"></div>
-				</div>
-				<div class="row">
-					<div class="col-2"></div>
-					<div class="col-8">
-						<p align="center"><input type="submit" value="ログイン" name="btn" class="btn btn-primary"></p>
-					</div>
-					<div class="col-2"></div>
-				</div>
-			</form>
+
+						<p align="center"><input type="submit" value="ログイン" name="btn" class="btn btn-primary" style="width: 300px;"></p>
+						</form>
         </div>
     </section>
 
