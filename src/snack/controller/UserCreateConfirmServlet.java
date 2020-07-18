@@ -31,6 +31,7 @@ public class UserCreateConfirmServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    RequestDispatcher rd = request.getRequestDispatcher("../WEB-INF/jsp/user/create_confirm.jsp");
         rd.forward(request, response);
@@ -39,6 +40,7 @@ public class UserCreateConfirmServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+    @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	    HttpSession session = request.getSession(false);
