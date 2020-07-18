@@ -35,14 +35,48 @@ public class UserDao extends DaoBase{
         return userbean;
 
     }
-    public UserBean show(int id) {
+
+
+    public boolean insert(UserBean userbean) {
+
         if(con == null ) {
+            return false;
+        }
+
+        PreparedStatement stmt = null;
+
+
+        try {
+            stmt = con.prepareStatement("INSERT INTO users(last_name,first_name,last_name_furigana,first_name_furigana,email,password,created_at,updated_at,postal_code,address,phone_number)VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+            stmt.setString(1,userbean.getLastName());
+            stmt.setString(2,userbean.getFirstName());
+            stmt.setString(3,userbean.getLastNameFurigana());
+            stmt.setString(4,userbean.getFirstNameFurigana());
+            stmt.setString(5,userbean.getEmail());
+            stmt.setString(6,userbean.getPassword());
+            stmt.setTimestamp(7, new java.sql.Timestamp(new java.util.Date().getTime()));
+            stmt.setTimestamp(8, new java.sql.Timestamp(new java.util.Date().getTime()));
+            stmt.setString(9,userbean.getPostalCode());
+            stmt.setString(10,userbean.getAddress());
+            stmt.setString(11,userbean.getPhoneNumber());
+
+            stmt.executeUpdate();
+            return true;
+
+        }catch(Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public UserBean show(int id) {
+        UserBean userInfo = null;
+        if(con == null) {
             return null;
         }
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        UserBean userInfo = null;
 
         try {
             stmt = con.prepareStatement("SELECT * FROM users WHERE id = ?");
@@ -59,8 +93,8 @@ public class UserDao extends DaoBase{
                 userInfo.setLastNameFurigana(rs.getString("last_name_furigana"));
                 userInfo.setFirstNameFurigana(rs.getString("first_name_furigana"));
                 userInfo.setEmail(rs.getString("email"));
-                userInfo.setType(rs.getString("postal_code"));
-                userInfo.setPostalCode(rs.getString("address"));
+                userInfo.setPostalCode(rs.getString("postal_code"));
+                userInfo.setAddress(rs.getString("address"));
                 userInfo.setPhoneNumber(rs.getString("phone_number"));
             }
         }catch(Exception e) {

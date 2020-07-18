@@ -22,7 +22,20 @@ public class UserModel {
         }
         return userInfo;
     }
+    public boolean insert(UserBean userbean) {
+        UserDao userDao = new UserDao();
 
+
+        try {
+            userDao.connect();
+           return userDao.insert(userbean);
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }finally {
+            userDao.close();
+        }
+    }
     public UserBean show(int id) {
 
         UserDao userDao = new UserDao();
