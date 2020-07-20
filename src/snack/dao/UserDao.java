@@ -2,6 +2,7 @@ package snack.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import snack.bean.UserBean;
 
@@ -157,7 +158,7 @@ public class UserDao extends DaoBase{
 
          return userUpdateInfo;
     }
-  
+
     public boolean delete(int id) {
         if(con == null) {
             return false;
