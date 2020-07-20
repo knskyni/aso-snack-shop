@@ -35,8 +35,29 @@ public class UserDao extends DaoBase{
         return userbean;
 
     }
+    public UserBean authAdmin(String email,String password) {
+        if( con == null ){
+            return null;
+        }
 
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        UserBean userBean = new UserBean();
+      
+        try{
+            stmt = con.prepareStatement("SELECT id, email FROM admins WHERE email=? AND password=?");
+            stmt.setString(1, email);
+            stmt.setString(2, password);
+            rs = stmt.executeQuery();
+            System.out.println(stmt);
 
+            while( rs.next() ) {
+                userBean.setId(rs.getInt("id"));
+                userBean.setEmail(rs.getString("email"));
+            }
+        return userBean;
+    }
+    
     public boolean insert(UserBean userbean) {
 
         if(con == null ) {
@@ -110,29 +131,25 @@ public class UserDao extends DaoBase{
 
         PreparedStatement stmt = null;
 
-            try {
-                stmt = con.prepareStatement("UPDATE `users` SET `last_name` = ? , `first_name` = ? , `last_name_furigana` = ? , `first_name_furigana` = ? , `email` = ? , `postal_code` = ? , `address` = ? , `phone_number` = ? ,`updated_at` = ? WHERE `id` = ?");
+        try {
+            stmt = con.prepareStatement("UPDATE `users` SET `last_name` = ? , `first_name` = ? , `last_name_furigana` = ? , `first_name_furigana` = ? , `email` = ? , `postal_code` = ? , `address` = ? , `phone_number` = ? ,`updated_at` = ? WHERE `id` = ?");
 
-                stmt.setString(1, userUpdateInfo.getLastName());
-                stmt.setString(2, userUpdateInfo.getFirstName());
-                stmt.setString(3, userUpdateInfo.getLastNameFurigana());
-                stmt.setString(4, userUpdateInfo.getFirstNameFurigana());
-                stmt.setString(5, userUpdateInfo.getEmail());
-                stmt.setString(6, userUpdateInfo.getPostalCode());
-                stmt.setString(7, userUpdateInfo.getAddress());
-                stmt.setString(8,userUpdateInfo.getPhoneNumber());
-                stmt.setTimestamp(9, new java.sql.Timestamp(new java.util.Date().getTime()));
-                stmt.setInt(10,userUpdateInfo.getId());
+            stmt.setString(1, userUpdateInfo.getLastName());
+            stmt.setString(2, userUpdateInfo.getFirstName());
+            stmt.setString(3, userUpdateInfo.getLastNameFurigana());
+            stmt.setString(4, userUpdateInfo.getFirstNameFurigana());
+            stmt.setString(5, userUpdateInfo.getEmail());
+            stmt.setString(6, userUpdateInfo.getPostalCode());
+            stmt.setString(7, userUpdateInfo.getAddress());
+            stmt.setString(8,userUpdateInfo.getPhoneNumber());
+            stmt.setTimestamp(9, new java.sql.Timestamp(new java.util.Date().getTime()));
+            stmt.setInt(10,userUpdateInfo.getId());
 
-                stmt.executeUpdate();
-
-
+            stmt.executeUpdate();
         }catch(Exception e) {
             e.printStackTrace();
         }
-        return userUpdateInfo;
-
+      
+         return userUpdateInfo;
     }
-
-
 }
