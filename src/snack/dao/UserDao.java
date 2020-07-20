@@ -43,7 +43,7 @@ public class UserDao extends DaoBase{
         PreparedStatement stmt = null;
         ResultSet rs = null;
         UserBean userBean = new UserBean();
-      
+
         try{
             stmt = con.prepareStatement("SELECT id, email FROM admins WHERE email=? AND password=?");
             stmt.setString(1, email);
@@ -55,9 +55,14 @@ public class UserDao extends DaoBase{
                 userBean.setId(rs.getInt("id"));
                 userBean.setEmail(rs.getString("email"));
             }
+
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
         return userBean;
+
     }
-    
+
     public boolean insert(UserBean userbean) {
 
         if(con == null ) {
@@ -149,7 +154,7 @@ public class UserDao extends DaoBase{
         }catch(Exception e) {
             e.printStackTrace();
         }
-      
+
          return userUpdateInfo;
     }
 }
