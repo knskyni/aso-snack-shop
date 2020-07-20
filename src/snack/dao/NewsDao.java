@@ -46,7 +46,7 @@ public class NewsDao extends DaoBase {
             while( rs.next() ) {
                 NewsBean newsBean = new NewsBean();
                 newsBean.setId(rs.getInt("id"));
-                newsBean.setUpdatedAt(rs.getDate("updated_at"));
+                newsBean.setUpdatedAt(rs.getTimestamp("updated_at"));
                 newsBean.setSubject(rs.getString("subject"));
                 news.add(newsBean);
             }
@@ -72,7 +72,7 @@ public class NewsDao extends DaoBase {
             while(rs.next()) {
                 news = new NewsBean();
                 news.setId(rs.getInt("id"));
-                news.setUpdatedAt("updated_at");
+                news.setUpdatedAt(rs.getTimestamp("updated_at"));
                 news.setSubject(rs.getString("subject"));
                 news.setContent(rs.getString("content"));
             }
