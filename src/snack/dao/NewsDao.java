@@ -41,7 +41,7 @@ public class NewsDao extends DaoBase {
         ResultSet rs = null;
         List<NewsBean> news = new ArrayList<NewsBean>();
         try{
-            stmt = con.prepareStatement("SELECT id, updated_at, subject FROM news  ORDER BY updated_at DESC");
+            stmt = con.prepareStatement("SELECT id, updated_at, subject FROM news WHERE status = 1 ORDER BY updated_at DESC");
             rs = stmt.executeQuery();
             while( rs.next() ) {
                 NewsBean newsBean = new NewsBean();
