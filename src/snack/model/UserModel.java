@@ -79,4 +79,19 @@ public class UserModel {
         }
         return userInfoBean;
     }
+
+    public  boolean delete(int id) {
+        UserDao userDao = new UserDao();
+        boolean result = false;
+        try {
+            userDao.connect();
+            result = userDao.delete(id);
+        }catch(Exception e) {
+            e.printStackTrace();
+            result = false;
+        }finally {
+            userDao.close();
+        }
+        return result;
+    }
 }
