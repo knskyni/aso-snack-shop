@@ -1,6 +1,9 @@
 package snack.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import snack.bean.ItemBean;
 import snack.bean.UserBean;
+import snack.model.ItemModel;
 
 @WebServlet("/purchase/comfirm")
 public class PurchaseComfirmServlet extends HttpServlet {
@@ -19,14 +23,29 @@ public class PurchaseComfirmServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        HttpSession session = request.getSession(true);
+        // セッションから取得
+        HttpSession session = request.getSession(false);
         UserBean userAuth = (UserBean)session.getAttribute("userAuth");
-        request.setAttribute("userAuth", userAuth);
-        ItemBean items = (ItemBean)session.getAttribute("items");
-        session.setAttribute("items", items);
+        HashMap<Integer,Integer> cart = (HashMap<Integer,Integer>)session.getAttribute("cart");
 
+        ItemModel itemModel = new ItemModel();
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("../WEB-INF/jsp/user/update_input.jsp");
+        List<ItemBean> items = new ArrayList<ItemBean>();
+        int totalPrice = 0;
+
+        for(HashMap.Entry<Integer,Integer> Cart : cart.entrySet()) {
+            int id = Cart.getKey();
+            int count = Cart.getValue();
+
+            ItemBean itemInfo = itemModel.show(id);
+        }
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("../WEB-INF/jsp/purchase/comfirm.jsp");
         dispatcher.forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
     }
 }
