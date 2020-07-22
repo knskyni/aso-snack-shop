@@ -12,7 +12,7 @@
     String rootURL = WebHelper.getRootURL(request);
 
     HashMap<String, ArrayList<String>> errors = (HashMap<String, ArrayList<String>>)request.getAttribute("errors");
-    ItemBean item = (ItemBean)session.getAttribute("createItem");
+    ItemBean item = (ItemBean)session.getAttribute("updateItem");
     if(item == null) item = new ItemBean();
 %>
 <!DOCTYPE html>
@@ -30,7 +30,7 @@
     <jsp:include page="../header.jsp" />
     <section>
         <div class="container">
-            <h2>商品新規追加</h2>
+            <h2>商品更新</h2>
             <p>商品を新しく追加します。</p>
             <hr>
             <form method="POST" enctype="multipart/form-data">
@@ -63,18 +63,8 @@
                 <% } %>
               </div>
               <div class="form-group">
-                <label for="image">商品画像</label>
-                <input type="file" class="form-control-file" id="image" name="image" accept="image/jpeg, image/png">
-                <small class="form-text text-muted">必須</small>
-                <% if(ErrorHelper.exist(errors, "image")) { %>
-                <div class="invalid-feedback d-block">
-                    <ul>
-                    <% for(String message : ErrorHelper.get(errors, "image")) { %>
-                        <li><%= message %></li>
-                    <% } %>
-                    </ul>
-                </div>
-                <% } %>
+                <label for="image">商品画像</label><br>
+                画像の差し替え・削除はこちらから
               </div>
               <div class="form-group">
                 <label for="price">価格</label>
