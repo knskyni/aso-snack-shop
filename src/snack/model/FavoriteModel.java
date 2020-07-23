@@ -1,5 +1,9 @@
 package snack.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import snack.bean.ItemBean;
 import snack.dao.FavoriteDao;
 
 public class FavoriteModel {
@@ -27,5 +31,21 @@ public class FavoriteModel {
         }
 
         return result;
+    }
+
+    public List<ItemBean> userFavorite(int userId) {
+        List<ItemBean> items = new ArrayList<ItemBean>();
+        FavoriteDao favDao = new FavoriteDao();
+
+        try {
+            favDao.connect();
+            items = favDao.userFavorite(userId);
+        } catch(Exception e) {
+            e.printStackTrace();
+        } finally {
+            favDao.close();
+        }
+
+        return items;
     }
 }

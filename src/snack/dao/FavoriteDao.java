@@ -3,6 +3,10 @@ package snack.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import snack.bean.ItemBean;
 
 public class FavoriteDao extends DaoBase {
     public boolean exist(int userId, int itemId) {
@@ -73,5 +77,40 @@ public class FavoriteDao extends DaoBase {
         }
 
         return (result == 1) ? true : false;
+    }
+
+    public List<ItemBean> userFavorite(int userId) {
+        if(con == null) {
+            return new ArrayList<ItemBean>();
+        }
+
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<ItemBean> items = new ArrayList<ItemBean>();
+
+        try {
+            stmt = con.prepareStatement("SELECT `i`.`id`, `i`.`name`, `i`.`description`, `i`.`image_path`, `i`.`created_at`, `i`.`updated_at`, `i`.`price` FROM `favorites` AS `f` INNER JOIN `items` AS `i` ON `f`.`item_id` = `i`.`id` WHERE `i`.`status` = 1 AND `f`.`user_id` = ?;");
+
+            stmt.setInt(1, userId);
+
+            rs = stmt.executeQuery();
+            while(rs.next()) {
+                ItemBean item = new ItemBean();
+                item.setId(rs.getInt("id"));
+                item.setName(rs.getString("name"));
+                item.setDescription(rs.getString("description"));
+                item.setImagePath(rs.getString("image_path"));
+                item.setCreatedAt(rs.getTimestamp("created_at"));
+                item.setUpdatedAt(rs.getTimestamp("updated_at"));
+                item.setPrice(rs.getInt("price"));
+
+                items.add(item);
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+            return new ArrayList<ItemBean>();
+        }
+
+        return items;
     }
 }
