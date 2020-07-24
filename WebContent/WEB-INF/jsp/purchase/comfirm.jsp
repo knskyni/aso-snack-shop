@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import=snack.bean.UserBean %>
-<%@ page import=snack.bean.ItemBean %>
+<%@ page import="snack.bean.UserBean" %>
+<%@ page import="snack.bean.PurchaseBean" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,36 +10,40 @@
 </head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <%
-UserBean authInfo = (UserBean)request.getAttribute("userAuth");
-int totalPrice = (int)request.getAttribute("totalPrice");
+UserBean authInfo = (UserBean)session.getAttribute("userAuth");
+int totalPrice = (int)session.getAttribute("totalPrice");
 int fee = 350;
+String date = (String)session.getAttribute("date");
 %>
 <body>
     <jsp:include page="../header.jsp" />
         <div class="container">
             <div class="">
                 <h1>注文確認</h1>
-                <button type="button" class="btn btn-warning" onclick="location.href='comfirm'">注文を確定する</button>
+                <label>届け先　:</label><%=authInfo.getAddress() %><br>
+                <label><%=date %></label><br><br>
+                <form method="POST">
+                    <input type="submit" class="btn btn-warning" value="注文を確定する">
+                </form>
             </div>
             <div class="">
                 <h1>注文内容確認</h1>
-                <label></label><%=authInfo.getAddress() %><br>
-                //ここに届け日をセットする<br><br>
+
                 <table>
                     <tr>
-                        <th><label>商品の小計</label></th><td>\　<%=totalPrice %></td>
+                        <th><label>商品の小計:</label></th><td>&yen;<%=totalPrice %></td>
                     </tr>
                     <tr>
-                        <th><label>配送料</label></th><td>\　<%=fee %></td>
+                        <th><label>配送料:</label></th><td>&yen;<%=fee %></td>
                     </tr>
                     <tr>
-                        <th><label>注文合計</label></th><td>\　<%=totalPrice + fee%></td>
+                        <th><label>注文合計:</label></th><td>&yen;<%=totalPrice + fee%></td>
                     </tr>
                     <tr>
-                        <th><label>割引</label></th><td>\0</td>
+                        <th><label>割引:</label></th><td>&yen;0</td>
                     </tr>
                     <tr>
-                        <th><label>ご請求額</label></th><td>\　<%=totalPrice + fee%></td>
+                        <th><label>ご請求額:</label></th><td>&yen;<%=totalPrice + fee%></td>
                     </tr>
                 </table>
             </div>
