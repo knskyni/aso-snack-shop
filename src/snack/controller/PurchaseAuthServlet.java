@@ -1,6 +1,8 @@
 package snack.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,6 +21,18 @@ public class PurchaseAuthServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        HttpSession session = request.getSession(true);
+        //HashMap<Integer,Integer> carts = (HashMap<Integer,Integer>)session.getAttribute("cart");
+      //テスト用挿入
+        Map<Integer, Integer> carts  = new HashMap<Integer, Integer>() ;
+            carts.put(1, 3);
+            carts.put(2, 2);
+
+        /*if(carts == null) {
+            response.sendError(404);
+            return;
+        }*/
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("../WEB-INF/jsp/purchase/reauth.jsp");
         dispatcher.forward(request, response);
 
@@ -31,9 +45,9 @@ public class PurchaseAuthServlet extends HttpServlet {
         String password = (String)request.getParameter("password");
 
         UserModel userModel = new UserModel();
-        UserBean userInfo = userModel.reauth(email,password);
+        UserBean userAuth = userModel.reauth(email,password);
 
-        if(userInfo == null) {
+        if(userAuth == null) {
             String msg = "ログインに失敗しました。ログイン内容を確認してください";
 
             request.setAttribute("msg", msg);
@@ -44,7 +58,7 @@ public class PurchaseAuthServlet extends HttpServlet {
         }else {
 
             HttpSession session = request.getSession(true);
-            session.setAttribute("userAuth",userInfo);
+            session.setAttribute("userAuth",userAuth);
             response.sendRedirect("select");
         }
     }
