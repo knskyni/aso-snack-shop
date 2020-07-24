@@ -7,7 +7,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,11 +31,7 @@ public class PurchaseComfirmServlet extends HttpServlet {
         // セッションから取得
         HttpSession session = request.getSession(false);
         UserBean userInfo = (UserBean)session.getAttribute("userAuth");
-        //HashMap<Integer,Integer> carts = (HashMap<Integer,Integer>)session.getAttribute("cart");
-
-        Map<Integer, Integer> carts  = new HashMap<Integer, Integer>() ;
-        carts.put(1, 3);
-        carts.put(2, 2);
+        HashMap<Integer,Integer> carts = (HashMap<Integer,Integer>)session.getAttribute("cart");
 
         ItemModel itemModel = new ItemModel();
 
