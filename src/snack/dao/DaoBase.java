@@ -1,6 +1,8 @@
 package snack.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.naming.InitialContext;
@@ -42,7 +44,7 @@ public class DaoBase {
         return con;
     }
 
-    public void beginTranzaction() throws SQLException{
+    public void beginTransaction() throws SQLException{
         if( con != null ){
             con.setAutoCommit(false);
         }
@@ -73,5 +75,24 @@ public class DaoBase {
                 }
             }
         }
+    }
+    protected int getOrderId(String orders) throws SQLException{
+         if(con == null) {
+             return 0;
+         }
+
+         int orderId = 0;
+
+         PreparedStatement ps = null;
+         ResultSet rs = null;
+
+         ps = con.prepareStatement("SELECT last_insert_id() as orderId from " +orders);
+
+         rs = ps.executeQuery();
+
+         while(rs.next()) {
+             orderId = rs.getInt("orderId");
+         }
+         return orderId;
     }
 }
