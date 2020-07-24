@@ -2,7 +2,6 @@ package snack.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,16 +21,12 @@ public class PurchaseAuthServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession(true);
-        //HashMap<Integer,Integer> carts = (HashMap<Integer,Integer>)session.getAttribute("cart");
-      //テスト用挿入
-        Map<Integer, Integer> carts  = new HashMap<Integer, Integer>() ;
-            carts.put(1, 3);
-            carts.put(2, 2);
+        HashMap<Integer,Integer> carts = (HashMap<Integer,Integer>)session.getAttribute("cart");
 
-        /*if(carts == null) {
+        if(carts == null) {
             response.sendError(404);
             return;
-        }*/
+        }
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("../WEB-INF/jsp/purchase/reauth.jsp");
         dispatcher.forward(request, response);
