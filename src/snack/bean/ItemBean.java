@@ -11,6 +11,8 @@ public class ItemBean implements Serializable {
 
     private String description;
 
+    private String image;
+
     private boolean status;
 
     private Date createdAt;
@@ -43,6 +45,15 @@ public class ItemBean implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public boolean isStatus() {
