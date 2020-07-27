@@ -12,6 +12,15 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <style type="text/css">
+     section{
+    margin-bottom: 10%;
+    margin-top: 10%;
+    }
+    table{
+    margin-top: 2%;
+    }
+    </style>
 </head>
 <body>
     <jsp:include page="../header.jsp" />
@@ -20,10 +29,20 @@
 	%>
     <section>
         <div class="container">
-            <form action="home"  method="GET">
-            <p><input type="submit" value="HOME" class="btn btn-primary"></p>
-            </form>
             <H1  align="center">お知らせ一覧</H1>
+            <div class="row">
+            	<div class="col-6">
+            		<form action="home"  method="GET">
+		            	<input type="submit" value="HOME" class="btn btn-primary">
+		            </form>
+            	</div>
+            	<div class="col-6" align="right">
+            		<form action="create/input"  method="GET">
+		            	<input type="submit" value="お知らせ追加" class="btn btn-primary">
+		            </form>
+            	</div>
+            </div>
+
 
             <table class="table table-hover">
 	            <%for(NewsBean newsBean : news){ %>

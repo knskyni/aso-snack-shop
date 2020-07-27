@@ -19,6 +19,10 @@
     table td{
     word-wrap: break-word;
     }
+     section{
+    margin-bottom: 10%;
+    margin-top: 10%;
+    }
     </style>
 </head>
 <body>
@@ -28,10 +32,10 @@
 	%>
     <section>
         <div class="container">
-            <form action="home"  method="GET">
-            <p><input type="submit" value="HOME" class="btn btn-primary"></p>
-            </form>
             <H1  align="center">お知らせ</H1>
+            <form action="home"  method="GET">
+            	<p><input type="submit" value="HOME" class="btn btn-primary"></p>
+            </form>
 			<table class="table table-bordered">
            		<tr>
            			<th>
@@ -49,6 +53,25 @@
             		</td>
             	</tr>
            	</table>
+           	<div class="row">
+	           	<div class="col-8">
+	           		<form action="list"  method="GET">
+            			<input type="submit" value="戻る" class="btn btn-light">
+            		</form>
+	           	</div>
+	           	<div class="col-2">
+	           		<form action="update/input"  method="GET">
+		            	<input type="hidden" name="id" value="<%=newsBean.getId()%>">
+		            	<p align="right"><input type="submit" value="更新" class="btn btn-primary"></p>
+		            </form>
+	           	</div>
+	           	<div class="col-2">
+		           	<form action="delete/confirm"  method="GET">
+		            	<input type="hidden" name="id" value="<%=newsBean.getId()%>">
+		            	<p align="right"><input type="submit" value="削除" class="btn btn-primary" name="id"></p>
+		            </form>
+	           	</div>
+           	</div>
 	    </div>
     </section>
     <jsp:include page="../footer.jsp" />
