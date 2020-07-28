@@ -55,6 +55,7 @@ public class UserDao extends DaoBase{
             while( rs.next() ) {
                 userBean.setId(rs.getInt("id"));
                 userBean.setEmail(rs.getString("email"));
+                userBean.setType("admin");
             }
 
         }catch(Exception e) {
