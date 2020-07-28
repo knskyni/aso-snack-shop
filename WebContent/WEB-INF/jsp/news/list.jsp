@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="snack.bean.NewsBean" %>
+<%@ page import="snack.bean.UserBean" %>
 <%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html lang="ja">
@@ -26,6 +27,7 @@
     <jsp:include page="../header.jsp" />
 	<%
 	List<NewsBean> news = (List<NewsBean>)request.getAttribute("news");
+	UserBean userInfo = (UserBean)session.getAttribute("userInfo");
 	%>
     <section>
         <div class="container">
@@ -36,11 +38,13 @@
 		            	<input type="submit" value="HOME" class="btn btn-primary">
 		            </form>
             	</div>
+            	<%if(userInfo == null){}else if(userInfo.getType() == "admin"){ %>
             	<div class="col-6" align="right">
             		<form action="create/input"  method="GET">
 		            	<input type="submit" value="お知らせ追加" class="btn btn-primary">
 		            </form>
             	</div>
+            	<%} %>
             </div>
 
 
