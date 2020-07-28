@@ -34,17 +34,16 @@ public class AdminLoginServlet extends HttpServlet {
 
         //ログイン処理
 
-        UserBean userBean = userModel.authAdmin(email,password);
+        UserBean userInfo = userModel.authAdmin(email,password);
 
         //ログイン結果の判定
 
-        if(userBean.getEmail() != null){
+        if(userInfo.getEmail() != null){
             HttpSession session = request.getSession(true);
-            session.setAttribute("userBean",userBean);
+            session.setAttribute("userInfo",userInfo);
             response.sendRedirect("home");
         }else {
-            request.setAttribute("msg1","*メールアドレスが間違っています");
-            request.setAttribute("msg2","*パスワードが間違っています");
+            request.setAttribute("msg","*メールアドレスかパスワードが間違っています");
             RequestDispatcher dispatcher =
                     request.getRequestDispatcher("../WEB-INF/jsp/admin/login.jsp");
             dispatcher.forward(request, response);
