@@ -32,9 +32,9 @@
             <% int totalPrice = 0; %>
             <% for(ItemBean item : items) { %>
             <% totalPrice += item.getPrice() * item.getCount(); %>
-            <div class="row">
+            <div class="row" data-id="<%= item.getId() %>">
                 <div class="col-md-2">
-                    <img class="img-fluid" src="<%= rootURL + "/img/item/" + item.getImagePath() %>">
+                    <img class="img-fluid" style="max-height: 200px;" src="<%= rootURL + "/img/item/" + item.getImagePath() %>">
                 </div>
                 <div class="col-md-6">
                     <h4 class="product-name">
@@ -48,7 +48,7 @@
                     <div class="row">
                         <div class="col-sm-6 text-right">
                             <h6>
-                                <strong><%= String.format("%,d", item.getPrice()) %> <span class="text-muted">x</span></strong>
+                                <strong><%= String.format("%,d", item.getPrice()) %> <span class="text-muted">円</span></strong>
                             </h6>
                         </div>
                         <div class="col-sm-4">
@@ -82,5 +82,37 @@
     <script src="<%=rootURL%>/js/jquery-3.5.1.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="<%= rootURL %>/js/bootstrap.min.js"></script>
+    <script>
+    function updateCart(itemId, itemCount) {
+        $.ajax({
+            url:'./cart/add',
+            type:'GET',
+            data:{
+                'id': itemId,
+                'count': itemCount
+            }
+        })
+        .done((data) => {
+            location.reload();
+        })
+        .fail( (jqXHR, textStatus, errorThrown) => {
+            alert('更新に失敗しました。');
+        });
+    }
+
+    $(function(){
+        $('button').on('click', function(){
+        	let itemRow = $(this).parents('.row').parents('.row');
+            let id = itemRow.data('id');
+            updateCart(id, 0);
+        });
+
+        $('input').change(function() {
+        	let id = $(this).parents('.row').parents('.row').data('id');
+            let count = $(this).val();
+            updateCart(id, count);
+          });
+    });
+    </script>
 </body>
 </html>
