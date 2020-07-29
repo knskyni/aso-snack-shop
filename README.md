@@ -6,4 +6,4 @@ fix: ◯◯◯を修正
 refactor: ◯◯◯をリファクタ
 
 ## データ
-ライブラリ: [ダウンロード](https://school.yanai-k.com/aso-snack-shop_javalibs.zip)
+ライブラリ: [ダウンロード](https://school.yanai-k.com/aso-snack-shop_javalibs_v3.zip)
