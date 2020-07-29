@@ -6,19 +6,13 @@ import java.util.Date;
 public class ItemBean implements Serializable {
 
     private int id;
-
     private String name;
-
     private String description;
-
+    private String imagePath;
     private boolean status;
-
     private Date createdAt;
-
-    private Date updateAt;
-
+    private Date updatedAt;
     private int price;
-
     private int count;
 
     public int getId() {
@@ -45,6 +39,14 @@ public class ItemBean implements Serializable {
         this.description = description;
     }
 
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
     public boolean isStatus() {
         return status;
     }
@@ -61,12 +63,12 @@ public class ItemBean implements Serializable {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdateAt() {
-        return updateAt;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdateAt(Date updateAt) {
-        this.updateAt = updateAt;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public int getPrice() {
