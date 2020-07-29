@@ -34,15 +34,11 @@
             <H1  align="center">お知らせ一覧</H1>
             <div class="row">
             	<div class="col-6">
-            		<form action="home"  method="GET">
-		            	<input type="submit" value="HOME" class="btn btn-primary">
-		            </form>
+		            <a href="home" class="btn btn-primary">HOME</a>
             	</div>
             	<%if(userInfo == null){}else if(userInfo.getType() == "admin"){ %>
             	<div class="col-6" align="right">
-            		<form action="create/input"  method="GET">
-		            	<input type="submit" value="お知らせ追加" class="btn btn-primary">
-		            </form>
+		        	<a href="create/input" class="btn btn-primary">お知らせを追加</a>
             	</div>
             	<%} %>
             </div>

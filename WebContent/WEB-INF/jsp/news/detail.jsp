@@ -35,9 +35,7 @@
     <section>
         <div class="container">
             <H1  align="center">お知らせ</H1>
-            <form action="home"  method="GET">
-            	<p><input type="submit" value="HOME" class="btn btn-primary"></p>
-            </form>
+            <p><a href="home" class="btn btn-primary">HOME</a></p>
 			<table class="table table-bordered">
            		<tr>
            			<th>
@@ -57,22 +55,14 @@
            	</table>
            	<div class="row">
 	           	<div class="col-8">
-	           		<form action="list"  method="GET">
-            			<input type="submit" value="戻る" class="btn btn-light">
-            		</form>
+            		<a href="list" class="btn btn-light">戻る</a>
 	           	</div>
 	           	<%if(userInfo == null){}else if(userInfo.getType() == "admin"){ %>
-	           	<div class="col-2">
-	           		<form action="update/input"  method="GET">
-		            	<input type="hidden" name="id" value="<%=newsBean.getId()%>">
-		            	<p align="right"><input type="submit" value="更新" class="btn btn-primary"></p>
-		            </form>
+	           	<div class="col-2" align="right">
+		            <a href="update/input?id=<%= newsBean.getId() %>" class="btn btn-primary">更新</a>
 	           	</div>
-	           	<div class="col-2">
-		           	<form action="delete/confirm"  method="GET">
-		            	<input type="hidden" name="id" value="<%=newsBean.getId()%>">
-		            	<p align="right"><input type="submit" value="削除" class="btn btn-primary" name="id"></p>
-		            </form>
+	           	<div class="col-2" align="right">
+		            <a href="delete/confirm?id=<%= newsBean.getId() %>" class="btn btn-primary">削除</a>
 	           	</div>
 	           	<%} %>
            	</div>
