@@ -39,7 +39,7 @@ public class UserDao extends DaoBase{
 
 	public boolean updatePassword(UserBean updateBean) {
 		if( con == null ){
-			return;
+			return false;
 		}
 
 		PreparedStatement stmt = null;
