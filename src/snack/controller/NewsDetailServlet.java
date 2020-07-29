@@ -16,10 +16,19 @@ public class NewsDetailServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request,HttpServletResponse response)
                                                 throws ServletException, IOException{
-        String sid = (String)request.getParameter("id");
-        int id = Integer.parseInt(sid);
+     // パラメータからIDを取得
+        int id = 0;
+        try {
+            id = Integer.parseInt(request.getParameter("id"));
+        } catch(Exception e) {
+            response.sendError(400);
+            return;
+        }
+
+     // データベースから情報取得
         NewsModel newsModel = new NewsModel();
         NewsBean newsBean = newsModel.show(id);
+
         request.setAttribute("newsBean", newsBean);
         RequestDispatcher dispatcher =
                 request.getRequestDispatcher("../WEB-INF/jsp/news/detail.jsp");
