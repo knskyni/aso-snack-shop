@@ -1,8 +1,6 @@
 package snack.controller;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -22,7 +20,8 @@ import snack.model.UserModel;
 public class UserUpdateInputServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)　throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 
         HttpSession session = request.getSession(true);
         UserBean userInfoBean = (UserBean)session.getAttribute("userInfo");
