@@ -82,40 +82,40 @@ public class UserCreateInputServlet extends HttpServlet {
             errors = ErrorHelper.add(errors,"post","ハイフンがないか半角数字ではありません");
         }
         if(namber.isEmpty() ||!namber.matches("[0-9a-zA-Z\\-\\_]+")) {
-            errors = ErrorHelper.add(errors, "namber", "*ハイフンを使って電話番号を入力してください");
+            errors = ErrorHelper.add(errors, "namber", "ハイフンを使って電話番号を入力してください");
         }
-        if(address.isEmpty()) {
-            errors = ErrorHelper.add(errors, "address", "*住所を入力してください");
-        }
+        //if(address.isEmpty()) {
+            //errors = ErrorHelper.add(errors, "address", "*住所を入力してください");
+        //}
         if(Ksei.isEmpty()) {
-            errors = ErrorHelper.add(errors, "Ksei", "入力してください。");
+            errors = ErrorHelper.add(errors, "Ksei", "姓を入力してください。");
         }
         if(Kmei.isEmpty()) {
-            errors = ErrorHelper.add(errors, "Kmei", "入力してください。");
+            errors = ErrorHelper.add(errors, "Kmei", "名を入力してください。");
         }
         if(Hsei.isEmpty()) {
-            errors = ErrorHelper.add(errors, "Hsei", "入力してください。");
+            errors = ErrorHelper.add(errors, "Hsei", "せいを入力してください。");
         }
         if(Hmei.isEmpty()) {
-            errors = ErrorHelper.add(errors, "Hmei", "入力してください。");
+            errors = ErrorHelper.add(errors, "Hmei", "めいを入力してください。");
         }
         if(mail.isEmpty()) {
-            errors = ErrorHelper.add(errors, "mail", "入力してください。");
+            errors = ErrorHelper.add(errors, "mail", "メールアドレスを入力してください。");
         }
         if(pass.isEmpty()) {
-            errors = ErrorHelper.add(errors, "pass", "入力してください。");
+            errors = ErrorHelper.add(errors, "pass", "パスワードを入力してください。");
         }
         if(post.isEmpty()) {
-            errors = ErrorHelper.add(errors, "post", "入力してください。");
+            errors = ErrorHelper.add(errors, "post", "郵便番号を入力してください。");
         }
         if(address.isEmpty()) {
-            errors = ErrorHelper.add(errors, "address", "入力してください。");
+            errors = ErrorHelper.add(errors, "address", "住所を入力してください。");
         }
         //if(namber.isEmpty()) {
             //errors = ErrorHelper.add(errors, "namber", "入力してください。");
         //}
         if(Ksei.length() > 16) {
-            errors = ErrorHelper.add(errors, "Hsei", "1文字以上、16文字以内で入力してください。");
+            errors = ErrorHelper.add(errors, "Ksei", "1文字以上、16文字以内で入力してください。");
         }
         if(Kmei.length() > 16) {
             errors = ErrorHelper.add(errors, "Kmei", "1文字以上、16文字以内で入力してください。");
