@@ -25,11 +25,11 @@ public class NewsBean implements Serializable{
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
-    public Date getUpdateAt() {
+    public Date getUpdatedAt() {
         return updatedAt;
     }
-    public void setUpdateAt(Date updateAt) {
-        this.updatedAt = updateAt;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
     public String getSubject() {
         return subject;
