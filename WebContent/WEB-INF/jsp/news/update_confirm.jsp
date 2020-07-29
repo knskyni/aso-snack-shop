@@ -21,6 +21,17 @@
     <link rel="stylesheet" href="<%= rootURL %>/css/bootstrap.min.css">
 </head>
 <body>
+    <style>
+    .table {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-all;
+    }
+
+    th {
+        word-break: keep-all;
+    }
+    </style>
     <jsp:include page="../header.jsp" />
     <section>
         <div class="container">

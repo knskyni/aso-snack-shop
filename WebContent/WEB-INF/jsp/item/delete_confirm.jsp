@@ -21,6 +21,17 @@
     <link rel="stylesheet" href="<%= rootURL %>/css/bootstrap.min.css">
 </head>
 <body>
+    <style>
+    .table {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-all;
+    }
+
+    th {
+        word-break: keep-all;
+    }
+    </style>
     <jsp:include page="../header.jsp" />
     <section>
         <div class="container">
@@ -39,7 +50,7 @@
                     </tr>
                     <tr>
                         <th scope="row">画像</th>
-                        <td><img width="100%" src="<%= rootURL + "/img/item/" + item.getImagePath() %>"></td>
+                        <td><img class="img-fluid" style="max-height: 200px;" src="<%= rootURL + "/img/item/" + item.getImagePath() %>"></td>
                     </tr>
                     <tr>
                         <th scope="row">価格</th>
