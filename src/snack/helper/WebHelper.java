@@ -13,6 +13,8 @@ import javax.servlet.http.Part;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
+import snack.exception.FormFileEmptyException;
+
 public class WebHelper {
     public static String getRootURL(HttpServletRequest request) {
         return "//" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
@@ -35,13 +37,17 @@ public class WebHelper {
         return param;
     }
 
-    public static String saveFileFromPart(HttpServletRequest request, String name, String path) throws ServletException, IOException {
+    public static String saveFileFromPart(HttpServletRequest request, String name, String path) throws ServletException, IOException, FormFileEmptyException {
         Part part = request.getPart(name);
 
+        if(part.getHeader("Content-Disposition").contains("filename=\"\"")) {
+            throw new FormFileEmptyException();
+        }
+
         // ディレクトリ生成
-        File file = new File(path);
-        if(!file.exists()) {
-            file.mkdirs();
+        File directory = new File(path);
+        if(!directory.exists()) {
+            directory.mkdirs();
         }
 
         // ファイルデータのハッシュ値取得（ファイル名に使用）
