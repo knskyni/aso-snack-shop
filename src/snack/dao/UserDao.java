@@ -182,9 +182,9 @@ public class UserDao extends DaoBase{
                 userInfo.setLastNameFurigana(rs.getString("last_name_furigana"));
                 userInfo.setFirstNameFurigana(rs.getString("first_name_furigana"));
                 userInfo.setEmail(rs.getString("email"));
-                userInfo.setType(rs.getString("Type"));
+                userInfo.setType(rs.getString("type"));
                 userInfo.setAddress(rs.getString("address"));
-                userInfo.setPostalCode(rs.getString("PostalCode"));
+                userInfo.setPostalCode(rs.getString("postal_code"));
                 userInfo.setPhoneNumber(rs.getString("phone_number"));
             }
         }catch(Exception e) {
