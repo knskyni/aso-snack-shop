@@ -46,6 +46,7 @@ public class AdminCheckFilter implements Filter {
                 }
             }
             ((HttpServletResponse)response).sendError(403);
+            return;
         }
 
         chain.doFilter(request, response);
