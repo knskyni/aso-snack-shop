@@ -42,18 +42,12 @@ body {
   padding: 15px;
   margin: 0 auto;
 }
-.form-signin .checkbox {
-  font-weight: 400;
-}
 .form-signin .form-control {
   position: relative;
   box-sizing: border-box;
   height: auto;
   padding: 10px;
   font-size: 16px;
-}
-.form-signin .form-control:focus {
-  z-index: 2;
 }
 .form-signin input[type="email"] {
   margin-bottom: -1px;
@@ -71,37 +65,41 @@ margin-top: 15px;
  -->
 	</style>
 
-    <section>
+
         <div class="container">
 
             <form class="form-signin" action="login" method="POST">
 
-      			<img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-
-      				<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+      	      <p><svg width="100px" height="100px" viewBox="0 0 16 16" class="bi bi-person-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                <path fill-rule="evenodd" d="M2 15v-1c0-1 1-4 6-4s6 3 6 4v1H2zm6-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+              </svg></p>
 
                     <p><%if(msg != null){%>
 
-                    <%=msg %></p>
+                    <font color="red"><%=msg %></font>
 
-                    <%} %>
+                    <%}else{ %>
 
-      					<label for="inputEmail" class="sr-only">Email address</label>
+                    <font size="3"><%="サインインしてください" %></font>
 
-     			 			<input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="email" required autofocus>
+                    <%} %></p>
 
-      					<label for="inputPassword" class="sr-only">Password</label>
+      					<label for="inputEmail" class="sr-only">メールアドレス</label>
 
-      						<input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
+     			 			<input type="email" id="inputEmail" class="form-control" placeholder="メールアドレス" name="email" required autofocus>
 
-                        <button class="btn btn-lg btn-primary btn-block" type="submit" >Sign in</button>
+      					<label for="inputPassword" class="sr-only">パスワード</label>
 
-      					<a href="location.href='/input'" id="new">新規登録はこちら</a>
+      						<input type="password" id="inputPassword" class="form-control" placeholder="パスワード" name="password" required>
+
+                        <button class="btn btn-lg btn-primary btn-block" type="submit" >サインイン</button><br>
+
+      					<a href="user/input" id="new">新規登録はこちら</a>
 
       					<p class="mt-5 mb-3 text-muted">&copy; 2019 - 2020</p>
              </form>
         </div>
-    </section>
 
     <!-- JavaScript -->
     <script src="./js/jquery-3.5.1.min.js"></script>
