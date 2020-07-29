@@ -26,7 +26,7 @@
             <p>登録完了しました。</p>
         </div>
     </section>
-
+    <jsp:include page="../footer.jsp" />
     <!-- JavaScript -->
     <script src="<%= rootURL %>/js/jquery-3.5.1.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>

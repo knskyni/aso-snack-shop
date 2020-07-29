@@ -47,12 +47,15 @@
                     </tr>
                 </tbody>
             </table>
+            <button class="btn btn-secondary float-left" onclick="history.back()">戻る</button>
             <form method="POST">
               <button type="submit" class="btn btn-primary float-right">確認</button>
             </form>
+
+            <div class="clearfix"></div>
         </div>
     </section>
-
+    <jsp:include page="../footer.jsp" />
     <!-- JavaScript -->
     <script src="<%= rootURL %>/js/jquery-3.5.1.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
