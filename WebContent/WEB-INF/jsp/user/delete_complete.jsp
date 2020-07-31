@@ -27,9 +27,7 @@
         <div class="container">
             <!-- ここにHTMLを書き始める -->
             <H1>退会しました</H1>
-            <form action="login" method="GET">
-            	<input type="submit" value="ログインに戻る" class="btn btn-primary" style="width: 150px;">
-            </form>
+            <a href="../../login" class="btn btn-primary" style="width: 150px;">ログインに戻る</a>
         </div>
     </section>
 
