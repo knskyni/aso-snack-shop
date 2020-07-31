@@ -25,13 +25,24 @@ public class UserDeleteConfirmServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         HttpSession session = request.getSession(false);
-        UserBean userInfo = new UserBean();
-        userInfo = (UserBean)session.getAttribute("userInfo");
-        int id = userInfo.getId();
+        UserBean userInfo = (UserBean)session.getAttribute("userInfo");
+
+     // Beanの存在確認
+        if(userInfo == null) {
+            response.sendError(400);
+            return;
+        }
+
         UserModel userModel = new UserModel();
-        userModel.delete(id);
-        session.invalidate();
-        response.sendRedirect("complete");
+        boolean result = userModel.delete(userInfo.getId());
+
+        if(result) {
+            response.sendRedirect("complete");
+        } else {
+            response.sendError(400);
+        }
+
     }
 }
