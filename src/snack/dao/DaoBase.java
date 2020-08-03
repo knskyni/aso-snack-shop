@@ -40,29 +40,29 @@ public class DaoBase {
             }
         }
     }
-    public Connection getConnection(){
+
+    public Connection getConnection() {
         return con;
     }
 
-    public void beginTransaction() throws SQLException{
-        if( con != null ){
+    public void beginTransaction() throws SQLException {
+        if(con != null) {
             con.setAutoCommit(false);
         }
     }
 
-    public void commit() throws SQLException{
-        if( con != null ){
+    public void commit() throws SQLException {
+        if(con != null){
             try {
                 con.commit();
             } finally{
                 con.setAutoCommit(true);
             }
         }
-
     }
 
-    public void rollback(){
-        if( con != null ){
+    public void rollback() {
+        if(con != null){
             try {
                 con.rollback();
             }catch(SQLException e){
@@ -86,7 +86,7 @@ public class DaoBase {
          PreparedStatement ps = null;
          ResultSet rs = null;
 
-         ps = con.prepareStatement("SELECT last_insert_id() as orderId from " +orders);
+         ps = con.prepareStatement("SELECT last_insert_id() AS orderId FROM " + orders + ";");
 
          rs = ps.executeQuery();
 

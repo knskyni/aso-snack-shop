@@ -15,6 +15,8 @@ public class ItemBean implements Serializable {
     private int price;
     private int count;
 
+    private String image;
+
     public int getId() {
         return id;
     }
@@ -87,4 +89,11 @@ public class ItemBean implements Serializable {
         this.count = count;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 }

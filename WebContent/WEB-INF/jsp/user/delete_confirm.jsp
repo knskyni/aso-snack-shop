@@ -32,9 +32,7 @@
             <!-- ここにHTMLを書き始める -->
             <h1 align="center">退会しますか？</h1>
             <div>
-            	<form action="home"  method="GET">
-            		<input type="submit" value="戻る" class="btn btn-outline-dark" style="width: 150px;">
-            	</form>
+            	<a href="../detail" class="btn btn-outline-dark" style="width: 150px;">戻る</a>
             	<form method="POST">
             		<input type="submit" value="退会する" class="btn btn-primary" style="width: 150px;">
             	</form>

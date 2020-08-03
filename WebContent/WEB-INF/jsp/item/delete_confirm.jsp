@@ -21,6 +21,17 @@
     <link rel="stylesheet" href="<%= rootURL %>/css/bootstrap.min.css">
 </head>
 <body>
+    <style>
+    .table {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-all;
+    }
+
+    th {
+        word-break: keep-all;
+    }
+    </style>
     <jsp:include page="../header.jsp" />
     <section>
         <div class="container">
@@ -39,7 +50,7 @@
                     </tr>
                     <tr>
                         <th scope="row">画像</th>
-                        <td><img width="100%" src="<%= rootURL + "/img/item/" + item.getImagePath() %>"></td>
+                        <td><img class="img-fluid" style="max-height: 200px;" src="<%= rootURL + "/img/item/" + item.getImagePath() %>"></td>
                     </tr>
                     <tr>
                         <th scope="row">価格</th>
@@ -50,9 +61,10 @@
             <form method="POST">
               <button type="submit" class="btn btn-primary float-right">削除</button>
             </form>
+            <div class="clearfix"></div>
         </div>
     </section>
-
+    <jsp:include page="../footer.jsp" />
     <!-- JavaScript -->
     <script src="<%= rootURL %>/js/jquery-3.5.1.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
