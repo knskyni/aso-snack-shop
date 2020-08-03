@@ -1,5 +1,8 @@
 package snack.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import snack.bean.ItemBean;
 import snack.dao.ItemDao;
 
@@ -19,14 +22,14 @@ public class ItemModel {
 
         return result;
     }
-    
-    public ItemBean search(String name) {
-        ItemBean itemBean = null;
+
+    public List<ItemBean> getList(String search) {
+        List<ItemBean> itemBean = new ArrayList<ItemBean>();
         ItemDao itemDao = new ItemDao();
 
         try {
             itemDao.connect();
-            itemBean = itemDao.search(name);
+            itemBean = itemDao.getList(search);
         } catch(Exception e) {
             e.printStackTrace();
         } finally {

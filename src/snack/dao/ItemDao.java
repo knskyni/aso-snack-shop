@@ -3,6 +3,8 @@ package snack.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import snack.bean.ItemBean;
 
@@ -62,17 +64,18 @@ public class ItemDao extends DaoBase {
 
         return item;
     }
-    public ItemBean search(String name) {
+    public List<ItemBean> getList(String search) {
         if(con == null) {
             return null;
         }
 
         PreparedStatement stmt = null;
         ItemBean item = null;
+        List<ItemBean> itemBean = new ArrayList<ItemBean>();
 
         try {
             stmt = con.prepareStatement("SELECT * FROM items WHERE name = ? LIKE name = ?");
-            stmt.setString(1, "%"+name+"%");
+            stmt.setString(1, "%"+search+"%");
             ResultSet rs = stmt.executeQuery();
 
             while(rs.next()) {
@@ -84,12 +87,13 @@ public class ItemDao extends DaoBase {
                 item.setCreatedAt(rs.getTimestamp("created_at"));
                 item.setUpdatedAt(rs.getTimestamp("updated_at"));
                 item.setPrice(rs.getInt("price"));
+                itemBean.add(item);
             }
         } catch(SQLException e) {
             e.printStackTrace();
         }
 
-        return item;
+        return itemBean;
     }
 
     public boolean update(ItemBean item) {
