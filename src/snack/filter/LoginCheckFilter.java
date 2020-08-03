@@ -33,13 +33,6 @@ public class LoginCheckFilter implements Filter {
 
         // throughPathのいずれかと一致するパスはフィルターを適用しない
         if(Arrays.asList(throughPath).contains(accessPath)) {
-            // ログアウト判定 (ログアウト後のsessionはnullにならない)
-            if(session != null) {
-                if(session.getAttribute("userInfo") != null) {
-                    ((HttpServletResponse)response).sendRedirect(((HttpServletRequest)request).getContextPath() + "/top");
-                    return;
-                }
-            }
             chain.doFilter(request, response);
             return;
         }
