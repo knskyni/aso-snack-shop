@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="snack.bean.NewsBean" %>
+<%@ page import="snack.helper.WebHelper" %>
 <%@ page import="org.apache.commons.text.StringEscapeUtils" %>
 
 <%
-    NewsBean news = (NewsBean)session.getAttribute("news");
+    String rootURL = WebHelper.getRootURL(request);
+
+    NewsBean news = (NewsBean)session.getAttribute("createNews");
 %>
 <!DOCTYPE html>
 <html lang="ja">
@@ -15,9 +18,20 @@
     <title>Hello, world!</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="<%= rootURL %>/css/bootstrap.min.css">
 </head>
 <body>
+    <style>
+    .table {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-all;
+    }
+
+    th {
+        word-break: keep-all;
+    }
+    </style>
     <jsp:include page="../header.jsp" />
     <section>
         <div class="container">
@@ -36,15 +50,17 @@
                     </tr>
                 </tbody>
             </table>
+            <button class="btn btn-secondary float-left" onclick="history.back()">戻る</button>
             <form method="POST">
-              <button type="submit" class="btn btn-primary float-right">確認</button>
+              <button type="submit" class="btn btn-primary float-right">送信</button>
             </form>
+            <div class="clearfix"></div>
         </div>
     </section>
-
+    <jsp:include page="../footer.jsp" />
     <!-- JavaScript -->
-    <script src="../../js/jquery-3.5.1.min.js"></script>
+    <script src="<%= rootURL %>/js/jquery-3.5.1.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="../../js/bootstrap.min.js"></script>
+    <script src="<%= rootURL %>/js/bootstrap.min.js"></script>
 </body>
 </html>
