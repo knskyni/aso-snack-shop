@@ -8,15 +8,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import snack.bean.NewsBean;
-import snack.model.NewsModel;
+import snack.bean.ItemBean;
+import snack.model.ItemModel;
 
 @WebServlet("/view")
 public class ItemViewServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException{
-        
+
         int id = 0;
         try {
             id = Integer.parseInt(request.getParameter("id"));
@@ -26,13 +26,13 @@ public class ItemViewServlet extends HttpServlet{
         }
 
         // データベースから情報取得
-        NewsModel newsModel = new NewsModel();
-        NewsBean newsBean = newsModel.show(id);
-        
-        request.setAttribute("newsBean", newsBean);
-        
-        RequestDispatcher dispatcher = request.getRequestDispatcher("../WEB-INF/jsp/home/home.jsp");
+        ItemModel itemDao = new ItemModel();
+        ItemBean itemBean = itemDao.show(id);
+
+        request.setAttribute("itemview", itemBean);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("../WEB-INF/jsp/view/itemview.jsp");
         dispatcher.forward(request, response);
-        
+
     }
 }
