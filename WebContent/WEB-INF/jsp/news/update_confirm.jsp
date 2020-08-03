@@ -21,6 +21,17 @@
     <link rel="stylesheet" href="<%= rootURL %>/css/bootstrap.min.css">
 </head>
 <body>
+    <style>
+    .table {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-all;
+    }
+
+    th {
+        word-break: keep-all;
+    }
+    </style>
     <jsp:include page="../header.jsp" />
     <section>
         <div class="container">
@@ -42,9 +53,10 @@
             <form method="POST">
               <button type="submit" class="btn btn-primary float-right">確認</button>
             </form>
+            <div class="clearfix"></div>
         </div>
     </section>
-
+    <jsp:include page="../footer.jsp" />
     <!-- JavaScript -->
     <script src="<%= rootURL %>/js/jquery-3.5.1.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>

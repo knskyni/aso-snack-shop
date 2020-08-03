@@ -4,23 +4,50 @@ import snack.bean.UserBean;
 import snack.dao.UserDao;
 
 public class UserModel {
-
     public UserBean auth(String email, String password) {
-
         UserDao userDao = new UserDao();
-
         UserBean userInfo = null;
 
         try {
             userDao.connect();
-
             userInfo = userDao.auth(email, password);
         }catch(Exception e){
             e.printStackTrace();
         }finally {
             userDao.close();
         }
+
         return userInfo;
+    }
+
+    public UserBean authAdmin(String email,String password) {
+        UserBean userBean = null;
+        UserDao userDao = new UserDao();
+
+        try{
+            userDao.connect();
+            userBean = userDao.authAdmin(email, password);
+        }catch(Exception e) {
+            e.printStackTrace();
+        }finally {
+            userDao.close();
+        }
+
+        return userBean;
+    }
+
+    public boolean insert(UserBean userbean) {
+        UserDao userDao = new UserDao();
+
+        try {
+            userDao.connect();
+            return userDao.insert(userbean);
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }finally {
+            userDao.close();
+        }
     }
 
     public UserBean show(int id) {
@@ -36,11 +63,11 @@ public class UserModel {
         }finally {
             userDao.close();
         }
+
         return userInfo;
     }
 
     public UserBean update(UserBean userUpdateInfo) {
-
         UserDao userDao = new UserDao();
         UserBean userInfoBean = null;
 
@@ -52,7 +79,56 @@ public class UserModel {
         }finally {
             userDao.close();
         }
+
         return userInfoBean;
     }
 
+    public UserBean reauth(String email, String password) {
+        UserDao userDao = new UserDao();
+        UserBean userInfo = null;
+
+        try {
+            userDao.connect();
+            userInfo = userDao.reauth(email, password);
+        }catch(Exception e) {
+            e.printStackTrace();
+        }finally {
+            userDao.close();
+        }
+
+        return userInfo;
+    }
+
+    public boolean delete(int id) {
+        UserDao userDao = new UserDao();
+        boolean result = false;
+
+        try {
+            userDao.connect();
+            result = userDao.delete(id);
+        }catch(Exception e) {
+            e.printStackTrace();
+            result = false;
+        }finally {
+            userDao.close();
+        }
+
+        return result;
+    }
+
+    public boolean updatePassword(UserBean updateBean) {
+        UserDao userDao = new UserDao();
+        boolean result = false;
+
+        try {
+            userDao.connect();
+            result = userDao.updatePassword(updateBean);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }finally{
+            userDao.close();
+        }
+
+        return result;
+    }
 }
