@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="snack.bean.NewsBean" %>
+<%@ page import="snack.helper.WebHelper" %>
 <%@ page import="org.apache.commons.text.StringEscapeUtils" %>
 
 <%
-    NewsBean news = (NewsBean)session.getAttribute("news");
+    String rootURL = WebHelper.getRootURL(request);
 %>
 <!DOCTYPE html>
 <html lang="ja">
@@ -15,7 +16,7 @@
     <title>Hello, world!</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="<%= rootURL %>/css/bootstrap.min.css">
 </head>
 <body>
     <jsp:include page="../header.jsp" />
@@ -25,10 +26,10 @@
             <p>登録完了しました。</p>
         </div>
     </section>
-
+    <jsp:include page="../footer.jsp" />
     <!-- JavaScript -->
-    <script src="../../js/jquery-3.5.1.min.js"></script>
+    <script src="<%= rootURL %>/js/jquery-3.5.1.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="../../js/bootstrap.min.js"></script>
+    <script src="<%= rootURL %>/js/bootstrap.min.js"></script>
 </body>
 </html>
