@@ -1,5 +1,6 @@
 package snack.controller;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -7,10 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import snack.bean.ItemBean;
+import snack.bean.NewsBean;
 import snack.model.ItemModel;
+import snack.model.NewsModel;
 
 @WebServlet("/search")
 public class SearchResultServlet extends HttpServlet{
@@ -18,13 +20,19 @@ public class SearchResultServlet extends HttpServlet{
     protected void doGet(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException{
 
-        HttpSession session = request.getSession();
-        ItemBean itemBean = (ItemBean)session.getAttribute("itemBean");
+        String search = request.getParameter("ItemName");
+
      // データベースから情報取得
         ItemModel itemModel = new ItemModel();
-        ItemBean item = itemModel.search(itemBean.getName());
 
-        request.setAttribute("itemBean", itemModel);
+        List<ItemBean> itemBean = itemModel.getList(search);
+
+
+        request.setAttribute("itemBean", itemBean);
+
+        NewsModel newsModel = new NewsModel();
+        List<NewsBean> news = newsModel.list();
+        request.setAttribute("news", news);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("../WEB-INF/jsp/searchresult/searchresult.jsp");
         dispatcher.forward(request, response);
