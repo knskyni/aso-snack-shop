@@ -37,14 +37,26 @@
     <% } %>
 
         <form action="<%= rootURL %>/search" method="GET" class="form-inline mt-2 mt-md-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <input class="form-control mr-sm-2" type="text" placeholder="商品名で検索" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
         </form>
         <div>
-            <nav>
-                <a class="p-2 text-muted" href="<%= rootURL %>/cart">カート</a>
-                <a class="p-2 text-muted" href="<%= rootURL %>/logout">ログアウト</a>
-            </nav>
+            <ul class="navbar-nav mr-auto">
+            <% if(userInfo != null) { %>
+            <% if(userInfo.getType().equals("user")) { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="<%= rootURL %>/cart">カート</a>
+                </li>
+            <% } %>
+                <li class="nav-item">
+                    <a class="nav-link" href="<%= rootURL %>/logout">ログアウト</a>
+                </li>
+            <% } else { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="<%= rootURL %>/login">ログイン</a>
+                </li>
+            <% } %>
+            </ul>
         </div>
     </div>
 </nav>
