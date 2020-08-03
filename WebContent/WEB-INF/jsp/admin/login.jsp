@@ -19,8 +19,7 @@
 </head>
 <body>
 	<%
-		String errMsg1 = (String)request.getAttribute("msg1");
-		String errMsg2 = (String)request.getAttribute("msg2");
+		String errMsg = (String)request.getAttribute("msg");
 	%>
     <section>
         <div class="container">
@@ -31,26 +30,20 @@
 
 
 						<div  class="form-group">
-							<p><input type="text" name="email" placeholder="メールアドレス" class="form-control"></p>
+							<label for="inputEmail" class="sr-only">Email address</label>
+							<p><input type="email" id="inputEmail" name="email" placeholder="メールアドレス" class="form-control" required autofocus></p>
 						</div>
-
-
-
-						<p class="text-danger" id="msg1">
-							<%if(errMsg1 != null){ %>
-								<%=errMsg1 %>
-							<%} %>
-						</p>
 
 						<p>パスワード</p>
 
 						<div class="form-group">
-							<p><input type="password" name="password" placeholder="パスワード" class="form-control"></p>
+							<label for="inputPassword" class="sr-only">Password</label>
+							<p><input type="password" id="inputPassword" name="password" placeholder="パスワード" class="form-control" required></p>
 						</div>
 
-						<p class="text-danger" id="msg2">
-							<%if(errMsg2 != null){ %>
-								<%=errMsg2 %>
+						<p class="text-danger" id="msg">
+							<%if(errMsg != null){ %>
+								<%=errMsg %>
 							<%} %>
 						</p>
 
@@ -63,22 +56,5 @@
     <script src="../js/jquery-3.5.1.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="../js/bootstrap.min.js"></script>
-    <script>
-		document.getElementById('check').btn.onclick = function(){
-			var email = document.getElementById('check').email.value;
-	   		var password = document.getElementById('check').password.value;
-	   		if(email === ''){
-	     		document.getElementById('msg1');
-	    		document.getElementById('msg1').textContent = '*メールアドレスを入力してください';
-	   		}
-	   		if(password === ''){
-	     		document.getElementById('msg2');
-	    		document.getElementById('msg2').textContent = '*パスワードを入力してください';
-	   		}
-	   		if(email === '' || password === ''){
-	   			return false;
-	   		}
-		}
-	</script>
 </body>
 </html>

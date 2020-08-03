@@ -18,7 +18,7 @@ public class UserDao extends DaoBase{
         UserBean userbean = null;
 
         try {
-            stmt = con.prepareStatement("SELECT * FROM users WHERE email = ? AND password = ?");
+            stmt = con.prepareStatement("SELECT * FROM users WHERE email = ? AND password = ?;");
 
             stmt.setString(1, email);
             stmt.setString(2 ,password);
@@ -30,14 +30,14 @@ public class UserDao extends DaoBase{
                 userbean.setId(rs.getInt("id"));
                 userbean.setType(rs.getString("type"));
             }
-        }catch(Exception e) {
+        } catch(Exception e) {
             e.printStackTrace();
         }
-        return userbean;
 
+        return userbean;
     }
     public UserBean authAdmin(String email,String password) {
-        if( con == null ){
+        if(con == null){
             return null;
         }
 
@@ -46,54 +46,52 @@ public class UserDao extends DaoBase{
         UserBean userBean = new UserBean();
 
         try{
-            stmt = con.prepareStatement("SELECT id, email FROM admins WHERE email=? AND password=?");
+            stmt = con.prepareStatement("SELECT id, email FROM admins WHERE email=? AND password=?;");
             stmt.setString(1, email);
             stmt.setString(2, password);
             rs = stmt.executeQuery();
-            System.out.println(stmt);
 
-            while( rs.next() ) {
+            while(rs.next()) {
                 userBean.setId(rs.getInt("id"));
                 userBean.setEmail(rs.getString("email"));
+                userBean.setType("admin");
             }
 
-        }catch(Exception e) {
+        } catch(Exception e) {
             e.printStackTrace();
         }
-        return userBean;
 
+        return userBean;
     }
 
     public boolean insert(UserBean userbean) {
-
-        if(con == null ) {
+        if(con == null) {
             return false;
         }
 
         PreparedStatement stmt = null;
 
-
         try {
-            stmt = con.prepareStatement("INSERT INTO users(last_name,first_name,last_name_furigana,first_name_furigana,email,password,created_at,updated_at,postal_code,address,phone_number)VALUES(?,?,?,?,?,?,?,?,?,?,?)");
-            stmt.setString(1,userbean.getLastName());
-            stmt.setString(2,userbean.getFirstName());
-            stmt.setString(3,userbean.getLastNameFurigana());
-            stmt.setString(4,userbean.getFirstNameFurigana());
-            stmt.setString(5,userbean.getEmail());
-            stmt.setString(6,userbean.getPassword());
+            stmt = con.prepareStatement("INSERT INTO `users`(`last_name`, `first_name`, `last_name_furigana`, `first_name_furigana`, `email`, `password`, `created_at`, `updated_at`, `postal_code`, `address`, `phone_number`)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+            stmt.setString(1, userbean.getLastName());
+            stmt.setString(2, userbean.getFirstName());
+            stmt.setString(3, userbean.getLastNameFurigana());
+            stmt.setString(4, userbean.getFirstNameFurigana());
+            stmt.setString(5, userbean.getEmail());
+            stmt.setString(6, userbean.getPassword());
             stmt.setTimestamp(7, new java.sql.Timestamp(new java.util.Date().getTime()));
             stmt.setTimestamp(8, new java.sql.Timestamp(new java.util.Date().getTime()));
-            stmt.setString(9,userbean.getPostalCode());
-            stmt.setString(10,userbean.getAddress());
-            stmt.setString(11,userbean.getPhoneNumber());
+            stmt.setString(9, userbean.getPostalCode());
+            stmt.setString(10, userbean.getAddress());
+            stmt.setString(11, userbean.getPhoneNumber());
 
             stmt.executeUpdate();
-            return true;
-
-        }catch(Exception e) {
+        } catch(Exception e) {
             e.printStackTrace();
             return false;
         }
+
+        return true;
     }
 
     public UserBean show(int id) {
@@ -106,7 +104,7 @@ public class UserDao extends DaoBase{
         ResultSet rs = null;
 
         try {
-            stmt = con.prepareStatement("SELECT * FROM users WHERE id = ?");
+            stmt = con.prepareStatement("SELECT * FROM `users` WHERE `id` = ?;");
 
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
@@ -127,8 +125,8 @@ public class UserDao extends DaoBase{
         }catch(Exception e) {
             e.printStackTrace();
         }
-        return userInfo;
 
+        return userInfo;
     }
     public UserBean update(UserBean userUpdateInfo) {
         if(con == null) {
@@ -138,7 +136,7 @@ public class UserDao extends DaoBase{
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("UPDATE `users` SET `last_name` = ? , `first_name` = ? , `last_name_furigana` = ? , `first_name_furigana` = ? , `email` = ? , `postal_code` = ? , `address` = ? , `phone_number` = ? ,`updated_at` = ? WHERE `id` = ?");
+            stmt = con.prepareStatement("UPDATE `users` SET `last_name` = ?, `first_name` = ?, `last_name_furigana` = ?, `first_name_furigana` = ?, `email` = ?, `postal_code` = ?, `address` = ?, `phone_number` = ?, `updated_at` = ? WHERE `id` = ?;");
 
             stmt.setString(1, userUpdateInfo.getLastName());
             stmt.setString(2, userUpdateInfo.getFirstName());
@@ -168,7 +166,7 @@ public class UserDao extends DaoBase{
         UserBean userInfo = null;
 
         try {
-            stmt = con.prepareStatement("SELECT * FROM users WHERE email = ? AND password = ?");
+            stmt = con.prepareStatement("SELECT * FROM `users` WHERE `email` = ? AND `password` = ?;");
 
             stmt.setString(1, email);
             stmt.setString(2 ,password);
@@ -182,8 +180,9 @@ public class UserDao extends DaoBase{
                 userInfo.setLastNameFurigana(rs.getString("last_name_furigana"));
                 userInfo.setFirstNameFurigana(rs.getString("first_name_furigana"));
                 userInfo.setEmail(rs.getString("email"));
-                userInfo.setType(rs.getString("postal_code"));
-                userInfo.setPostalCode(rs.getString("address"));
+                userInfo.setType(rs.getString("type"));
+                userInfo.setAddress(rs.getString("address"));
+                userInfo.setPostalCode(rs.getString("postal_code"));
                 userInfo.setPhoneNumber(rs.getString("phone_number"));
             }
         }catch(Exception e) {
@@ -212,5 +211,31 @@ public class UserDao extends DaoBase{
         }
 
         return (result == 1) ? true : false;
+    }
+
+   public boolean updatePassword(UserBean updateBean) {
+        if( con == null ){
+            return false;
+        }
+
+        PreparedStatement stmt = null;
+        int result = 0;
+
+        try{
+            stmt = con.prepareStatement("UPDATE `users` SET `password` = ? WHERE `id` = ?;");
+
+            stmt.setString(1, updateBean.getPassword());
+            stmt.setInt(2, updateBean.getId());
+
+            result = stmt.executeUpdate();
+        }catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        if(result == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
