@@ -71,8 +71,8 @@ public class ItemDao extends DaoBase {
         ItemBean item = null;
 
         try {
-            stmt = con.prepareStatement("SELECT * FROM `items` WHERE `id` = ? AND `status` = 1;");
-            stmt.setString(1, name);
+            stmt = con.prepareStatement("SELECT * FROM items WHERE name = ? LIKE name = ?");
+            stmt.setString(1, "%"+name+"%");
             ResultSet rs = stmt.executeQuery();
 
             while(rs.next()) {
