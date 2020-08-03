@@ -74,7 +74,7 @@ public class ItemDao extends DaoBase {
         List<ItemBean> itemBean = new ArrayList<ItemBean>();
 
         try {
-            stmt = con.prepareStatement("SELECT * FROM items WHERE name = ? LIKE name = ?");
+            stmt = con.prepareStatement("SELECT * FROM items WHERE  name  LIKE  ?");
             stmt.setString(1, "%"+search+"%");
             ResultSet rs = stmt.executeQuery();
 
