@@ -15,6 +15,7 @@ import snack.bean.UserBean;
 import snack.model.UserModel;
 
 @WebServlet("/purchase/auth")
+@SuppressWarnings("unchecked")
 public class PurchaseAuthServlet extends HttpServlet {
 
     @Override

@@ -19,7 +19,7 @@ public class NewsDao extends DaoBase {
         int result = 0;
 
         try {
-            stmt = con.prepareStatement("INSERT INTO `news` (`created_at`, `updated_at`, `subject`, `content`) VALUES (?, ?, ?, ?)");
+            stmt = con.prepareStatement("INSERT INTO `news` (`created_at`, `updated_at`, `subject`, `content`) VALUES (?, ?, ?, ?);");
 
             stmt.setTimestamp(1, new java.sql.Timestamp(new java.util.Date().getTime()));
             stmt.setTimestamp(2, new java.sql.Timestamp(new java.util.Date().getTime()));
@@ -37,13 +37,15 @@ public class NewsDao extends DaoBase {
         if( con == null ){
             return null;
         }
+
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<NewsBean> news = new ArrayList<NewsBean>();
+
         try{
-            stmt = con.prepareStatement("SELECT id, updated_at, subject FROM news WHERE status = 1 ORDER BY updated_at DESC");
+            stmt = con.prepareStatement("SELECT `id`, `updated_at`, `subject` FROM `news` WHERE `status` = 1 ORDER BY `updated_at` DESC;");
             rs = stmt.executeQuery();
-            while( rs.next() ) {
+            while(rs.next()) {
                 NewsBean newsBean = new NewsBean();
                 newsBean.setId(rs.getInt("id"));
                 newsBean.setUpdatedAt(rs.getTimestamp("updated_at"));
@@ -53,6 +55,7 @@ public class NewsDao extends DaoBase {
         }catch(SQLException e) {
             e.printStackTrace();
         }
+
         return news;
     }
 
@@ -129,5 +132,4 @@ public class NewsDao extends DaoBase {
 
         return (result == 1) ? true : false;
     }
-
 }

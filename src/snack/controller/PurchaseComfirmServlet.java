@@ -23,6 +23,7 @@ import snack.model.ItemModel;
 import snack.model.PurchaseModel;
 
 @WebServlet("/purchase/comfirm")
+@SuppressWarnings("unchecked")
 public class PurchaseComfirmServlet extends HttpServlet {
 
     @Override

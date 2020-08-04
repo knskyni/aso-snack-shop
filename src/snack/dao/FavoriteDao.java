@@ -89,7 +89,7 @@ public class FavoriteDao extends DaoBase {
         List<ItemBean> items = new ArrayList<ItemBean>();
 
         try {
-            stmt = con.prepareStatement("SELECT `i`.`id`, `i`.`name`, `i`.`description`, `i`.`image_path`, `i`.`created_at`, `i`.`updated_at`, `i`.`price` FROM `favorites` AS `f` INNER JOIN `items` AS `i` ON `f`.`item_id` = `i`.`id` WHERE `i`.`status` = 1 AND `f`.`user_id` = ?;");
+            stmt = con.prepareStatement("SELECT `items`.`id`, `items`.`name`, `items`.`description`, `items`.`image_path`, `items`.`created_at`, `items`.`updated_at`, `items`.`price` FROM `favorites` INNER JOIN `items` ON `favorites`.`item_id` = `items`.`id` WHERE `items`.`status` = 1 AND `favorites`.`user_id` = ?;");
 
             stmt.setInt(1, userId);
 

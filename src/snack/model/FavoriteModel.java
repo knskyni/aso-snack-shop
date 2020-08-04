@@ -15,7 +15,6 @@ public class FavoriteModel {
         try {
             favDao.connect();
             exist = favDao.exist(userId, itemId); // 存在するならtrue, 存在しないならfalse
-
             if(exist) {
                 boolean action = favDao.delete(userId, itemId);
                 result = action ? 0 : -1;
@@ -23,7 +22,6 @@ public class FavoriteModel {
                 boolean action = favDao.create(userId, itemId);
                 result = action ? 1 : -1;
             }
-
         } catch(Exception e) {
             e.printStackTrace();
         } finally {
