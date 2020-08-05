@@ -131,8 +131,6 @@ public class UserUpdateInputServlet extends HttpServlet {
         userUpdateInfo.setAddress(address);
         userUpdateInfo.setPhoneNumber(phoneNumber);
 
-        session.setAttribute("userInfo", userUpdateInfo);
-
         if(errors.isEmpty()) {
             UserModel userModel = new UserModel();
             userModel.update(userUpdateInfo);
