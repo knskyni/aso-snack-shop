@@ -55,8 +55,14 @@ public class UserCreateInputServlet extends HttpServlet {
         String namber = request.getParameter("namber");
 
         HashMap<String, ArrayList<String>> errors = new HashMap<String, ArrayList<String>>();
-        if (!Ksei.matches("^[一-龥]+$")) {
-            errors = ErrorHelper.add(errors,"Ksei","漢字ではありません");
+        //if (!Ksei.matches("^[一-龥]+$")) {
+           // errors = ErrorHelper.add(errors,"Ksei","漢字ではありません");
+        //}
+        if(Ksei.length() > 16) {
+            errors = ErrorHelper.add(errors, "Ksei", "1文字以上、16文字以内で入力してください。");
+        }
+      else if(Ksei.isEmpty()) {
+            errors = ErrorHelper.add(errors, "Ksei", "入力してください。");
         }
         if (!Kmei.matches("^[一-龥]+$")) {
             errors = ErrorHelper.add(errors,"Kmei","漢字ではありません");
@@ -85,9 +91,10 @@ public class UserCreateInputServlet extends HttpServlet {
         if(address.isEmpty()) {
             errors = ErrorHelper.add(errors, "address", "*住所を入力してください");
         }
-        if(Ksei.isEmpty()) {
-            errors = ErrorHelper.add(errors, "Ksei", "入力してください。");
-        }
+        //if(Ksei.isEmpty()) {
+           // errors = ErrorHelper.add(errors, "Ksei", "入力してください。");
+        //}
+        errors = ErrorHelper.add(errors, "Ksei", "入力してください。");
         if(Kmei.isEmpty()) {
             errors = ErrorHelper.add(errors, "Kmei", "入力してください。");
         }
@@ -112,9 +119,9 @@ public class UserCreateInputServlet extends HttpServlet {
         //if(namber.isEmpty()) {
             //errors = ErrorHelper.add(errors, "namber", "入力してください。");
         //}
-        if(Ksei.length() > 16) {
-            errors = ErrorHelper.add(errors, "Hsei", "1文字以上、16文字以内で入力してください。");
-        }
+        //if(Ksei.length() > 16) {
+           // errors = ErrorHelper.add(errors, "Ksei", "1文字以上、16文字以内で入力してください。");
+        //}
         if(Kmei.length() > 16) {
             errors = ErrorHelper.add(errors, "Kmei", "1文字以上、16文字以内で入力してください。");
         }
