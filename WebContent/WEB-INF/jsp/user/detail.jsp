@@ -20,7 +20,7 @@ UserBean user = (UserBean)request.getAttribute("user");
     <jsp:include page="../header.jsp" />
     <section>
         <div class="container">
-            <h2>会員登録</h2>
+            <h2>会員情報</h2>
             <hr>
             <form action="confirm" method="POST">
               <div class="row">
