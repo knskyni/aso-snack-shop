@@ -19,7 +19,7 @@ public class NewsDao extends DaoBase {
         int result = 0;
 
         try {
-            stmt = con.prepareStatement("INSERT INTO `news` (`created_at`, `updated_at`, `subject`, `content`) VALUES (?, ?, ?, ?);");
+            stmt = con.prepareStatement("INSERT INTO `news` (`status`, `created_at`, `updated_at`, `subject`, `content`) VALUES (1, ?, ?, ?, ?);");
 
             stmt.setTimestamp(1, new java.sql.Timestamp(new java.util.Date().getTime()));
             stmt.setTimestamp(2, new java.sql.Timestamp(new java.util.Date().getTime()));
