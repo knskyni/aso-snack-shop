@@ -46,7 +46,7 @@ public class UserLoginServlet extends HttpServlet {
         }else {
             HttpSession session = request.getSession(true);
             session.setAttribute("userInfo",userInfo);
-            response.sendRedirect("menu");
+            response.sendRedirect("./");
 
         }
     }
