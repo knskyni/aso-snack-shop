@@ -2,12 +2,13 @@
     pageEncoding="UTF-8"%>
     <%@ page import="snack.bean.ItemBean" %>
 <%@ page import="snack.helper.WebHelper" %>
+<%@ page import="java.util.*" %>
 <%@ page import="org.apache.commons.text.StringEscapeUtils" %>
 
 <%
     String rootURL = WebHelper.getRootURL(request);
 
-    ItemBean item = (ItemBean)session.getAttribute("itemBean");
+    List<ItemBean> item = (List<ItemBean>)request.getAttribute("itemBean");
 %>
 <!DOCTYPE html>
 <html lang="ja">
@@ -34,39 +35,8 @@
     </section>
 
   <table border="1">
-  <tr>
-   <td width="150"><img width="100%" src="<%= rootURL + "/img/item/" + item.getImagePath() %>">
-   <p><%= StringEscapeUtils.escapeHtml4(item.getName()) %></p><p><%= StringEscapeUtils.escapeHtml4(item.getDescription()) %>></p>
-   <button type="button" class="btn btn-default">詳細</button></td>
-   <td width="150"><img width="100%" src="<%= rootURL + "/img/item/" + item.getImagePath() %>">
-   <p><%= StringEscapeUtils.escapeHtml4(item.getName()) %></p><p><%= StringEscapeUtils.escapeHtml4(item.getDescription()) %>></p>
-   <button type="button" class="btn btn-default">詳細</button></td>
-   <td width="150"><img width="100%" src="<%= rootURL + "/img/item/" + item.getImagePath() %>">
-   <p><%= StringEscapeUtils.escapeHtml4(item.getName()) %></p><p><%= StringEscapeUtils.escapeHtml4(item.getDescription()) %>></p>
-   <button type="button" class="btn btn-default">詳細</button></td>
-  </tr>
-  <tr>
-   <td width="150"><img width="100%" src="<%= rootURL + "/img/item/" + item.getImagePath() %>">
-   <p><%= StringEscapeUtils.escapeHtml4(item.getName()) %></p><p><%= StringEscapeUtils.escapeHtml4(item.getDescription()) %>></p>
-   <button type="button" class="btn btn-default">詳細</button></td>
-  <td width="150"><img width="100%" src="<%= rootURL + "/img/item/" + item.getImagePath() %>">
-   <p><%= StringEscapeUtils.escapeHtml4(item.getName()) %></p><p><%= StringEscapeUtils.escapeHtml4(item.getDescription()) %>></p>
-   <button type="button" class="btn btn-default">詳細</button></td>
- <td width="150"><img width="100%" src="<%= rootURL + "/img/item/" + item.getImagePath() %>">
-   <p><%= StringEscapeUtils.escapeHtml4(item.getName()) %></p><p><%= StringEscapeUtils.escapeHtml4(item.getDescription()) %>></p>
-   <button type="button" class="btn btn-default">詳細</button></td>
-  </tr>
-   <tr>
-   <td width="150"><img width="100%" src="<%= rootURL + "/img/item/" + item.getImagePath() %>">
-   <p><%= StringEscapeUtils.escapeHtml4(item.getName()) %></p><p><%= StringEscapeUtils.escapeHtml4(item.getDescription()) %>></p>
-   <button type="button" class="btn btn-default">詳細</button></td>
-   <td width="150"><img width="100%" src="<%= rootURL + "/img/item/" + item.getImagePath() %>">
-   <p><%= StringEscapeUtils.escapeHtml4(item.getName()) %></p><p><%= StringEscapeUtils.escapeHtml4(item.getDescription()) %>></p>
-   <button type="button" class="btn btn-default">詳細</button></td>
-  <td width="150"><img width="100%" src="<%= rootURL + "/img/item/" + item.getImagePath() %>">
-   <p><%= StringEscapeUtils.escapeHtml4(item.getName()) %></p><p><%= StringEscapeUtils.escapeHtml4(item.getDescription()) %>></p>
-   <button type="button" class="btn btn-default">詳細</button></td>
-  </tr>
+  <%for(ItemBean itemBean : item){ %>
+  <%} %>
  </table>
     <!-- JavaScript -->
     <script src="./js/jquery-3.5.1.min.js"></script>

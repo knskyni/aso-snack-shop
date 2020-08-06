@@ -35,7 +35,7 @@ public class SearchResultServlet extends HttpServlet{
            request.setAttribute("news", news);
 
         RequestDispatcher dispatcher =
-                request.getRequestDispatcher("../WEB-INF/jsp/admin/login.jsp");
+                request.getRequestDispatcher("/WEB-INF/jsp/searchresult/searchresult.jsp");
         dispatcher.forward(request, response);
     }
 }

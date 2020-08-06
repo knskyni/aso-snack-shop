@@ -9,14 +9,13 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import snack.bean.UserBean;
 
-@WebFilter("/*")
+//@WebFilter("/*")
 public class LoginCheckFilter implements Filter {
     private final String[] throughPath = {"/login", "/admin/login", "/about", "/search", "/item/show", "/news/list", "/news/show", "/user/input", "/user/confirm", "/user/complete"};
     private final String[] throughFile = {"css", "js", "png", "jpg", "jpeg", "gif"};
