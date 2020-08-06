@@ -69,8 +69,19 @@ public class ItemUpdateInputServlet extends HttpServlet {
             errors = ErrorHelper.add(errors, "price", "価格が正確な値ではありません。");
         }
 
-        errors = FormHelper.checkEmpty(errors, "name", name);
-        errors = FormHelper.checkEmpty(errors, "description", description);
+        // nameの入力チェック
+        if(FormHelper.checkEmpty(name)) {
+            errors = ErrorHelper.add(errors, "name", "入力してください。");
+        } else if(FormHelper.checkLength(name, 1, 64)) {
+            errors = ErrorHelper.add(errors, "name", "商品名は1文字以上、64文字以内で入力してください。");
+        }
+
+        // descriptionの入力チェック
+        if(FormHelper.checkEmpty(description)) {
+            errors = ErrorHelper.add(errors, "description", "入力してください。");
+        } else if(FormHelper.checkLength(description, 1, 4096)) {
+            errors = ErrorHelper.add(errors, "description", "説明文は1文字以上、4096文字以内で入力してください。");
+        }
 
         // セッション取得
         HttpSession session = request.getSession(false);
