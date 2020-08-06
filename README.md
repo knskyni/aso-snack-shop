@@ -1,4 +1,4 @@
-<h1 align="center">aso-snack-shop</h2>
+<h1 align="center">aso-snack-shop</h1>
 
 ## 🔗 Public Link
 http://jousen5.aso-abcc.com/sweeter/ (予定)
