@@ -4,11 +4,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import snack.bean.UserBean;
 
 public class UserDao extends DaoBase{
 
-    public UserBean auth(String email,String password) {
+    public UserBean auth(String email, String password) {
         if(con == null) return null;
 
         PreparedStatement stmt = null;
@@ -16,15 +18,20 @@ public class UserDao extends DaoBase{
         UserBean userbean = null;
 
         try {
-            stmt = con.prepareStatement("SELECT * FROM `users` WHERE `email` = ? AND `password` = ?;");
+            stmt = con.prepareStatement("SELECT * FROM `users` WHERE `email` = ?;");
 
             stmt.setString(1, email);
-            stmt.setString(2, password);
             rs = stmt.executeQuery();
 
             while(rs.next()) {
-                userbean = new UserBean();
+                // ハッシュ化したパスワードの整合
+                String hashedPassword = rs.getString("password"); // データベースからパスワードを取得
+                BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder(); // パスワードハッシュライブラリBCryptを生成
+                if(!bcrypt.matches(password, hashedPassword)) {
+                    break; // マッチしなかったらwhileから抜ける
+                }
 
+                userbean = new UserBean();
                 userbean.setId(rs.getInt("id"));
                 userbean.setType(rs.getString("type"));
             }
@@ -42,12 +49,18 @@ public class UserDao extends DaoBase{
         UserBean userBean = new UserBean();
 
         try {
-            stmt = con.prepareStatement("SELECT `id`, `email` FROM `admins` WHERE `email` = ? AND `password` = ?;");
+            stmt = con.prepareStatement("SELECT * FROM `admins` WHERE `email` = ?;");
             stmt.setString(1, email);
-            stmt.setString(2, password);
             rs = stmt.executeQuery();
 
             while(rs.next()) {
+                // ハッシュ化したパスワードの整合
+                String hashedPassword = rs.getString("password"); // データベースからパスワードを取得
+                BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder(); // パスワードハッシュライブラリBCryptを生成
+                if(!bcrypt.matches(password, hashedPassword)) {
+                    break; // マッチしなかったらwhileから抜ける
+                }
+
                 userBean.setId(rs.getInt("id"));
                 userBean.setEmail(rs.getString("email"));
                 userBean.setType("admin");
@@ -147,7 +160,7 @@ public class UserDao extends DaoBase{
 
          return userUpdateInfo;
     }
-    public UserBean reauth(String email ,String password) {
+    public UserBean reauth(String email, String password) {
         if(con == null) return null;
 
         PreparedStatement stmt = null;
@@ -155,13 +168,19 @@ public class UserDao extends DaoBase{
         UserBean userInfo = null;
 
         try {
-            stmt = con.prepareStatement("SELECT * FROM `users` WHERE `email` = ? AND `password` = ?;");
+            stmt = con.prepareStatement("SELECT * FROM `users` WHERE `email` = ?;");
 
             stmt.setString(1, email);
-            stmt.setString(2 ,password);
             rs = stmt.executeQuery();
 
             while(rs.next()) {
+                // ハッシュ化したパスワードの整合
+                String hashedPassword = rs.getString("password"); // データベースからパスワードを取得
+                BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder(); // パスワードハッシュライブラリBCryptを生成
+                if(!bcrypt.matches(password, hashedPassword)) {
+                    break; // マッチしなかったらwhileから抜ける
+                }
+
                 userInfo = new UserBean();
                 userInfo.setId(rs.getInt("Id"));
                 userInfo.setLastName(rs.getString("last_name"));
