@@ -1,18 +1,15 @@
 package snack.helper;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 public class FormHelper {
-    public static HashMap<String, ArrayList<String>> checkEmpty(HashMap<String, ArrayList<String>> errors, String name, String str) {
+    public static boolean checkEmpty(String str) {
         if(str == null) {
-            return ErrorHelper.add(errors, name, "入力してください。");
+            return true;
         }
 
         if(str.replaceAll(" ", "").equals("")) {
-            return ErrorHelper.add(errors, name, "入力してください。");
+            return true;
         }
 
-        return errors;
+        return false;
     }
 }
