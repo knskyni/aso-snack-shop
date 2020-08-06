@@ -6,7 +6,7 @@
 <%
     String rootURL = WebHelper.getRootURL(request);
 
-    ItemBean item = (ItemBean)session.getAttribute("item");
+    ItemBean item = (ItemBean)request.getAttribute("item");
 %>
 <!DOCTYPE html>
 <html lang="ja">
