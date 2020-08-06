@@ -17,19 +17,14 @@ import snack.model.UserModel;
 public class UserLoginServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("./WEB-INF/jsp/user/login.jsp");
         dispatcher.forward(request, response);
-
     }
+
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
-
         String password = request.getParameter("password");
 
         UserModel userModel = new UserModel();
@@ -42,15 +37,10 @@ public class UserLoginServlet extends HttpServlet {
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("./WEB-INF/jsp/user/login.jsp");
             dispatcher.forward(request, response);
-
         }else {
             HttpSession session = request.getSession(true);
             session.setAttribute("userInfo",userInfo);
             response.sendRedirect("./");
-
         }
     }
-
-
-
 }

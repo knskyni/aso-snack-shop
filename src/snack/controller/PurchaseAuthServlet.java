@@ -17,10 +17,8 @@ import snack.model.UserModel;
 @WebServlet("/purchase/auth")
 @SuppressWarnings("unchecked")
 public class PurchaseAuthServlet extends HttpServlet {
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         HttpSession session = request.getSession(true);
         HashMap<Integer,Integer> carts = (HashMap<Integer,Integer>)session.getAttribute("cart");
 
@@ -31,17 +29,15 @@ public class PurchaseAuthServlet extends HttpServlet {
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("../WEB-INF/jsp/purchase/reauth.jsp");
         dispatcher.forward(request, response);
-
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         String email = (String)request.getParameter("email");
         String password = (String)request.getParameter("password");
 
         UserModel userModel = new UserModel();
-        UserBean userAuth = userModel.reauth(email,password);
+        UserBean userAuth = userModel.reauth(email, password);
 
         if(userAuth == null) {
             String msg = "ログインに失敗しました。ログイン内容を確認してください";
@@ -50,13 +46,10 @@ public class PurchaseAuthServlet extends HttpServlet {
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("./WEB-INF/jsp/purchase/auth.jsp");
             dispatcher.forward(request, response);
-
-        }else {
-
+        } else {
             HttpSession session = request.getSession(true);
-            session.setAttribute("userAuth",userAuth);
+            session.setAttribute("userAuth", userAuth);
             response.sendRedirect("select");
         }
     }
-
 }
