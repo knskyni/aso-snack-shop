@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import snack.bean.UserBean;
 import snack.model.UserModel;
 
@@ -22,9 +24,13 @@ public class UserChangePasswordInputServlet extends HttpServlet {
         // セッション取得
         HttpSession session = request.getSession();
 
+        // パスワードをハッシュ化
+        BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
+        String hashedPassword = bcrypt.encode(pass);
+
         // ユーザー情報取得・パスワード格納
         UserBean user = (UserBean)session.getAttribute("userInfo");
-        user.setPassword(pass);
+        user.setPassword(hashedPassword);
 
         // データベース
         UserModel userModel = new UserModel();

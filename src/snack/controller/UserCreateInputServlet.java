@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import snack.bean.UserBean;
 import snack.helper.ErrorHelper;
 
@@ -123,6 +125,10 @@ public class UserCreateInputServlet extends HttpServlet {
             //errors = ErrorHelper.add(errors, "namber", "1文字以上、11文字以内で入力してください。");
         //}
 
+        // パスワードをハッシュ化
+        BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
+        String hashedPassword = bcrypt.encode(pass);
+
         // 入力内容をBeanに格納
         UserBean user = new UserBean();
         user.setFirstName(Ksei);
@@ -130,7 +136,7 @@ public class UserCreateInputServlet extends HttpServlet {
         user.setFirstNameFurigana(Hsei);
         user.setLastNameFurigana(Hmei);
         user.setEmail(mail);
-        user.setPassword(pass);
+        user.setPassword(hashedPassword);
         user.setPostalCode(post);
         user.setAddress(address);
         user.setPhoneNumber(namber);
