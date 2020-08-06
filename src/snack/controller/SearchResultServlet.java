@@ -25,7 +25,7 @@ public class SearchResultServlet extends HttpServlet{
         // データベースから情報取得
            ItemModel itemModel = new ItemModel();
 
-           List<ItemBean> itemBean = itemModel.getList(search);
+           List<ItemBean> itemBean = itemModel.serch(search);
 
 
            request.setAttribute("itemBean", itemBean);

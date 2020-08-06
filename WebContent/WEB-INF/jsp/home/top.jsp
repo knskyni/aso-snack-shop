@@ -6,7 +6,7 @@
 <%
     String rootURL = WebHelper.getRootURL(request);
 
-    ItemBean item = (ItemBean)session.getAttribute("itemBean");
+    ItemBean item = (ItemBean)session.getAttribute("item");
 %>
 <!DOCTYPE html>
 <html lang="ja">
@@ -25,7 +25,7 @@
             <div class="col-sm-10">
       <form action="/search-result/">
   <input id="search-input" type="text" name="search-key">
-  <input id="search-buttom" class="btn btn-default" type="submit" value="search" method="get">
+  <input id="search-buttom" class="btn btn-default" type="submit" value="item" method="get">
 
 </form>
 </div>
