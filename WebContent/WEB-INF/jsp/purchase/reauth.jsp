@@ -24,5 +24,6 @@
             <button type="submit" class="btn btn-warning">購入支払いへ</button>
         </form>
     </div>
+     <p><jsp:include page="../footer.jsp" /></p>
 </body>
 </html>
