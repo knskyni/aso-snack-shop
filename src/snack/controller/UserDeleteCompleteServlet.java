@@ -14,9 +14,9 @@ import snack.bean.UserBean;
 @WebServlet("/user/delete/complete")
 public class UserDeleteCompleteServlet extends HttpServlet {
     private static final String jsp = "../../WEB-INF/jsp/user/delete_complete.jsp";
+
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession(false);
         UserBean userInfo = (UserBean)session.getAttribute("userInfo");
@@ -31,6 +31,5 @@ public class UserDeleteCompleteServlet extends HttpServlet {
 
         RequestDispatcher rd = request.getRequestDispatcher(jsp);
         rd.forward(request, response);
-
     }
 }

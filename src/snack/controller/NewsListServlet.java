@@ -16,15 +16,13 @@ import snack.model.NewsModel;
 public class NewsListServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     @Override
-    protected void doGet(HttpServletRequest request,HttpServletResponse response)
-                                                throws ServletException, IOException{
-     // データベースから情報取得
+    protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        // データベースから情報取得
         NewsModel newsModel = new NewsModel();
         List<NewsBean> news = newsModel.list();
 
         request.setAttribute("news", news);
-        RequestDispatcher dispatcher =
-                request.getRequestDispatcher("../WEB-INF/jsp/news/list.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("../WEB-INF/jsp/news/list.jsp");
         dispatcher.forward(request, response);
     }
 }

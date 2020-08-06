@@ -14,10 +14,8 @@ import snack.model.UserModel;
 
 @WebServlet("/account/change-password/input")
 public class UserChangePasswordInputServlet extends HttpServlet {
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         // フォームから値取得
         String pass = request.getParameter("newpass");
 
