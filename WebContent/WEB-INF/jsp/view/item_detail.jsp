@@ -7,13 +7,14 @@
 <%
     String rootURL = WebHelper.getRootURL(request);
 
-    ItemBean item = (ItemBean)session.getAttribute("itemview");
+    ItemBean item = (ItemBean)request.getAttribute("itemview");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+ <link rel="stylesheet" href="./css/bootstrap.min.css">
 </head>
 <body>
     <jsp:include page="../header.jsp" />
@@ -40,10 +41,8 @@
                     </tr>
                 </tbody>
             </table>
-            <form method="POST">
-              <button type="submit" class="btn btn-primary float-right">カートに入れる</button>
-              <button type="submit" class="btn btn-primary float-right">今すぐ購入する</button>
-            </form>
+              <button id ="cart" class="btn btn-primary float-right">カートに入れる</button>
+              <button id ="purchase_auth" class="btn btn-primary float-right">今すぐ購入する</button>
         </div>
     </section>
 
@@ -51,5 +50,39 @@
     <script src="<%= rootURL %>/js/jquery-3.5.1.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="<%= rootURL %>/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    function updateCart(itemId, itemCount) {
+        $.ajax({
+            url:'./cart/add',
+            type:'GET',
+            data:{
+                'id': itemId,
+                'count': itemCount
+            }
+        })
+        .done((data) => {
+        	alert('買い物かごに入れました。');
+        })
+        .fail( (jqXHR, textStatus, errorThrown) => {
+            alert('更新に失敗しました。');
+        });
+    }
+
+    $(function(){
+        $('#cart').on('click', function(){
+        	alert('!');
+            updateCart(<%=(item.getId())%>, 0);
+        });
+        
+        $('#purchase_auth').on('click', function(){
+        	location.href="purchase/auth"
+        });
+
+        $('input').change(function() {
+        	let id = $(this).parents('.row').parents('.row').data('id');
+            let count = $(this).val();
+            updateCart(id, count);
+          });
+    });</script>
 </body>
 </html>
