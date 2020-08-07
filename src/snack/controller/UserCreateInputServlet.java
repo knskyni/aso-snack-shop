@@ -80,14 +80,18 @@ public class UserCreateInputServlet extends HttpServlet {
             errors = ErrorHelper.add(errors,"Hsei","ひらがなではありません");
         }else if(Hsei.length() > 32) {
             errors = ErrorHelper.add(errors, "Hsei", "1文字以上、32文字以内で入力してください。");
-        }if(Hmei.isEmpty()) {
+        }
+        if(Hmei.isEmpty()) {
             errors = ErrorHelper.add(errors, "Hmei", "入力してください。");
         }else if (!Hmei.matches("^[ぁ-ん]+$")) {
             errors = ErrorHelper.add(errors,"Hmei","ひらがなではありません");
         }else if(Hmei.length() > 32) {
             errors = ErrorHelper.add(errors, "Hmei", "1文字以上、32文字以内で入力してください。");
-        }if(pass.isEmpty()) {
+        }
+        if(pass.isEmpty()) {
             errors = ErrorHelper.add(errors, "pass", "入力してください。");
+        }else if (!pass.matches("^[a-zA-Z0-9\\d]{8,128}$")) {
+            errors = ErrorHelper.add(errors,"pass","半角英数字で入力してください");
         }else if(!pass.equals(Kpass)){
             errors = ErrorHelper.add(errors,"pass","上のパスワードと一致しません");
         }else if(pass.length() > 128) {
@@ -104,12 +108,12 @@ public class UserCreateInputServlet extends HttpServlet {
         }
         if(post.isEmpty()) {
             errors = ErrorHelper.add(errors, "post", "入力してください。");
-        }
-        else if (!post.matches("[0-9a-zA-Z\\-\\_]+")) {
+        }else if (!post.matches("[0-9a-zA-Z\\-\\_]+")) {
             errors = ErrorHelper.add(errors,"post","ハイフンがないか半角数字ではありません");
         }else if(post.length() > 8) {
             errors = ErrorHelper.add(errors, "post", "1文字以上、8文字以内で入力してください。");
-        }if(namber.isEmpty()) {
+        }
+        if(namber.isEmpty()) {
             errors = ErrorHelper.add(errors, "namber", "入力してください。");
         }else if(namber.isEmpty() ||!namber.matches("[0-9a-zA-Z\\-\\_]+")) {
             errors = ErrorHelper.add(errors, "namber", "*ハイフンを使って電話番号を入力してください");
