@@ -1,5 +1,6 @@
 package snack.controller;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,12 +19,12 @@ public class HomeServlet extends HttpServlet{
             throws ServletException, IOException{
 
 
-
         // データベースから情報取得
-        ItemModel itemDao = new ItemModel();
-        ItemBean item = itemDao.show(id);
+        ItemModel itemModel = new ItemModel();
 
-           request.setAttribute("item", item);
+        List<ItemBean> item = itemModel.serch("");
+
+        request.setAttribute("itemBean", item);
 
         RequestDispatcher dispatcher =
                 request.getRequestDispatcher("/WEB-INF/jsp/home/top.jsp");

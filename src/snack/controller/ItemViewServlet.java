@@ -31,7 +31,7 @@ public class ItemViewServlet extends HttpServlet{
 
         request.setAttribute("itemview", itemBean);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("../WEB-INF/jsp/view/itemview.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/view/itemview.jsp");
         dispatcher.forward(request, response);
 
     }
