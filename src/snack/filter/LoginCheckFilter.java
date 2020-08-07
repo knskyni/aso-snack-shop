@@ -18,7 +18,7 @@ import snack.bean.UserBean;
 
 @WebFilter("/*")
 public class LoginCheckFilter implements Filter {
-    private final String[] throughPath = {"/login", "/admin/login", "/about", "/search", "/item/show", "/news/list", "/news/show", "/user/input", "/user/confirm", "/user/complete"};
+    private final String[] throughPath = {"/", "/login", "/admin/login", "/about", "/search", "/item/show", "/news/list", "/news/show", "/user/input", "/user/confirm", "/user/complete"};
     private final String[] throughFile = {"css", "js", "png", "jpg", "jpeg", "gif"};
 
     @Override
