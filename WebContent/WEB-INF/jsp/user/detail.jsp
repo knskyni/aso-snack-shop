@@ -56,6 +56,9 @@ UserBean user = (UserBean)request.getAttribute("user");
                 <div class="col text-center">
                     <button type="button" onclick="location.href='delete/confirm'"class="btn btn-danger px-5">退会</button>
                 </div>
+                <div class="col text-center">
+                    <button type="button" onclick="location.href='../account/change-password/input'"class="btn btn-warning px-3">パスワード変更</button>
+                </div>
                 <div class="col text-right">
                     <button type="button" onclick="location.href='update'"class="btn btn-primary px-5">変更</button>
                 </div>
