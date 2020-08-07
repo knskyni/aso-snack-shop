@@ -20,22 +20,22 @@ public class SearchResultServlet extends HttpServlet{
     protected void doGet(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException{
 
-        String search = request.getParameter("search-key");
+        String search = request.getParameter("word");
 
         // データベースから情報取得
            ItemModel itemModel = new ItemModel();
 
-           List<ItemBean> itemBean = itemModel.serch(search);
+           List<ItemBean> items = itemModel.serch(search);
 
 
-           request.setAttribute("itemBean", itemBean);
+           request.setAttribute("itemBean", items);
 
            NewsModel newsModel = new NewsModel();
            List<NewsBean> news = newsModel.list();
            request.setAttribute("news", news);
 
         RequestDispatcher dispatcher =
-                request.getRequestDispatcher("/WEB-INF/jsp/searchresult/searchresult.jsp");
+                request.getRequestDispatcher("./WEB-INF/jsp/home.jsp");
         dispatcher.forward(request, response);
     }
 }
