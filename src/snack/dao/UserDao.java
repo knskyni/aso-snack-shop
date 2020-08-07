@@ -4,29 +4,34 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import snack.bean.UserBean;
 
 public class UserDao extends DaoBase{
 
-    public UserBean auth(String email,String password) {
-        if(con == null) {
-            return null;
-        }
+    public UserBean auth(String email, String password) {
+        if(con == null) return null;
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
         UserBean userbean = null;
 
         try {
-            stmt = con.prepareStatement("SELECT * FROM users WHERE email = ? AND password = ?;");
+            stmt = con.prepareStatement("SELECT * FROM `users` WHERE `email` = ?;");
 
             stmt.setString(1, email);
-            stmt.setString(2 ,password);
             rs = stmt.executeQuery();
 
             while(rs.next()) {
-                userbean = new UserBean();
+                // ハッシュ化したパスワードの整合
+                String hashedPassword = rs.getString("password"); // データベースからパスワードを取得
+                BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder(); // パスワードハッシュライブラリBCryptを生成
+                if(!bcrypt.matches(password, hashedPassword)) {
+                    break; // マッチしなかったらwhileから抜ける
+                }
 
+                userbean = new UserBean();
                 userbean.setId(rs.getInt("id"));
                 userbean.setType(rs.getString("type"));
             }
@@ -36,22 +41,26 @@ public class UserDao extends DaoBase{
 
         return userbean;
     }
-    public UserBean authAdmin(String email,String password) {
-        if(con == null){
-            return null;
-        }
+    public UserBean authAdmin(String email, String password) {
+        if(con == null) return null;
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
         UserBean userBean = new UserBean();
 
-        try{
-            stmt = con.prepareStatement("SELECT id, email FROM admins WHERE email=? AND password=?;");
+        try {
+            stmt = con.prepareStatement("SELECT * FROM `admins` WHERE `email` = ?;");
             stmt.setString(1, email);
-            stmt.setString(2, password);
             rs = stmt.executeQuery();
 
             while(rs.next()) {
+                // ハッシュ化したパスワードの整合
+                String hashedPassword = rs.getString("password"); // データベースからパスワードを取得
+                BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder(); // パスワードハッシュライブラリBCryptを生成
+                if(!bcrypt.matches(password, hashedPassword)) {
+                    break; // マッチしなかったらwhileから抜ける
+                }
+
                 userBean.setId(rs.getInt("id"));
                 userBean.setEmail(rs.getString("email"));
                 userBean.setType("admin");
@@ -65,9 +74,7 @@ public class UserDao extends DaoBase{
     }
 
     public boolean insert(UserBean userbean) {
-        if(con == null) {
-            return false;
-        }
+        if(con == null) return false;
 
         PreparedStatement stmt = null;
 
@@ -95,10 +102,9 @@ public class UserDao extends DaoBase{
     }
 
     public UserBean show(int id) {
+        if(con == null) return null;
+
         UserBean userInfo = null;
-        if(con == null) {
-            return null;
-        }
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -122,16 +128,14 @@ public class UserDao extends DaoBase{
                 userInfo.setAddress(rs.getString("address"));
                 userInfo.setPhoneNumber(rs.getString("phone_number"));
             }
-        }catch(Exception e) {
+        } catch(Exception e) {
             e.printStackTrace();
         }
 
         return userInfo;
     }
     public UserBean update(UserBean userUpdateInfo) {
-        if(con == null) {
-            return null;
-        }
+        if(con == null) return null;
 
         PreparedStatement stmt = null;
 
@@ -145,34 +149,38 @@ public class UserDao extends DaoBase{
             stmt.setString(5, userUpdateInfo.getEmail());
             stmt.setString(6, userUpdateInfo.getPostalCode());
             stmt.setString(7, userUpdateInfo.getAddress());
-            stmt.setString(8,userUpdateInfo.getPhoneNumber());
+            stmt.setString(8, userUpdateInfo.getPhoneNumber());
             stmt.setTimestamp(9, new java.sql.Timestamp(new java.util.Date().getTime()));
-            stmt.setInt(10,userUpdateInfo.getId());
+            stmt.setInt(10, userUpdateInfo.getId());
 
             stmt.executeUpdate();
-        }catch(Exception e) {
+        } catch(Exception e) {
             e.printStackTrace();
         }
 
          return userUpdateInfo;
     }
-    public UserBean reauth(String email ,String password) {
-        if(con == null) {
-            return null;
-        }
+    public UserBean reauth(String email, String password) {
+        if(con == null) return null;
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
         UserBean userInfo = null;
 
         try {
-            stmt = con.prepareStatement("SELECT * FROM `users` WHERE `email` = ? AND `password` = ?;");
+            stmt = con.prepareStatement("SELECT * FROM `users` WHERE `email` = ?;");
 
             stmt.setString(1, email);
-            stmt.setString(2 ,password);
             rs = stmt.executeQuery();
 
             while(rs.next()) {
+                // ハッシュ化したパスワードの整合
+                String hashedPassword = rs.getString("password"); // データベースからパスワードを取得
+                BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder(); // パスワードハッシュライブラリBCryptを生成
+                if(!bcrypt.matches(password, hashedPassword)) {
+                    break; // マッチしなかったらwhileから抜ける
+                }
+
                 userInfo = new UserBean();
                 userInfo.setId(rs.getInt("Id"));
                 userInfo.setLastName(rs.getString("last_name"));
@@ -185,16 +193,14 @@ public class UserDao extends DaoBase{
                 userInfo.setPostalCode(rs.getString("postal_code"));
                 userInfo.setPhoneNumber(rs.getString("phone_number"));
             }
-        }catch(Exception e) {
+        } catch(Exception e) {
             e.printStackTrace();
         }
         return userInfo;
     }
 
     public boolean delete(int id) {
-        if(con == null) {
-            return false;
-        }
+        if(con == null) return false;
 
         PreparedStatement stmt = null;
         int result = 0;
@@ -214,21 +220,19 @@ public class UserDao extends DaoBase{
     }
 
    public boolean updatePassword(UserBean updateBean) {
-        if( con == null ){
-            return false;
-        }
+        if( con == null ) return false;
 
         PreparedStatement stmt = null;
         int result = 0;
 
-        try{
+        try {
             stmt = con.prepareStatement("UPDATE `users` SET `password` = ? WHERE `id` = ?;");
 
             stmt.setString(1, updateBean.getPassword());
             stmt.setInt(2, updateBean.getId());
 
             result = stmt.executeUpdate();
-        }catch(SQLException e) {
+        } catch(SQLException e) {
             e.printStackTrace();
         }
 

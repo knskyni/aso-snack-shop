@@ -17,9 +17,11 @@ import javax.servlet.http.HttpSession;
 public class AddCartServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // IDの取得
+        // パラメータ取得
         int itemId = 0;
         int count = 0;
+
+        // パラメータが整数として扱えない場合は400エラー
         try {
             itemId = Integer.parseInt(request.getParameter("id"));
             count = Integer.parseInt(request.getParameter("count"));
@@ -31,8 +33,11 @@ public class AddCartServlet extends HttpServlet {
         // セッション取得
         HttpSession session = request.getSession(false);
         Map<Integer, Integer> cart = (Map<Integer, Integer>)session.getAttribute("cart");
+
+        // カートが存在しない場合に生成
         if(cart == null) cart = new HashMap<Integer, Integer>();
 
+        // 個数が0のときは削除
         if(count == 0) {
             cart.remove(itemId);
         } else {

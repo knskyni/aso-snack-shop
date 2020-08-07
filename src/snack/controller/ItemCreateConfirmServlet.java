@@ -16,19 +16,20 @@ import snack.model.ItemModel;
 @WebServlet("/item/create/confirm")
 public class ItemCreateConfirmServlet extends HttpServlet {
     private static final String jsp = "../../WEB-INF/jsp/item/create_confirm.jsp";
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // セッション
         HttpSession session = request.getSession(false);
         ItemBean news = (ItemBean)session.getAttribute("createItem");
 
-        // Beanの存在確認
+        // セッションに存在しなかった場合400エラー
         if(news == null) {
             response.sendError(400);
             return;
         }
 
-        // JSP表示
+        // JSP
         RequestDispatcher rd = request.getRequestDispatcher(jsp);
         rd.forward(request, response);
     }
@@ -39,7 +40,7 @@ public class ItemCreateConfirmServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
         ItemBean item = (ItemBean)session.getAttribute("createItem");
 
-        // Beanの存在確認
+        // セッションに存在しなかった場合400エラー
         if(item == null) {
             response.sendError(400);
             return;

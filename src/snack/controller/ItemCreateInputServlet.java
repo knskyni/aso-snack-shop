@@ -41,20 +41,33 @@ public class ItemCreateInputServlet extends HttpServlet {
         String imagePath = "";
         int price = 0;
 
+        // nameの入力チェック
+        if(FormHelper.checkEmpty(name)) {
+            errors = ErrorHelper.add(errors, "name", "入力してください。");
+        } else if(FormHelper.checkLength(name, 1, 64)) {
+            errors = ErrorHelper.add(errors, "name", "商品名は1文字以上、64文字以内で入力してください。");
+        }
+
+        // descriptionの入力チェック
+        if(FormHelper.checkEmpty(description)) {
+            errors = ErrorHelper.add(errors, "description", "入力してください。");
+        } else if(FormHelper.checkLength(description, 1, 4096)) {
+            errors = ErrorHelper.add(errors, "description", "説明文は1文字以上、4096文字以内で入力してください。");
+        }
+
+        // 画像のチェック
         try {
             imagePath = WebHelper.saveFileFromPart(request, "image", getServletContext().getRealPath("img/item/"));
         } catch(FormFileEmptyException e) {
             errors = ErrorHelper.add(errors, "image", "画像ファイルが選択されていません。");
         }
 
+        // 価格の入力チェック
         try {
             price = Integer.parseInt(WebHelper.getStrParamFromPart(request, "price"));
         } catch(NumberFormatException e) {
             errors = ErrorHelper.add(errors, "price", "価格が正確な値ではありません。");
         }
-
-        errors = FormHelper.checkEmpty(errors, "name", name);
-        errors = FormHelper.checkEmpty(errors, "description", description);
 
         // Beanに格納
         ItemBean item = new ItemBean();

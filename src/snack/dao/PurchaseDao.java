@@ -8,9 +8,7 @@ import snack.bean.PurchaseBean;
 
 public class PurchaseDao extends DaoBase {
     public boolean execute(PurchaseBean purchaseBean) throws SQLException {
-        if(con == null) {
-            return false;
-        }
+        if(con == null) return false;
 
         boolean result = false;
         PreparedStatement ps1 = null;
@@ -50,6 +48,7 @@ public class PurchaseDao extends DaoBase {
             this.rollback();
             throw e;
         }
+
         return result;
     }
 }

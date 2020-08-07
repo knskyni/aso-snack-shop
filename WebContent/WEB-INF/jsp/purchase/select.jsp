@@ -34,5 +34,6 @@
                     <input type="submit" class="btn btn-primary" value="注文確認へ">
                 </div>
             </form>
+ <p><jsp:include page="../footer.jsp" /></p>
 </body>
 </html>

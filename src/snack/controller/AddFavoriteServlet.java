@@ -17,9 +17,10 @@ import snack.model.FavoriteModel;
 public class AddFavoriteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        // IDの取得
+        // パラメータ取得
         int itemId = 0;
+
+        // IDが整数として扱えない場合に400エラー
         try {
             itemId = Integer.parseInt(request.getParameter("id"));
         } catch(NumberFormatException e) {
@@ -33,8 +34,9 @@ public class AddFavoriteServlet extends HttpServlet {
 
         // データベース
         FavoriteModel favModel = new FavoriteModel();
-        int result = favModel.action(userInfo.getId(), itemId);
+        int result = favModel.action(userInfo.getId(), itemId); // 追加のときは1、削除のときは0、エラーのときは-1
 
+        // resultの値のみを出力する
         PrintWriter out = response.getWriter();
         out.println(result);
     }

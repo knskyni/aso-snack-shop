@@ -20,5 +20,6 @@ String date = (String)session.getAttribute("date");
            <label>お届け予定日：</label><label><%=date %></label><br>
            <Button type="button" class="btn btn-warning"  onclick="location.href='home'">ショッピングを続ける</Button>
         </div>
+     <p><jsp:include page="../footer.jsp" /></p>
      </body>
 </html>

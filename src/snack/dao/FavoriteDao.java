@@ -10,9 +10,7 @@ import snack.bean.ItemBean;
 
 public class FavoriteDao extends DaoBase {
     public boolean exist(int userId, int itemId) {
-        if(con == null) {
-            return false;
-        }
+        if(con == null) return false;
 
         PreparedStatement stmt = null;
         boolean result = false;
@@ -34,9 +32,7 @@ public class FavoriteDao extends DaoBase {
     }
 
     public boolean create(int userId, int itemId) {
-        if(con == null) {
-            return false;
-        }
+        if(con == null) return false;
 
         PreparedStatement stmt = null;
 
@@ -57,9 +53,7 @@ public class FavoriteDao extends DaoBase {
     }
 
     public boolean delete(int userId, int itemId) {
-        if(con == null) {
-            return false;
-        }
+        if(con == null) return false;
 
         PreparedStatement stmt = null;
         int result = 0;
@@ -80,9 +74,7 @@ public class FavoriteDao extends DaoBase {
     }
 
     public List<ItemBean> userFavorite(int userId) {
-        if(con == null) {
-            return new ArrayList<ItemBean>();
-        }
+        if(con == null) return new ArrayList<ItemBean>();
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
