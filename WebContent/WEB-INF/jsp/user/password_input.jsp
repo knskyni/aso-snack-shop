@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,18 +8,23 @@
 <link rel="stylesheet" href="./css/bootstrap.min.css">
 
 </head>
-<body class="text-center">
-
+<body>
+<jsp:include page="../header.jsp" />
+    <div class="container">
+        <p>パスワード変更画面</p>
 <form action="/account/change-password/input" method="POST">
 
-<h1 class="h3 mb-3 font-weight-normal">NewPassword</h1>
-<label for="inputPassword" class="sr-only">Password</label>
-<input type="password" id="inputPassword" class="form-control" name="newpass" placeholder="Password" required>
+<br>新規パスワード<br>
+    <input type="text" class="form-control" name="pass" placeholder="新しいパスワードを入力してください">
+<br>
 
-<button class="btn btn-lg btn-primary btn-block" type="submit">修正する</button>
-<button class="btn btn-lg btn-primary btn-block" onclick="history.back()">戻る</button>
+<div class="row">
+    <div class="col-sm-6"><button type="button" onclick="location.href='show'" class="btn btn-light" >戻る</button></div>
+    <div class="col-sm-6"><button type="submit" class="btn btn-primary">変更</button></div>
+</div>
+
 </form>
-
+</div>
     <!-- JavaScript -->
     <script src="./js/jquery-3.5.1.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
