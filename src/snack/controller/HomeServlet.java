@@ -27,7 +27,7 @@ public class HomeServlet extends HttpServlet{
         request.setAttribute("itemBean", item);
 
         RequestDispatcher dispatcher =
-                request.getRequestDispatcher("./WEB-INF/jsp/home/top.jsp");
+                request.getRequestDispatcher("./WEB-INF/jsp/home.jsp");
         dispatcher.forward(request, response);
     }
 }
