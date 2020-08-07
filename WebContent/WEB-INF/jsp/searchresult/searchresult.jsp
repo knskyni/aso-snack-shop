@@ -21,18 +21,17 @@
     <link rel="stylesheet" href="./css/bootstrap.min.css">
 </head>
 <body>
+	<jsp:include page="../header.jsp" />
     <section>
         <div class="container">
             <!-- ここにHTMLを書き始める -->
             <div class="col-sm-10">
-      <form action="/search-result/">
+      <form action="search">
   <input id="search-input" type="text" name="search-key">
   <input id="search-buttom" class="btn btn-default" type="submit" value="search" method="get">
 
 </form>
 </div>
-</div>
-    </section>
 <table class = "table" border="0">
     <tbody>
     		<% int count = 0;%>
@@ -41,9 +40,9 @@
   				<tr>
   				<%} %>
   				<td>
-	            <p><a href = "show?id=<%=itemBean.getId() %>"><img src="<%=itemBean.getImagePath() %>"></a></p>
-	            <p><a href="show?id=<%=itemBean.getId() %>"><%=itemBean.getName() %></a>
-	            <p><a href="show?id=<%=itemBean.getId() %>"><%=itemBean.getDescription() %></a>
+	            <p><a href = "view?id=<%=itemBean.getId() %>"><img style="max-height: 200px;"src="<%= rootURL + "/img/item/" + itemBean.getImagePath() %>"></a></p>
+	            <p><%=itemBean.getName() %>
+	            <p><%=itemBean.getDescription() %>
 	            		</td>
 	            		<% count ++;%>
 	            		<% if(count ==4 ){%>
@@ -53,6 +52,8 @@
 	        <%} %>
 	            </tbody>
             </table>
+            </div>
+    </section>
     <!-- JavaScript -->
     <script src="<%= rootURL %>/js/jquery-3.5.1.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>

@@ -20,7 +20,7 @@ public class SearchResultServlet extends HttpServlet{
     protected void doGet(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException{
 
-        String search = request.getParameter("itemBean");
+        String search = request.getParameter("search-key");
 
         // データベースから情報取得
            ItemModel itemModel = new ItemModel();
