@@ -14,15 +14,13 @@ import snack.bean.UserBean;
 
 @WebServlet("/purchase/select")
 public class PurchaseSelectServlet extends HttpServlet {
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         HttpSession session = request.getSession(true);
         UserBean userAuth = (UserBean)session.getAttribute("userAuth");
         if(userAuth == null) {
             response.sendError(404);
-        }else {
+        } else {
         RequestDispatcher dispatcher = request.getRequestDispatcher("../WEB-INF/jsp/purchase/select.jsp");
         dispatcher.forward(request, response);
 
@@ -40,14 +38,14 @@ public class PurchaseSelectServlet extends HttpServlet {
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("../WEB-INF/jsp/purchase/select.jsp");
             dispatcher.forward(request, response);
-        }else if(select == null) {
+        } else if(select == null) {
             String msg = "＊決済方法を選択してください";
 
             request.setAttribute("msg", msg);
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("../WEB-INF/jsp/purchase/select.jsp");
             dispatcher.forward(request, response);
-        }else {
+        } else {
             response.sendRedirect("comfirm");
         }
     }

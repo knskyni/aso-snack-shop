@@ -11,11 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/purchase/complete")
 public class PurchaseCompleteServlet extends HttpServlet {
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    RequestDispatcher dispatcher = request.getRequestDispatcher("../WEB-INF/jsp/purchase/complete.jsp");
-    dispatcher.forward(request, response);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("../WEB-INF/jsp/purchase/complete.jsp");
+        dispatcher.forward(request, response);
     }
 }

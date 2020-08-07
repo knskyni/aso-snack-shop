@@ -48,5 +48,6 @@ String date = (String)session.getAttribute("date");
                 </table>
             </div>
         </div>
+      <p><jsp:include page="../footer.jsp" /></p>
 </body>
 </html>

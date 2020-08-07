@@ -25,21 +25,20 @@ import snack.model.PurchaseModel;
 @WebServlet("/purchase/comfirm")
 @SuppressWarnings("unchecked")
 public class PurchaseComfirmServlet extends HttpServlet {
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // セッションから取得
         HttpSession session = request.getSession(false);
         UserBean userInfo = (UserBean)session.getAttribute("userAuth");
-        HashMap<Integer,Integer> carts = (HashMap<Integer,Integer>)session.getAttribute("cart");
+        HashMap<Integer, Integer> carts = (HashMap<Integer, Integer>)session.getAttribute("cart");
 
         ItemModel itemModel = new ItemModel();
 
         List<ItemBean> items = new ArrayList<ItemBean>();
         int totalPrice = 0;
 
-        for(HashMap.Entry<Integer,Integer> cart : carts.entrySet()) {
+        for(HashMap.Entry<Integer, Integer> cart : carts.entrySet()) {
             int id = cart.getKey();;
             int count = cart.getValue();;
 

@@ -10,15 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/user/complete")
-
 public class UserCreateCompleteServlet extends HttpServlet {
-@Override
-protected void doGet(HttpServletRequest request ,HttpServletResponse response) throws ServletException, IOException {
-
-    RequestDispatcher rd = request.getRequestDispatcher("../WEB-INF/jsp/user/create_complete.jsp");
-    rd.forward(request, response);
-
-}
-
-
+    @Override
+    protected void doGet(HttpServletRequest request ,HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher rd = request.getRequestDispatcher("../WEB-INF/jsp/user/create_complete.jsp");
+        rd.forward(request, response);
+    }
 }

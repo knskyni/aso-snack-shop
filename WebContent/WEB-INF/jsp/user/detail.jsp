@@ -20,59 +20,52 @@ UserBean user = (UserBean)request.getAttribute("user");
     <jsp:include page="../header.jsp" />
     <section>
         <div class="container">
-            <h2>会員登録</h2>
+            <h2>会員情報</h2>
             <hr>
-            <form action="confirm" method="POST">
-              <div class="row">
-  				<div class="form-group col-sm-6">
-    				<label for="text4c">名前</label>
-    				<%= user.getLastName() %>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">項目</th>
+                        <th scope="col">内容</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">氏名</th>
+                        <td><%= user.getLastName() %> <%= user.getFirstName() %>(<%= user.getLastNameFurigana() %> <%= user.getFirstNameFurigana() %>)</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">メールアドレス</th>
+                        <td><%= user.getEmail() %></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">住所</th>
+                        <td>〒<%= user.getPostalCode() %><br><%= user.getAddress() %></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">電話番号</th>
+                        <td><%= user.getPhoneNumber() %></td>
+                    </tr>
+                </tbody>
+            </table>
 
-  				</div>
-  				<div class="form-group col-sm-6">
-    				<label for="text4d">　</label>
-    				<%= user.getFirstName() %>
-  				</div>
-  			</div>
-  			<div class="row">
-  				<div class="form-group col-sm-6">
-					<%= user.getLastNameFurigana() %>
-
-  				</div>
-  				<div class="form-group col-sm-6">
-    				<%= user.getFirstNameFurigana() %>
-  				</div>
-  			</div>
-  			<div class="form-group">
-                <label for="subject">メールアドレス</label>
-                 <%= user.getEmail() %>
-            </div>
-				<div class="row">
-                   <div class="form-group col-sm-4">
-                   <label for="subject">郵便番号</label>
-                      <%=user.getPostalCode() %>
-                   </div>
-                </div>
-             <div>
-			<div class="form-group">
-                <label for="subject">住所</label>
-                   <%=user.getAddress() %>
-                </div>
-              <div class="row">
-              <div class="form-group col-sm-4">
-                <label for="subject">電話番号</label>
-                <%=user.getPhoneNumber() %>
-              </div>
-              </div>
             <div class="row">
-                <div class="col-sm-6"><button type="button" onclick="location.href='menu'" class="btn btn-light" >戻る</button></div>
-                <div class="col-sm-3"><button type="button" onclick="location.href='update'"class="btn btn-primary">変更へ</button></div>
-                <div class="col-sm-3"><button type="button" onclick="location.href='out'"class="btn btn-primary">退会へ</button></div>
+                <div class="col text-left">
+                    <button type="button" onclick="history.back()" class="btn btn-light px-5">戻る</button>
+                </div>
+                <div class="col text-center">
+                    <button type="button" onclick="location.href='delete/confirm'"class="btn btn-danger px-5">退会</button>
+                </div>
+                <div class="col text-center">
+                    <button type="button" onclick="location.href='../account/change-password/input'"class="btn btn-warning px-3">パスワード変更</button>
+                </div>
+                <div class="col text-right">
+                    <button type="button" onclick="location.href='update'"class="btn btn-primary px-5">変更</button>
+                </div>
             </div>
             </div>
-            </form>
     </section>
-
+	<jsp:include page="../footer.jsp" />
     <!-- JavaScript -->
     <script src="../js/jquery-3.5.1.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
