@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import snack.bean.ItemBean;
 import snack.model.ItemModel;
 
-@WebServlet("/view")
+@WebServlet("/item/show")
 public class ItemViewServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request,HttpServletResponse response)
@@ -31,7 +31,7 @@ public class ItemViewServlet extends HttpServlet{
 
         request.setAttribute("itemview", itemBean);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/view/item_detail.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("../WEB-INF/jsp/item/detail.jsp");
         dispatcher.forward(request, response);
 
     }
