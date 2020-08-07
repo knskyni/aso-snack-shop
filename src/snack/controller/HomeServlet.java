@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import snack.bean.ItemBean;
 import snack.model.ItemModel;
 
-@WebServlet("/home")
+@WebServlet("/")
 public class HomeServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request,HttpServletResponse response)
