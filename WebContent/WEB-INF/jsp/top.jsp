@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="<%= rootURL %>/css/bootstrap.min.css">
 </head>
 <body>
-	<jsp:include page="../header.jsp" />
+	<jsp:include page="./header.jsp" />
     <section>
         <div class="container">
             <!-- ここにHTMLを書き始める -->
