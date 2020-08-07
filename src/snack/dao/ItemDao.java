@@ -10,9 +10,7 @@ import snack.bean.ItemBean;
 
 public class ItemDao extends DaoBase {
     public boolean create(ItemBean item) {
-        if(con == null) {
-            return false;
-        }
+        if(con == null) return false;
 
         PreparedStatement stmt = null;
         int result = 0;
@@ -36,9 +34,7 @@ public class ItemDao extends DaoBase {
     }
 
     public ItemBean show(int id) {
-        if(con == null) {
-            return null;
-        }
+        if(con == null) return null;
 
         PreparedStatement stmt = null;
         ItemBean item = null;
@@ -97,9 +93,7 @@ public class ItemDao extends DaoBase {
     }
 
     public boolean update(ItemBean item) {
-        if(con == null) {
-            return false;
-        }
+        if(con == null) return false;
 
         PreparedStatement stmt = null;
         int result = 0;
@@ -123,9 +117,7 @@ public class ItemDao extends DaoBase {
     }
 
     public boolean delete(int id) {
-        if(con == null) {
-            return false;
-        }
+        if(con == null) return false;
 
         PreparedStatement stmt = null;
         int result = 0;

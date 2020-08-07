@@ -18,7 +18,6 @@ public class ItemCreateCompleteServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         // セッション
         HttpSession session = request.getSession(false);
         ItemBean item = (ItemBean)session.getAttribute("createItem");
@@ -32,6 +31,7 @@ public class ItemCreateCompleteServlet extends HttpServlet {
         // セッションから削除
         session.removeAttribute("createItem");
 
+        // JSP
         RequestDispatcher rd = request.getRequestDispatcher(jsp);
         rd.forward(request, response);
     }
