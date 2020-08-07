@@ -62,7 +62,7 @@ UserBean user = (UserBean)request.getAttribute("user");
             </div>
             </div>
     </section>
-
+	<jsp:include page="../footer.jsp" />
     <!-- JavaScript -->
     <script src="../js/jquery-3.5.1.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
