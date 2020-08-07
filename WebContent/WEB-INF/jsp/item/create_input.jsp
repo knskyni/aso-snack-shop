@@ -78,7 +78,7 @@
               </div>
               <div class="form-group">
                 <label for="price">価格</label>
-                <input type="number" name="price" class="form-control col-md-4" id="price" value="<%= StringEscapeUtils.escapeHtml4(StringHelper.nullToBlank(item.getName())) %>">
+                <input type="number" name="price" class="form-control col-md-4" id="price" value="<%= item.getPrice() %>">
                 <small class="form-text text-muted">必須</small>
                 <% if(ErrorHelper.exist(errors, "price")) { %>
                 <div class="invalid-feedback d-block">
@@ -92,9 +92,10 @@
               </div>
               <button type="submit" class="btn btn-primary float-right">確認</button>
             </form>
+            <div class="clearfix"></div>
         </div>
     </section>
-
+    <jsp:include page="../footer.jsp" />
     <!-- JavaScript -->
     <script src="<%= rootURL %>/js/jquery-3.5.1.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
