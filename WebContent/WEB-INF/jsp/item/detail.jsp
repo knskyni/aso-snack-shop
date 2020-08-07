@@ -41,8 +41,8 @@
                     </tr>
                 </tbody>
             </table>
-              <button id ="cart" class="btn btn-primary float-right">カートに入れる</button>
-              <button id ="purchase_auth" class="btn btn-primary float-right">今すぐ購入する</button>
+            <button id="cart" class="btn btn-primary float-right">カートに入れる</button>
+            <button id="purchase_auth" class="btn btn-primary float-right">今すぐ購入する</button>
         </div>
     </section>
 
