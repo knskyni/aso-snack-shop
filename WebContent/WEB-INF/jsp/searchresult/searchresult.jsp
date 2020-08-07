@@ -33,14 +33,29 @@
 </div>
 </div>
     </section>
-
-  <table border="1">
-  <%for(ItemBean itemBean : item){ %>
-  <%} %>
- </table>
+<table class = "table" border="0">
+    <tbody>
+    		<% int count = 0;%>
+  			<%for(ItemBean itemBean : item){ %>
+  				<% if(count ==0) {%>
+  				<tr>
+  				<%} %>
+  				<td>
+	            <p><a href = "show?id=<%=itemBean.getId() %>"><img src="<%=itemBean.getImagePath() %>"></a></p>
+	            <p><a href="show?id=<%=itemBean.getId() %>"><%=itemBean.getName() %></a>
+	            <p><a href="show?id=<%=itemBean.getId() %>"><%=itemBean.getDescription() %></a>
+	            		</td>
+	            		<% count ++;%>
+	            		<% if(count ==4 ){%>
+            		</tr>
+            		<% count=0;%>
+            	<%} %>
+	        <%} %>
+	            </tbody>
+            </table>
     <!-- JavaScript -->
-    <script src="./js/jquery-3.5.1.min.js"></script>
+    <script src="<%= rootURL %>/js/jquery-3.5.1.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="./js/bootstrap.min.js"></script>
+    <script src="<%= rootURL %>/js/bootstrap.min.js"></script>
 </body>
 </html>
