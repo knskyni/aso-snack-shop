@@ -8,6 +8,7 @@
     String rootURL = WebHelper.getRootURL(request);
 
 	List<ItemBean> items = (List<ItemBean>)request.getAttribute("itemBean");
+    String searchWord = request.getParameter("word");
 %>
 <!DOCTYPE html>
 <html lang="ja">
@@ -24,17 +25,18 @@
     <section>
         <div class="container">
             <!-- ここにHTMLを書き始める -->
-            <div class="row">
+            <h2>"<%= searchWord %>"の検索結果</h2>
+            <hr>
+            <div class="row mb-4">
                 <form action="search" method="GET" class="form-inline w-100">
                     <div class="col-9 col-md-11 pr-0">
-                        <input class="form-control w-100" type="text" name="word" placeholder="商品名で検索" aria-label="Search">
+                        <input class="form-control w-100" type="text" name="word" placeholder="商品名で検索" aria-label="Search" value="<%= searchWord %>">
                     </div>
                     <div class="col-3 col-md-1">
                         <button class="btn btn-primary w-100" type="submit">検索</button>
                     </div>
                 </form>
             </div>
-            <hr>
         <% for(int i = 0; i < items.size(); i++) { %>
             <% if(i % 4 == 0) { %>
             <div class="row">
