@@ -12,35 +12,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import snack.bean.UserBean;
 import snack.helper.ErrorHelper;
 
-/**
- * Servlet implementation class UserCreateInputServlet
- */
 @WebServlet("/user/input")
 public class UserCreateInputServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UserCreateInputServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    RequestDispatcher rd = request.getRequestDispatcher("../WEB-INF/jsp/user/create_input.jsp");
         rd.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    // フォームから値の受け取り
         String Ksei = request.getParameter("Ksei");
@@ -129,6 +114,10 @@ public class UserCreateInputServlet extends HttpServlet {
             errors = ErrorHelper.add(errors, "address", "1文字以上、128文字以内で入力してください。");
         }
 
+        // パスワードをハッシュ化
+        BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
+        String hashedPassword = bcrypt.encode(pass);
+
         // 入力内容をBeanに格納
         UserBean user = new UserBean();
         user.setFirstName(Ksei);
@@ -136,7 +125,7 @@ public class UserCreateInputServlet extends HttpServlet {
         user.setFirstNameFurigana(Hsei);
         user.setLastNameFurigana(Hmei);
         user.setEmail(mail);
-        user.setPassword(pass);
+        user.setPassword(hashedPassword);
         user.setPostalCode(post);
         user.setAddress(address);
         user.setPhoneNumber(namber);
@@ -153,4 +142,3 @@ public class UserCreateInputServlet extends HttpServlet {
         }
 	}
 }
-
