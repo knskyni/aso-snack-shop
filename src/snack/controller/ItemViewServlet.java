@@ -14,9 +14,7 @@ import snack.model.ItemModel;
 @WebServlet("/item/show")
 public class ItemViewServlet extends HttpServlet{
     @Override
-    protected void doGet(HttpServletRequest request,HttpServletResponse response)
-            throws ServletException, IOException{
-
+    protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
         int id = 0;
         try {
             id = Integer.parseInt(request.getParameter("id"));
@@ -33,6 +31,5 @@ public class ItemViewServlet extends HttpServlet{
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("../WEB-INF/jsp/item/detail.jsp");
         dispatcher.forward(request, response);
-
     }
 }

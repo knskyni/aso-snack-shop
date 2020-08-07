@@ -17,25 +17,22 @@ import snack.model.NewsModel;
 @WebServlet("/search")
 public class SearchResultServlet extends HttpServlet{
     @Override
-    protected void doGet(HttpServletRequest request,HttpServletResponse response)
-            throws ServletException, IOException{
-
+    protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
         String search = request.getParameter("word");
 
         // データベースから情報取得
-           ItemModel itemModel = new ItemModel();
+        ItemModel itemModel = new ItemModel();
 
-           List<ItemBean> items = itemModel.serch(search);
+        List<ItemBean> items = itemModel.serch(search);
 
 
-           request.setAttribute("itemBean", items);
+        request.setAttribute("itemBean", items);
 
-           NewsModel newsModel = new NewsModel();
-           List<NewsBean> news = newsModel.list();
-           request.setAttribute("news", news);
+        NewsModel newsModel = new NewsModel();
+        List<NewsBean> news = newsModel.list();
+        request.setAttribute("news", news);
 
-        RequestDispatcher dispatcher =
-                request.getRequestDispatcher("./WEB-INF/jsp/search_result.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("./WEB-INF/jsp/search_result.jsp");
         dispatcher.forward(request, response);
     }
 }

@@ -15,10 +15,7 @@ import snack.model.ItemModel;
 @WebServlet("/home")
 public class HomeServlet extends HttpServlet{
     @Override
-    protected void doGet(HttpServletRequest request,HttpServletResponse response)
-            throws ServletException, IOException{
-
-
+    protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
         // データベースから情報取得
         ItemModel itemModel = new ItemModel();
 
@@ -26,8 +23,7 @@ public class HomeServlet extends HttpServlet{
 
         request.setAttribute("itemBean", item);
 
-        RequestDispatcher dispatcher =
-                request.getRequestDispatcher("./WEB-INF/jsp/home.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("./WEB-INF/jsp/home.jsp");
         dispatcher.forward(request, response);
     }
 }
