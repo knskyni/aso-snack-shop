@@ -14,7 +14,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
- <link rel="stylesheet" href="./css/bootstrap.min.css">
+ <link rel="stylesheet" href="<%= rootURL %>/css/bootstrap.min.css">
 </head>
 <body>
     <jsp:include page="../header.jsp" />
@@ -73,7 +73,7 @@
         	alert('!');
             updateCart(<%=(item.getId())%>, 0);
         });
-        
+
         $('#purchase_auth').on('click', function(){
         	location.href="purchase/auth"
         });
