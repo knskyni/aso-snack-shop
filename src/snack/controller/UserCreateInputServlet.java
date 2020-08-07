@@ -40,90 +40,79 @@ public class UserCreateInputServlet extends HttpServlet {
         String namber = request.getParameter("namber");
 
         HashMap<String, ArrayList<String>> errors = new HashMap<String, ArrayList<String>>();
-        if (!Ksei.matches("^[一-龥]+$")) {
-            errors = ErrorHelper.add(errors,"Ksei","漢字ではありません");
-        }
-        if (!Kmei.matches("^[一-龥]+$")) {
-            errors = ErrorHelper.add(errors,"Kmei","漢字ではありません");
-        }
-        if (!Hsei.matches("^[ぁ-ん]+$")) {
-            errors = ErrorHelper.add(errors,"Hsei","ひらがなではありません");
-        }
-        if (!Hmei.matches("^[ぁ-ん]+$")) {
-            errors = ErrorHelper.add(errors,"Hmei","ひらがなではありません");
-        }
-        if(!pass.equals(Kpass)){
-            errors = ErrorHelper.add(errors,"pass","上のパスワードと一致しません");
-        }
-        if (!pass.matches("^[0-9a-zA-Z]+$")) {
-            errors = ErrorHelper.add(errors,"pass","半角英数字ではありません");
-        }
-        if (!mail.matches("^[a-zA-Z0-9!#$%&'_`/=~\\*\\+\\-\\?\\^\\{\\|\\}]+(\\.[a-zA-Z0-9!#$%&'_`/=~\\*\\+\\-\\?\\^\\{\\|\\}]+)*+(.*)@[a-zA-Z0-9][a-zA-Z0-9\\-]*(\\.[a-zA-Z0-9\\-]+)+$")) {
-            errors = ErrorHelper.add(errors,"mail","正しく入力されていません");
-        }
-        if (!post.matches("[0-9a-zA-Z\\-\\_]+")) {
-            errors = ErrorHelper.add(errors,"post","ハイフンがないか半角数字ではありません");
-        }
-        if(namber.isEmpty() ||!namber.matches("[0-9a-zA-Z\\-\\_]+")) {
-            errors = ErrorHelper.add(errors, "namber", "ハイフンを使って電話番号を入力してください");
-        }
-        //if(address.isEmpty()) {
-            //errors = ErrorHelper.add(errors, "address", "*住所を入力してください");
+        //if (!Ksei.matches("^[一-龥]+$")) {
+          // errors = ErrorHelper.add(errors,"Ksei","漢字ではありません");
+        //}
+        //if(Ksei.length() > 16) {
+            //errors = ErrorHelper.add(errors, "Ksei", "1文字以上、16文字以内で入力してください。");
+        //}
+        //if (!Kmei.matches("^[一-龥]+$")) {
+            //errors = ErrorHelper.add(errors,"Kmei","漢字ではありません");
         //}
         if(Ksei.isEmpty()) {
-            errors = ErrorHelper.add(errors, "Ksei", "姓を入力してください。");
+           errors = ErrorHelper.add(errors, "Kmei", "入力してください");
+        }else if(Ksei.length() > 16) {
+           errors = ErrorHelper.add(errors, "Kmei", "1文字以上、16文字以内で入力してください。");
         }
         if(Kmei.isEmpty()) {
-            errors = ErrorHelper.add(errors, "Kmei", "名を入力してください。");
-        }
-        if(Hsei.isEmpty()) {
-            errors = ErrorHelper.add(errors, "Hsei", "せいを入力してください。");
-        }
-        if(Hmei.isEmpty()) {
-            errors = ErrorHelper.add(errors, "Hmei", "めいを入力してください。");
-        }
-        if(mail.isEmpty()) {
-            errors = ErrorHelper.add(errors, "mail", "メールアドレスを入力してください。");
-        }
-        if(pass.isEmpty()) {
-            errors = ErrorHelper.add(errors, "pass", "パスワードを入力してください。");
-        }
-        if(post.isEmpty()) {
-            errors = ErrorHelper.add(errors, "post", "郵便番号を入力してください。");
-        }
-        if(address.isEmpty()) {
-            errors = ErrorHelper.add(errors, "address", "住所を入力してください。");
-        }
-        //if(namber.isEmpty()) {
-            //errors = ErrorHelper.add(errors, "namber", "入力してください。");
-        //}
-        if(Ksei.length() > 16) {
+            errors = ErrorHelper.add(errors, "Ksei", "入力してください。");
+        }else if(Kmei.length() > 16) {
             errors = ErrorHelper.add(errors, "Ksei", "1文字以上、16文字以内で入力してください。");
         }
-        if(Kmei.length() > 16) {
-            errors = ErrorHelper.add(errors, "Kmei", "1文字以上、16文字以内で入力してください。");
-        }
-        if(Hsei.length() > 32) {
+        if(Hsei.isEmpty()) {
+            errors = ErrorHelper.add(errors, "Hsei", "入力してください。");
+        }else if (!Hsei.matches("^[ぁ-ん]+$")) {
+            errors = ErrorHelper.add(errors,"Hsei","ひらがなではありません");
+        }else if(Hsei.length() > 32) {
             errors = ErrorHelper.add(errors, "Hsei", "1文字以上、32文字以内で入力してください。");
         }
-        if(Hmei.length() > 32) {
+        if(Hmei.isEmpty()) {
+            errors = ErrorHelper.add(errors, "Hmei", "入力してください。");
+        }else if (!Hmei.matches("^[ぁ-ん]+$")) {
+            errors = ErrorHelper.add(errors,"Hmei","ひらがなではありません");
+        }else if(Hmei.length() > 32) {
             errors = ErrorHelper.add(errors, "Hmei", "1文字以上、32文字以内で入力してください。");
         }
-        if(mail.length() > 128) {
+        if(pass.isEmpty()) {
+            errors = ErrorHelper.add(errors, "pass", "入力してください。");
+        }else if (!pass.matches("^[a-zA-Z0-9\\d]{8,128}$")) {
+            errors = ErrorHelper.add(errors,"pass","半角英数字で入力してください");
+        }else if(!pass.equals(Kpass)){
+            errors = ErrorHelper.add(errors,"pass","上のパスワードと一致しません");
+        }else if(pass.length() > 128) {
+            errors = ErrorHelper.add(errors, "pass", "1文字以上、128文字以内で入力してください。");
+        }else if (!pass.matches("^[0-9a-zA-Z]+$")) {
+            errors = ErrorHelper.add(errors,"pass","半角英数字ではありません");
+        }
+        if(mail.isEmpty()) {
+            errors = ErrorHelper.add(errors, "mail", "入力してください。");
+        }else if (!mail.matches("^[a-zA-Z0-9!#$%&'_`/=~\\*\\+\\-\\?\\^\\{\\|\\}]+(\\.[a-zA-Z0-9!#$%&'_`/=~\\*\\+\\-\\?\\^\\{\\|\\}]+)*+(.*)@[a-zA-Z0-9][a-zA-Z0-9\\-]*(\\.[a-zA-Z0-9\\-]+)+$")) {
+            errors = ErrorHelper.add(errors,"mail","正しく入力されていません");
+        }else if(mail.length() > 128) {
             errors = ErrorHelper.add(errors, "mail", "1文字以上、128文字以内で入力してください。");
         }
-        if(pass.length() > 128) {
-            errors = ErrorHelper.add(errors, "pass", "1文字以上、128文字以内で入力してください。");
-        }
-        if(post.length() > 8) {
+        if(post.isEmpty()) {
+            errors = ErrorHelper.add(errors, "post", "入力してください。");
+        }else if (!post.matches("[0-9a-zA-Z\\-\\_]+")) {
+            errors = ErrorHelper.add(errors,"post","ハイフンがないか半角数字ではありません");
+        }else if(post.length() > 8) {
             errors = ErrorHelper.add(errors, "post", "1文字以上、8文字以内で入力してください。");
         }
-        if(address.length() > 128) {
+        if(namber.isEmpty()) {
+            errors = ErrorHelper.add(errors, "namber", "入力してください。");
+        }else if(namber.isEmpty() ||!namber.matches("[0-9a-zA-Z\\-\\_]+")) {
+            errors = ErrorHelper.add(errors, "namber", "*ハイフンを使って電話番号を入力してください");
+        }else if(namber.length() > 11) {
+            errors = ErrorHelper.add(errors, "namber", "1文字以上、11文字以内で入力してください。");
+        }
+        if(address.isEmpty()) {
+            errors = ErrorHelper.add(errors, "address", "住所を入力してください");
+        }//else if(address.isEmpty()) {
+            //errors = ErrorHelper.add(errors, "address", "入力してください。");
+        //}
+        else if(address.length() > 128) {
             errors = ErrorHelper.add(errors, "address", "1文字以上、128文字以内で入力してください。");
         }
-        //if(namber.length() > 11) {
-            //errors = ErrorHelper.add(errors, "namber", "1文字以上、11文字以内で入力してください。");
-        //}
 
         // パスワードをハッシュ化
         BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
