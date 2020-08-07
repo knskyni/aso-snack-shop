@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ page import="snack.bean.ItemBean" %>
- <%@ page import="snack.helper.WebHelper" %>
- <%@ page import="java.util.*" %>
- <%@ page import="org.apache.commons.text.StringEscapeUtils" %>
+<%@ page import="snack.bean.ItemBean" %>
+<%@ page import="snack.helper.WebHelper" %>
+<%@ page import="java.util.*" %>
+<%@ page import="org.apache.commons.text.StringEscapeUtils" %>
 <%
     String rootURL = WebHelper.getRootURL(request);
 
@@ -17,7 +17,7 @@
 
     <title>トップページ</title>
     <!-- CSS -->
-     <link rel="stylesheet" href="<%= rootURL %>/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<%= rootURL %>/css/bootstrap.min.css">
 </head>
 <body>
 	<jsp:include page="../header.jsp" />
@@ -25,33 +25,32 @@
         <div class="container">
             <!-- ここにHTMLを書き始める -->
             <div class="col-sm-10">
-      <form action="search">
-  <input id="search-input" type="text" name="search-key">
-  <input id="search-buttom" class="btn btn-default" type="submit" value="search" method="get">
-
-</form>
-</div>
-    <table class = "table" border="0">
-    <tbody>
-    		<% int count = 0;%>
-  			<%for(ItemBean itemBean : item){ %>
-  				<% if(count ==0) {%>
-  				<tr>
-  				<%} %>
-  				<td>
-	            <p><a href = "view?id=<%=itemBean.getId() %>"><img style="max-height: 200px;"src="<%= rootURL + "/img/item/" + itemBean.getImagePath() %>"></a></p>
-	            <p><%=itemBean.getName() %>
-	            <p><%=itemBean.getDescription() %>
-	            		</td>
-	            		<% count ++;%>
-	            		<% if(count ==4 ){%>
-            		</tr>
-            		<% count=0;%>
-            	<%} %>
-	        <%} %>
-	            </tbody>
-            </table>
+                <form action="search">
+                    <input id="search-input" type="text" name="search-key">
+                    <input id="search-buttom" class="btn btn-default" type="submit" value="search">
+                </form>
             </div>
+            <table class="table" border="0">
+                <tbody>
+                    <% int count = 0;%>
+                    <%for(ItemBean itemBean : item){ %>
+                    <% if(count ==0) {%>
+                    <tr>
+                        <%} %>
+                        <td>
+                            <p><a href = "view?id=<%=itemBean.getId() %>"><img style="max-height: 200px;"src="<%= rootURL + "/img/item/" + itemBean.getImagePath() %>"></a></p>
+                            <p><%=itemBean.getName() %>
+                            <p><%=itemBean.getDescription() %>
+                        </td>
+                        <% count ++;%>
+                        <% if(count ==4 ){%>
+                    </tr>
+                    <% count=0;%>
+                    <%} %>
+                    <%} %>
+                </tbody>
+            </table>
+        </div>
     </section>
     <!-- JavaScript -->
     <script src="<%= rootURL %>/js/jquery-3.5.1.min.js"></script>
