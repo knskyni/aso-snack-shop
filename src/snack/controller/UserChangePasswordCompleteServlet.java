@@ -13,11 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 public class UserChangePasswordCompleteServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    		throws ServletException, IOException{
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        RequestDispatcher dispatcher =
-                request.getRequestDispatcher("WEB-INF/jsp/user/password_complete.jsp");
-        dispatcher.forward(request,response);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/user/password_complete.jsp");
+        dispatcher.forward(request, response);
     }
 }

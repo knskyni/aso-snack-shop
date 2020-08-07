@@ -11,15 +11,13 @@ import snack.bean.NewsBean;
 public class NewsDao extends DaoBase {
 
     public boolean create(NewsBean news) {
-        if(con == null) {
-            return false;
-        }
+        if(con == null) return false;
 
         PreparedStatement stmt = null;
         int result = 0;
 
         try {
-            stmt = con.prepareStatement("INSERT INTO `news` (`created_at`, `updated_at`, `subject`, `content`) VALUES (?, ?, ?, ?);");
+            stmt = con.prepareStatement("INSERT INTO `news` (`status`, `created_at`, `updated_at`, `subject`, `content`) VALUES (1, ?, ?, ?, ?);");
 
             stmt.setTimestamp(1, new java.sql.Timestamp(new java.util.Date().getTime()));
             stmt.setTimestamp(2, new java.sql.Timestamp(new java.util.Date().getTime()));
@@ -34,9 +32,7 @@ public class NewsDao extends DaoBase {
         return (result == 1) ? true : false;
     }
     public List<NewsBean> list(){
-        if( con == null ){
-            return null;
-        }
+        if(con == null) return null;
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -60,9 +56,7 @@ public class NewsDao extends DaoBase {
     }
 
     public NewsBean show(int id) {
-        if(con == null) {
-            return null;
-        }
+        if(con == null) return null;
 
         PreparedStatement stmt = null;
         NewsBean news = null;
@@ -87,9 +81,7 @@ public class NewsDao extends DaoBase {
     }
 
     public boolean update(NewsBean news) {
-        if(con == null) {
-            return false;
-        }
+        if(con == null) return false;
 
         PreparedStatement stmt = null;
         int result = 0;
@@ -112,9 +104,7 @@ public class NewsDao extends DaoBase {
     }
 
     public boolean delete(int id) {
-        if(con == null) {
-            return false;
-        }
+        if(con == null) return false;
 
         PreparedStatement stmt = null;
         int result = 0;

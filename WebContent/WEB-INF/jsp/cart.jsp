@@ -77,6 +77,7 @@
         <% } %>
         </div>
     </section>
+    <jsp:include page="./footer.jsp" />
 
     <!-- JavaScript -->
     <script src="<%=rootURL%>/js/jquery-3.5.1.min.js"></script>

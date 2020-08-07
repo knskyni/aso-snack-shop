@@ -27,6 +27,8 @@ public class CartListServlet extends HttpServlet {
         // セッション取得
         HttpSession session = request.getSession(false);
         Map<Integer, Integer> cart = (Map<Integer, Integer>)session.getAttribute("cart");
+
+        // カートが存在しないときに生成
         if(cart == null) cart = new HashMap<Integer, Integer>();
 
         // 商品一覧

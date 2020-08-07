@@ -3,7 +3,11 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.HashMap" %>
 <%@ page import="snack.helper.ErrorHelper" %>
-<% HashMap<String, ArrayList<String>> errors = (HashMap<String, ArrayList<String>>)request.getAttribute("errors"); %>
+<%@ page import="snack.bean.UserBean" %>
+<%
+    HashMap<String, ArrayList<String>> errors = (HashMap<String, ArrayList<String>>)request.getAttribute("errors");
+    UserBean updateUserInfo = (UserBean)session.getAttribute("updateUserInfo");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,8 +22,8 @@
         <form action="update" method="POST">
             名前<br>
             <div class="row">
-                <div class="col-sm-6"><input type="text" id ="name-form" class="form-control" name="lastName" placeholder="姓"></div>
-                <div class="col-sm-6"><input type="text" id ="name-form" class="form-control" name="firstName" placeholder="名"><br></div>
+                <div class="col-sm-6"><input type="text" id ="name-form" class="form-control" name="lastName" placeholder="姓" value="<%= updateUserInfo.getLastName() %>"></div>
+                <div class="col-sm-6"><input type="text" id ="name-form" class="form-control" name="firstName" placeholder="名" value="<%= updateUserInfo.getFirstName() %>"><br></div>
             </div>
             <% if(ErrorHelper.exist(errors, "lastName")){ %>
                 <% for(String message : ErrorHelper.get(errors, "lastName")) { %>
@@ -34,8 +38,8 @@
 
             <br>ふりがな<br>
             <div class="row">
-                <div class="col-sm-6"><input type="text" class="form-control" name="lastNameFurigana" placeholder="せい　ふりがな"></div>
-                <div class="col-sm-6"> <input type="text" class="form-control" name="firstNameFurigana" placeholder="めい　ふりがな"><br></div>
+                <div class="col-sm-6"><input type="text" class="form-control" name="lastNameFurigana" placeholder="せい　ふりがな" value="<%= updateUserInfo.getLastNameFurigana() %>"></div>
+                <div class="col-sm-6"> <input type="text" class="form-control" name="firstNameFurigana" placeholder="めい　ふりがな" value="<%= updateUserInfo.getFirstNameFurigana() %>"><br></div>
             </div>
             <% if(ErrorHelper.exist(errors, "lastNameFurigana")){ %>
                 <% for(String message : ErrorHelper.get(errors, "lastNameFurigana")) { %>
@@ -49,7 +53,7 @@
             <% } %>
 
             <br>メールアドレス<br>
-            <input type="text" class="form-control" name="email" placeholder="メールアドレス"><br>
+            <input type="text" class="form-control" name="email" placeholder="メールアドレス" value="<%= updateUserInfo.getEmail() %>"><br>
             <% if(ErrorHelper.exist(errors, "email")){ %>
                 <% for(String message : ErrorHelper.get(errors, "email")) { %>
                     <font color="red"> <%= message %></font><br>
@@ -57,7 +61,7 @@
             <% } %>
 
             <br>郵便番号<br>
-            <input type="text" class="form-control" name="postalNumber" placeholder="郵便番号"><br>
+            <input type="text" class="form-control" name="postalNumber" placeholder="郵便番号" value="<%= updateUserInfo.getPostalCode() %>"><br>
             <% if(ErrorHelper.exist(errors, "postalNumber")){ %>
                 <% for(String message : ErrorHelper.get(errors, "postalNumber")) { %>
                     <font color="red"> <%= message %></font><br>
@@ -65,7 +69,7 @@
             <% } %>
 
             <br>住所<br>
-            <input type="text" class="form-control" name="address" placeholder="住所"><br>
+            <input type="text" class="form-control" name="address" placeholder="住所" value="<%= updateUserInfo.getAddress() %>"><br>
             <% if(ErrorHelper.exist(errors, "address")){ %>
                 <% for(String message : ErrorHelper.get(errors, "address")) { %>
                     <font color="red"> <%= message %></font><br>
@@ -73,7 +77,7 @@
             <% } %>
 
             <br>電話番号<br>
-            <input type="text" class="form-control" name="phoneNumber" placeholder="電話番号"><br>
+            <input type="text" class="form-control" name="phoneNumber" placeholder="電話番号" value="<%= updateUserInfo.getPhoneNumber() %>"><br>
             <% if(ErrorHelper.exist(errors, "phoneNumber")){ %>
                 <% for(String message : ErrorHelper.get(errors, "phoneNumber")) { %>
                     <font color="red"> <%= message %></font><br>

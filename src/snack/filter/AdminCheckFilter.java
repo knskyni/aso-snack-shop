@@ -40,7 +40,7 @@ public class AdminCheckFilter implements Filter {
         if(Arrays.asList(path).contains(accessPath)) {
             if(session != null) {
                 UserBean userInfo = (UserBean)session.getAttribute("userInfo");
-                if(userInfo.getType().equals("admin")) {
+                if(userInfo != null && userInfo.getType().equals("admin")) {
                     chain.doFilter(request, response);
                     return;
                 }

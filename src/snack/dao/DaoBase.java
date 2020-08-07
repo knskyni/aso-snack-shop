@@ -46,9 +46,7 @@ public class DaoBase {
     }
 
     public void beginTransaction() throws SQLException {
-        if(con != null) {
-            con.setAutoCommit(false);
-        }
+        if(con != null) con.setAutoCommit(false);
     }
 
     public void commit() throws SQLException {
@@ -77,9 +75,7 @@ public class DaoBase {
         }
     }
     protected int getOrderId(String orders) throws SQLException{
-         if(con == null) {
-             return 0;
-         }
+         if(con == null) return 0;
 
          int orderId = 0;
 
