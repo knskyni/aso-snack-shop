@@ -17,7 +17,7 @@
 
     <title>トップページ</title>
     <!-- CSS -->
-     <link rel="stylesheet" href="./css/bootstrap.min.css">
+     <link rel="stylesheet" href="<%= rootURL %>/css/bootstrap.min.css">
 </head>
 <body>
 	<jsp:include page="../header.jsp" />
