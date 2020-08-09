@@ -9,7 +9,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import snack.bean.UserBean;
 
 public class UserDao extends DaoBase{
-
     public UserBean auth(String email, String password) {
         if(con == null) return null;
 
