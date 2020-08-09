@@ -9,7 +9,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import snack.bean.UserBean;
 
 public class UserDao extends DaoBase{
-
     public UserBean auth(String email, String password) {
         if(con == null) return null;
 
@@ -33,7 +32,7 @@ public class UserDao extends DaoBase{
 
                 userbean = new UserBean();
                 userbean.setId(rs.getInt("id"));
-                userbean.setType(rs.getString("type"));
+                userbean.setType("user");
             }
         } catch(Exception e) {
             e.printStackTrace();
@@ -124,6 +123,7 @@ public class UserDao extends DaoBase{
                 userInfo.setLastNameFurigana(rs.getString("last_name_furigana"));
                 userInfo.setFirstNameFurigana(rs.getString("first_name_furigana"));
                 userInfo.setEmail(rs.getString("email"));
+                userInfo.setType("user");
                 userInfo.setPostalCode(rs.getString("postal_code"));
                 userInfo.setAddress(rs.getString("address"));
                 userInfo.setPhoneNumber(rs.getString("phone_number"));
@@ -188,7 +188,7 @@ public class UserDao extends DaoBase{
                 userInfo.setLastNameFurigana(rs.getString("last_name_furigana"));
                 userInfo.setFirstNameFurigana(rs.getString("first_name_furigana"));
                 userInfo.setEmail(rs.getString("email"));
-                userInfo.setType(rs.getString("type"));
+                userInfo.setType("user");
                 userInfo.setAddress(rs.getString("address"));
                 userInfo.setPostalCode(rs.getString("postal_code"));
                 userInfo.setPhoneNumber(rs.getString("phone_number"));
