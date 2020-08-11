@@ -37,7 +37,7 @@
             <hr>
         <% for(int i = 0; i < items.size(); i++) { %>
             <% if(i % 4 == 0) { %>
-            <div class="row">
+            <div class="row mt-3">
             <% } %>
                 <div class="col-md-3">
                     <div class="card h-100">
@@ -53,9 +53,6 @@
                 </div>
             <% if(i % 4 == 3 || i == items.size()) { %>
             </div>
-            <% } %>
-            <% if(i % 4 == 3) { %>
-            <hr>
             <% } %>
         <% } %>
 
