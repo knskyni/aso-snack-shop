@@ -21,6 +21,7 @@ public class UserUpdateInputServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         HttpSession session = request.getSession(false);
         UserBean userInfo = (UserBean)session.getAttribute("userInfo");
 
