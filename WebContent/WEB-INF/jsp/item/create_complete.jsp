@@ -13,7 +13,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Hello, world!</title>
+    <title>商品新規作成 - 完了 | Sweeter</title>
 
     <jsp:include page="../common/head.jsp" />
 </head>

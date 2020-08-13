@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title><%= StringEscapeUtils.escapeHtml4(item.getName()) %> | Sweeter</title>
  <jsp:include page="../common/head.jsp" />
 </head>
 <body>

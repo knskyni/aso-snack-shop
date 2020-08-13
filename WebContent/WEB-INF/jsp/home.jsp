@@ -15,7 +15,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>トップページ</title>
+    <title>Sweeter - お菓子専門ショッピングサイト</title>
     <jsp:include page="./common/head.jsp" />
 </head>
 <body>

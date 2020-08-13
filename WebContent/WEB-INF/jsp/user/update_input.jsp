@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>会員情報更新ページ</title>
+<title>会員情報変更 | Sweeter</title>
 <jsp:include page="../common/head.jsp" />
 </head>
 <body>

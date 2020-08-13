@@ -16,7 +16,7 @@
     UserBean user = (UserBean)session.getAttribute("user");
     if(user == null) user = new UserBean();
 %>
-    <title>Hello, world!</title>
+    <title>新規会員登録 - 入力 | Sweeter</title>
 
     <jsp:include page="../common/head.jsp" />
 </head>

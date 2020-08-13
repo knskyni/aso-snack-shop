@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>購入確認画面</title>
+    <title>購入確認 | Sweeter</title>
 
     <jsp:include page="../common/head.jsp" />
 </head>

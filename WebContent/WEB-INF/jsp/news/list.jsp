@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>お知らせ一覧</title>
+    <title>お知らせ一覧 | Sweeter</title>
 
     <jsp:include page="../common/head.jsp" />
     <style type="text/css">
