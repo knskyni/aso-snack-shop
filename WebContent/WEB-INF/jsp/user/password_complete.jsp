@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>パスワード変更完了</title>
+<title>パスワード変更 - 完了 | Sweeter</title>
 
 <jsp:include page="../common/head.jsp" />
 </head>

@@ -15,7 +15,7 @@
 <meta name="viewport"
     content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>Hello, world!</title>
+<title>カート一覧 | Sweeter</title>
 
 <jsp:include page="./common/head.jsp" />
 </head>

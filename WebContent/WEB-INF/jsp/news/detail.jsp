@@ -3,13 +3,19 @@
 <%@ page import="snack.bean.NewsBean" %>
 <%@ page import="snack.bean.UserBean" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%
+    NewsBean newsBean = (NewsBean)request.getAttribute("newsBean");
+    UserBean userInfo = (UserBean)session.getAttribute("userInfo");
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+%>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>お知らせ詳細</title>
+    <title>お知らせ: <%= newsBean.getSubject() %> | Sweeter</title>
 
     <jsp:include page="../common/head.jsp" />
     <style type="text/css">
@@ -30,11 +36,6 @@
 </head>
 <body>
     <jsp:include page="../header.jsp" />
-    <%
-        NewsBean newsBean = (NewsBean)request.getAttribute("newsBean");
-        UserBean userInfo = (UserBean)session.getAttribute("userInfo");
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-    %>
     <section>
         <div class="container">
             <h1 class="text-center">お知らせ</h1>

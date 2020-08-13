@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>管理者ログイン</title>
+    <title>管理者用ログインページ | Sweeter</title>
 
     <jsp:include page="../common/head.jsp" />
     <style type="text/css">

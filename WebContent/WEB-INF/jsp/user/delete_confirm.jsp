@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>退会確認</title>
+    <title>会員情報削除 - 確認 | Sweeter</title>
 
     <jsp:include page="../common/head.jsp" />
     <style type="text/css">
