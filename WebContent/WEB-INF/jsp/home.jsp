@@ -46,7 +46,9 @@
                       <div class="card-body">
                         <h5 class="card-title"><%= items.get(i).getName() %></h5>
                         <p class="card-text"><%= items.get(i).getDescription() %></p>
-                        <a href="item/show?id=<%=items.get(i).getId() %>" class="btn btn-primary">商品ページ</a>
+                        <div class="text-right">
+                            <a href="item/show?id=<%=items.get(i).getId() %>" class="btn btn-primary">商品ページ</a>
+                        </div>
                       </div>
                     </div>
                 </div>
