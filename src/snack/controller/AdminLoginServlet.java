@@ -34,7 +34,7 @@ public class AdminLoginServlet extends HttpServlet {
         if(userInfo.getEmail() != null) {
             HttpSession session = request.getSession(true);
             session.setAttribute("userInfo", userInfo);
-            response.sendRedirect("../");
+            response.sendRedirect("../home");
         } else {
             request.setAttribute("msg", "*メールアドレスかパスワードが間違っています");
             RequestDispatcher dispatcher = request.getRequestDispatcher("../WEB-INF/jsp/admin/login.jsp");
