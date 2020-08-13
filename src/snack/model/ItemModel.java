@@ -23,13 +23,13 @@ public class ItemModel {
         return result;
     }
 
-    public List<ItemBean> serch(String search) {
+    public List<ItemBean> search(String search) {
         List<ItemBean> itemBean = new ArrayList<ItemBean>();
         ItemDao itemDao = new ItemDao();
 
         try {
             itemDao.connect();
-            itemBean = itemDao.serch(search);
+            itemBean = itemDao.search(search);
         } catch(Exception e) {
             e.printStackTrace();
         } finally {

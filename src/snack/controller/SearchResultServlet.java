@@ -23,7 +23,7 @@ public class SearchResultServlet extends HttpServlet{
         // データベースから情報取得
         ItemModel itemModel = new ItemModel();
 
-        List<ItemBean> items = itemModel.serch(search);
+        List<ItemBean> items = itemModel.search(search);
 
 
         request.setAttribute("itemBean", items);

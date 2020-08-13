@@ -60,7 +60,7 @@ public class ItemDao extends DaoBase {
 
         return item;
     }
-    public List<ItemBean> serch(String search) {
+    public List<ItemBean> search(String search) {
         if(con == null) {
             return null;
         }

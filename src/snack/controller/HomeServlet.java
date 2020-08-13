@@ -19,7 +19,7 @@ public class HomeServlet extends HttpServlet{
         // データベースから情報取得
         ItemModel itemModel = new ItemModel();
 
-        List<ItemBean> item = itemModel.serch("");
+        List<ItemBean> item = itemModel.search("");
 
         request.setAttribute("itemBean", item);
 
