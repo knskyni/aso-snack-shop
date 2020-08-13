@@ -10,44 +10,39 @@
 
     <jsp:include page="../common/head.jsp" />
     <style type="text/css">
-     section{
-    margin-bottom: 10%;
-    margin-top: 10%;
+    section{
+        margin-bottom: 10%;
+        margin-top: 10%;
     }
     </style>
 </head>
 <body>
-	<%
-		String errMsg = (String)request.getAttribute("msg");
-	%>
+    <%
+        String errMsg = (String)request.getAttribute("msg");
+    %>
     <section>
         <div class="container">
-			<form method="POST" id="check">
+            <form method="POST" id="check">
+                <p>メールアドレス</p>
+                <div class="form-group">
+                    <label for="inputEmail" class="sr-only">Email address</label>
+                    <p><input type="email" id="inputEmail" name="email" placeholder="メールアドレス" class="form-control" required autofocus></p>
+                </div>
 
+                <p>パスワード</p>
+                <div class="form-group">
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <p><input type="password" id="inputPassword" name="password" placeholder="パスワード" class="form-control" required></p>
+                </div>
 
-						<p>メールアドレス</p>
+                <p class="text-danger" id="msg">
+                <%if(errMsg != null){ %>
+                    <%= errMsg %>
+                <%} %>
+                </p>
 
-
-						<div  class="form-group">
-							<label for="inputEmail" class="sr-only">Email address</label>
-							<p><input type="email" id="inputEmail" name="email" placeholder="メールアドレス" class="form-control" required autofocus></p>
-						</div>
-
-						<p>パスワード</p>
-
-						<div class="form-group">
-							<label for="inputPassword" class="sr-only">Password</label>
-							<p><input type="password" id="inputPassword" name="password" placeholder="パスワード" class="form-control" required></p>
-						</div>
-
-						<p class="text-danger" id="msg">
-							<%if(errMsg != null){ %>
-								<%=errMsg %>
-							<%} %>
-						</p>
-
-						<p align="center"><input type="submit" value="ログイン" name="btn" class="btn btn-primary" style="width: 300px;"></p>
-						</form>
+                <p align="center"><input type="submit" value="ログイン" name="btn" class="btn btn-primary" style="width: 300px;"></p>
+            </form>
         </div>
     </section>
 

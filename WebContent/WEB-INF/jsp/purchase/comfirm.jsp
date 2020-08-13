@@ -5,10 +5,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>購入確認画面</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>購入確認画面</title>
+
+    <jsp:include page="../common/head.jsp" />
 </head>
-<jsp:include page="../common/head.jsp" />
 <%
 UserBean authInfo = (UserBean)session.getAttribute("userAuth");
 int totalPrice = (int)session.getAttribute("totalPrice");
@@ -48,7 +51,7 @@ String date = (String)session.getAttribute("date");
                 </table>
             </div>
         </div>
-      <p><jsp:include page="../footer.jsp" /></p>
+      <jsp:include page="../footer.jsp" />
 
       <jsp:include page="../common/javascript.jsp" />
 </body>
