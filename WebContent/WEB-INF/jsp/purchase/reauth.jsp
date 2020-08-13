@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>購入認証画面</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<jsp:include page="../common/head.jsp" />
 <%String msg  = (String)request.getAttribute("msg"); %>
 </head>
 <body>
@@ -25,5 +25,7 @@
         </form>
     </div>
      <p><jsp:include page="../footer.jsp" /></p>
+
+     <jsp:include page="../common/javascript.jsp" />
 </body>
 </html>

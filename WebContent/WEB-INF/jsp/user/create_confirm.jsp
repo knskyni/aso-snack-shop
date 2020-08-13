@@ -9,8 +9,7 @@
 
     <title>Hello, world!</title>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <jsp:include page="../common/head.jsp" />
 </head>
 <body>
 <%
@@ -77,9 +76,6 @@ UserBean user = (UserBean)session.getAttribute("user");
             </form>
     </section>
 
-    <!-- JavaScript -->
-    <script src="../js/jquery-3.5.1.min.js"></script>
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="../js/bootstrap.min.js"></script>
+    <jsp:include page="../common/javascript.jsp" />
 </body>
 </html>

@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>購入方法選択画面</title>
 </head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<jsp:include page="../common/head.jsp" />
 <%String msg  = (String)request.getAttribute("msg"); %>
 <body>
 <jsp:include page="../header.jsp" />
@@ -35,5 +35,7 @@
                 </div>
             </form>
  <p><jsp:include page="../footer.jsp" /></p>
+
+ <jsp:include page="../common/javascript.jsp" />
 </body>
 </html>

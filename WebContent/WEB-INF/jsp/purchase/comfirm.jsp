@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>購入確認画面</title>
 </head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<jsp:include page="../common/head.jsp" />
 <%
 UserBean authInfo = (UserBean)session.getAttribute("userAuth");
 int totalPrice = (int)session.getAttribute("totalPrice");
@@ -49,5 +49,7 @@ String date = (String)session.getAttribute("date");
             </div>
         </div>
       <p><jsp:include page="../footer.jsp" /></p>
+
+      <jsp:include page="../common/javascript.jsp" />
 </body>
 </html>
