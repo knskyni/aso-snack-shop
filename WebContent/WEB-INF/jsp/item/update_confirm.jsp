@@ -17,8 +17,7 @@
 
     <title>Hello, world!</title>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="<%= rootURL %>/css/bootstrap.min.css">
+    <jsp:include page="../common/head.jsp" />
 </head>
 <body>
     <style>
@@ -61,9 +60,7 @@
         </div>
     </section>
     <jsp:include page="../footer.jsp" />
-    <!-- JavaScript -->
-    <script src="<%= rootURL %>/js/jquery-3.5.1.min.js"></script>
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="<%= rootURL %>/js/bootstrap.min.js"></script>
+
+    <jsp:include page="../common/javascript.jsp" />
 </body>
 </html>

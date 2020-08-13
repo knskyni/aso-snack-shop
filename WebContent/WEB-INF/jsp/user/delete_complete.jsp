@@ -8,8 +8,7 @@
 
     <title>退会完了</title>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <jsp:include page="../common/head.jsp" />
     <style type="text/css">
      section{
     margin-bottom: 10%;
@@ -32,9 +31,7 @@
     </section>
 
     <jsp:include page="../footer.jsp" />
-    <!-- JavaScript -->
-    <script src="../../js/jquery-3.5.1.min.js"></script>
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="../../js/bootstrap.min.js"></script>
+
+    <jsp:include page="../common/javascript.jsp" />
 </body>
 </html>
