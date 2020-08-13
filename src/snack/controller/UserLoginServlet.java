@@ -37,10 +37,10 @@ public class UserLoginServlet extends HttpServlet {
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("./WEB-INF/jsp/user/login.jsp");
             dispatcher.forward(request, response);
-        }else {
+        } else {
             HttpSession session = request.getSession(true);
             session.setAttribute("userInfo",userInfo);
-            response.sendRedirect("./");
+            response.sendRedirect("home");
         }
     }
 }
