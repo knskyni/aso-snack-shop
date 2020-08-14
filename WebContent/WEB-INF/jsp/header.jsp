@@ -6,8 +6,8 @@
     String rootURL = WebHelper.getRootURL(request);
     UserBean userInfo = (UserBean)session.getAttribute("userInfo");
 %>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 shadow-sm">
-    <a class="navbar-brand" href="<%= rootURL %>/home">Sweeter</a>
+<nav class="navbar navbar-expand-md navbar-dark mb-4 shadow-sm" style="background-color: #d4b401;">
+    <a class="navbar-brand" href="<%= rootURL %>/home"><i class="fas fa-cookie-bite"></i> Sweeter</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
