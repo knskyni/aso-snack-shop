@@ -13,8 +13,12 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarCollapse">
-    <% if(userInfo == null || userInfo.getType().equals("user")) { %>
         <ul class="navbar-nav mr-auto">
+    <% if(userInfo == null) { %>
+            <li class="nav-item">
+                <a class="nav-link" href="<%= rootURL %>/news/list">お知らせ</a>
+            </li>
+    <% } else if(userInfo.getType().equals("user")) { %>
             <li class="nav-item">
                 <a class="nav-link" href="<%= rootURL %>/favorite/list">お気に入り</a>
             </li>
@@ -24,17 +28,15 @@
             <li class="nav-item">
                 <a class="nav-link" href="<%= rootURL %>/user/detail">会員情報</a>
             </li>
-        </ul>
     <% } else if(userInfo.getType().equals("admin")) { %>
-        <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <a class="nav-link" href="<%= rootURL %>/item/create/input">商品登録</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<%= rootURL %>/news/list">お知らせ一覧</a>
             </li>
-        </ul>
     <% } %>
+        </ul>
 
         <form action="<%= rootURL %>/search" method="GET" class="form-inline mt-2 mt-md-0">
             <input class="form-control mr-sm-2" type="text" name="word" placeholder="商品名で検索" aria-label="Search">
