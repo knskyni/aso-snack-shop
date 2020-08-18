@@ -1,7 +1,7 @@
 <h1 align="center">aso-snack-shop</h1>
 
 ## 🔗 Public Link
-http://jousen5.aso-abcc.com/sweeter/ (予定)
+http://jousen5.aso-abcc.com/sweeter/home
 
 ## 🔌 Usage
 `WEB-INF/lib/`の中に[ここからダウンロード](https://school.yanai-k.com/aso-snack-shop_javalibs_v3.zip)したZipファイルの中にあるjarファイルを設置します。
