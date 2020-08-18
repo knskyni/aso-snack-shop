@@ -59,39 +59,6 @@
 
     <jsp:include page="../common/javascript.jsp" />
     <script type="text/javascript">
-    function updateCart(itemId, itemCount) {
-        $.ajax({
-            url:'../cart/add',
-            type:'GET',
-            data:{
-                'id': itemId,
-                'count': itemCount
-            }
-        })
-        .done((data) => {
-        	alert('買い物かごに入れました。');
-        })
-        .fail( (jqXHR, textStatus, errorThrown) => {
-            alert('更新に失敗しました。');
-        });
-    }
-
-    function updateFavorite(itemId) {
-        $.ajax({
-            url:'../favorite/add',
-            type:'GET',
-            data:{
-                'id': itemId
-            }
-        })
-        .done((data) => {
-        	alert('お気に入り追加しました。');
-        })
-        .fail( (jqXHR, textStatus, errorThrown) => {
-            alert('更新に失敗しました。');
-        });
-    }
-
     $(function(){
     	$('#favorite').on('click', function(){
         	updateFavorite(<%=(item.getId())%>);
@@ -110,6 +77,7 @@
             let count = $(this).val();
             updateCart(id, count);
           });
-    });</script>
+    });
+    </script>
 </body>
 </html>
