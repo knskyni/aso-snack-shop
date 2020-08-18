@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import="snack.bean.ItemBean" %>
+<%@ page import="snack.bean.ItemBean" %>
+<%@ page import="snack.bean.UserBean" %>
 <%@ page import="snack.helper.WebHelper" %>
 <%@ page import="org.apache.commons.text.StringEscapeUtils" %>
 
 <%
     String rootURL = WebHelper.getRootURL(request);
-
+    UserBean userInfo = (UserBean)session.getAttribute("userInfo");
     ItemBean item = (ItemBean)request.getAttribute("itemview");
 %>
 <!DOCTYPE html>
@@ -27,11 +28,13 @@
                     <h4><%= String.format("%,d", item.getPrice()) %>円</h4>
                     <p class="card-text"><%= StringEscapeUtils.escapeHtml4(item.getDescription()) %></p>
                     評価: <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                <% if(userInfo != null) { %>
                     <div class="mt-2">
-                        <button id="cart" class="btn btn-primary float-left">お気に入りに追加</button>
+                        <button id="favorite" class="btn btn-primary float-left">お気に入りに追加</button>
                         <button id="cart" class="btn btn-primary float-right">カートに入れる</button>
                         <button id="purchase_auth" class="btn btn-primary float-right mr-3">今すぐ購入する</button>
                     </div>
+                <% } %>
                 </div>
             </div>
             <!--
@@ -58,7 +61,7 @@
     <script type="text/javascript">
     function updateCart(itemId, itemCount) {
         $.ajax({
-            url:'./cart/add',
+            url:'../cart/add',
             type:'GET',
             data:{
                 'id': itemId,
@@ -73,14 +76,33 @@
         });
     }
 
+    function updateFavorite(itemId) {
+        $.ajax({
+            url:'../favorite/add',
+            type:'GET',
+            data:{
+                'id': itemId
+            }
+        })
+        .done((data) => {
+        	alert('お気に入り追加しました。');
+        })
+        .fail( (jqXHR, textStatus, errorThrown) => {
+            alert('更新に失敗しました。');
+        });
+    }
+
     $(function(){
+    	$('#favorite').on('click', function(){
+        	updateFavorite(<%=(item.getId())%>);
+        });
+
         $('#cart').on('click', function(){
-        	alert('!');
-            updateCart(<%=(item.getId())%>, 0);
+        	updateCart(<%=(item.getId())%>, 1);
         });
 
         $('#purchase_auth').on('click', function(){
-        	location.href="purchase/auth"
+        	location.href="../purchase/auth"
         });
 
         $('input').change(function() {
