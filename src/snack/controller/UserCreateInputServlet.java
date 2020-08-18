@@ -102,8 +102,8 @@ public class UserCreateInputServlet extends HttpServlet {
             errors = ErrorHelper.add(errors, "namber", "入力してください。");
         }else if(namber.isEmpty() ||!namber.matches("[0-9a-zA-Z\\-\\_]+")) {
             errors = ErrorHelper.add(errors, "namber", "*ハイフンを使って電話番号を入力してください");
-        }else if(namber.length() > 11) {
-            errors = ErrorHelper.add(errors, "namber", "1文字以上、11文字以内で入力してください。");
+        }else if(namber.length() > 13) {
+            errors = ErrorHelper.add(errors, "namber", "1文字以上、13文字以内で入力してください。");
         }
         if(address.isEmpty()) {
             errors = ErrorHelper.add(errors, "address", "住所を入力してください");
