@@ -28,107 +28,114 @@ public class UserCreateInputServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    // フォームから値の受け取り
-        String Ksei = request.getParameter("Ksei");
-        String Kmei = request.getParameter("Kmei");
-        String Hsei= request.getParameter("Hsei");
-        String Hmei = request.getParameter("Hmei");
-        String mail = request.getParameter("mail");
-        String pass = request.getParameter("pass");
-        String Kpass = request.getParameter("Kpass");
-        String post = request.getParameter("post");
+        String lastName = request.getParameter("Ksei");
+        String firstName = request.getParameter("Kmei");
+        String lastNameFurigana= request.getParameter("Hsei");
+        String firstNameFurigana = request.getParameter("Hmei");
+        String email = request.getParameter("mail");
+        String password = request.getParameter("pass");
+        String passwordConfirm = request.getParameter("Kpass");
+        String postCode = request.getParameter("post");
         String address = request.getParameter("address");
-        String namber = request.getParameter("namber");
+        String phoneNumber = request.getParameter("number");
 
         HashMap<String, ArrayList<String>> errors = new HashMap<String, ArrayList<String>>();
-        //if (!Ksei.matches("^[一-龥]+$")) {
-          // errors = ErrorHelper.add(errors,"Ksei","漢字ではありません");
-        //}
-        //if(Ksei.length() > 16) {
-            //errors = ErrorHelper.add(errors, "Ksei", "1文字以上、16文字以内で入力してください。");
-        //}
-        //if (!Kmei.matches("^[一-龥]+$")) {
-            //errors = ErrorHelper.add(errors,"Kmei","漢字ではありません");
-        //}
-        if(Ksei.isEmpty()) {
+
+        // 入力チェック //
+        // 姓
+        if(lastName.isEmpty()) {
            errors = ErrorHelper.add(errors, "Kmei", "入力してください");
-        }else if(Ksei.length() > 16) {
+        } else if(lastName.length() > 16) {
            errors = ErrorHelper.add(errors, "Kmei", "1文字以上、16文字以内で入力してください。");
         }
-        if(Kmei.isEmpty()) {
+
+        // 名
+        if(firstName.isEmpty()) {
             errors = ErrorHelper.add(errors, "Ksei", "入力してください。");
-        }else if(Kmei.length() > 16) {
+        } else if(firstName.length() > 16) {
             errors = ErrorHelper.add(errors, "Ksei", "1文字以上、16文字以内で入力してください。");
         }
-        if(Hsei.isEmpty()) {
+
+        // 姓（ふりがな）
+        if(lastNameFurigana.isEmpty()) {
             errors = ErrorHelper.add(errors, "Hsei", "入力してください。");
-        }else if (!Hsei.matches("^[ぁ-ん]+$")) {
-            errors = ErrorHelper.add(errors,"Hsei","ひらがなではありません");
-        }else if(Hsei.length() > 32) {
+        } else if(!lastNameFurigana.matches("^[ぁ-ん]+$")) {
+            errors = ErrorHelper.add(errors, "Hsei", "ひらがなで入力してください。");
+        } else if(lastNameFurigana.length() > 32) {
             errors = ErrorHelper.add(errors, "Hsei", "1文字以上、32文字以内で入力してください。");
         }
-        if(Hmei.isEmpty()) {
+
+        // 名（ふりがな）
+        if(firstNameFurigana.isEmpty()) {
             errors = ErrorHelper.add(errors, "Hmei", "入力してください。");
-        }else if (!Hmei.matches("^[ぁ-ん]+$")) {
-            errors = ErrorHelper.add(errors,"Hmei","ひらがなではありません");
-        }else if(Hmei.length() > 32) {
+        } else if(!firstNameFurigana.matches("^[ぁ-ん]+$")) {
+            errors = ErrorHelper.add(errors,"Hmei", "ひらがなで入力してください。");
+        } else if(firstNameFurigana.length() > 32) {
             errors = ErrorHelper.add(errors, "Hmei", "1文字以上、32文字以内で入力してください。");
         }
-        if(pass.isEmpty()) {
+
+        // パスワード
+        if(password.isEmpty()) {
             errors = ErrorHelper.add(errors, "pass", "入力してください。");
-        }else if (!pass.matches("^[a-zA-Z0-9\\d]{8,128}$")) {
-            errors = ErrorHelper.add(errors,"pass","半角英数字で入力してください");
-        }else if(!pass.equals(Kpass)){
-            errors = ErrorHelper.add(errors,"pass","上のパスワードと一致しません");
-        }else if(pass.length() > 128) {
+        } else if (!password.matches("^[a-zA-Z0-9\\d]{8,128}$")) {
+            errors = ErrorHelper.add(errors, "pass", "半角英数字で入力してください");
+        } else if(!password.equals(passwordConfirm)) {
+            errors = ErrorHelper.add(errors, "pass", "上のパスワードと一致しません");
+        } else if(password.length() > 128) {
             errors = ErrorHelper.add(errors, "pass", "1文字以上、128文字以内で入力してください。");
-        }else if (!pass.matches("^[0-9a-zA-Z]+$")) {
-            errors = ErrorHelper.add(errors,"pass","半角英数字ではありません");
+        } else if (!password.matches("^[0-9a-zA-Z]+$")) {
+            errors = ErrorHelper.add(errors, "pass", "半角英数字ではありません");
         }
-        if(mail.isEmpty()) {
+
+        // メールアドレス
+        if(email.isEmpty()) {
             errors = ErrorHelper.add(errors, "mail", "入力してください。");
-        }else if (!mail.matches("^[a-zA-Z0-9!#$%&'_`/=~\\*\\+\\-\\?\\^\\{\\|\\}]+(\\.[a-zA-Z0-9!#$%&'_`/=~\\*\\+\\-\\?\\^\\{\\|\\}]+)*+(.*)@[a-zA-Z0-9][a-zA-Z0-9\\-]*(\\.[a-zA-Z0-9\\-]+)+$")) {
-            errors = ErrorHelper.add(errors,"mail","正しく入力されていません");
-        }else if(mail.length() > 128) {
+        } else if (!email.matches("^[a-zA-Z0-9!#$%&'_`/=~\\*\\+\\-\\?\\^\\{\\|\\}]+(\\.[a-zA-Z0-9!#$%&'_`/=~\\*\\+\\-\\?\\^\\{\\|\\}]+)*+(.*)@[a-zA-Z0-9][a-zA-Z0-9\\-]*(\\.[a-zA-Z0-9\\-]+)+$")) {
+            errors = ErrorHelper.add(errors, "mail", "正しく入力されていません");
+        } else if(email.length() > 128) {
             errors = ErrorHelper.add(errors, "mail", "1文字以上、128文字以内で入力してください。");
         }
-        if(post.isEmpty()) {
+
+        // 郵便番号
+        if(postCode.isEmpty()) {
             errors = ErrorHelper.add(errors, "post", "入力してください。");
-        }else if (!post.matches("[0-9a-zA-Z\\-\\_]+")) {
-            errors = ErrorHelper.add(errors,"post","ハイフンがないか半角数字ではありません");
-        }else if(post.length() > 8) {
+        } else if (!postCode.matches("[0-9a-zA-Z\\-\\_]+")) {
+            errors = ErrorHelper.add(errors, "post", "ハイフンがないか半角数字ではありません");
+        } else if(postCode.length() > 8) {
             errors = ErrorHelper.add(errors, "post", "1文字以上、8文字以内で入力してください。");
         }
-        if(namber.isEmpty()) {
-            errors = ErrorHelper.add(errors, "namber", "入力してください。");
-        }else if(namber.isEmpty() ||!namber.matches("[0-9a-zA-Z\\-\\_]+")) {
-            errors = ErrorHelper.add(errors, "namber", "*ハイフンを使って電話番号を入力してください");
-        }else if(namber.length() > 13) {
-            errors = ErrorHelper.add(errors, "namber", "1文字以上、13文字以内で入力してください。");
+
+        // 電話番号
+        if(phoneNumber.isEmpty()) {
+            errors = ErrorHelper.add(errors, "number", "入力してください。");
+        } else if(phoneNumber.isEmpty() ||!phoneNumber.matches("[0-9a-zA-Z\\-\\_]+")) {
+            errors = ErrorHelper.add(errors, "number", "*ハイフンを使って電話番号を入力してください");
+        } else if(phoneNumber.length() > 13) {
+            errors = ErrorHelper.add(errors, "number", "1文字以上、13文字以内で入力してください。");
         }
+
+        // 住所
         if(address.isEmpty()) {
             errors = ErrorHelper.add(errors, "address", "住所を入力してください");
-        }//else if(address.isEmpty()) {
-            //errors = ErrorHelper.add(errors, "address", "入力してください。");
-        //}
-        else if(address.length() > 128) {
+        } else if(address.length() > 128) {
             errors = ErrorHelper.add(errors, "address", "1文字以上、128文字以内で入力してください。");
         }
 
         // パスワードをハッシュ化
         BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
-        String hashedPassword = bcrypt.encode(pass);
+        String hashedPassword = bcrypt.encode(password);
 
         // 入力内容をBeanに格納
         UserBean user = new UserBean();
-        user.setFirstName(Ksei);
-        user.setLastName(Kmei);
-        user.setFirstNameFurigana(Hsei);
-        user.setLastNameFurigana(Hmei);
-        user.setEmail(mail);
+        user.setFirstName(lastName);
+        user.setLastName(firstName);
+        user.setFirstNameFurigana(lastNameFurigana);
+        user.setLastNameFurigana(firstNameFurigana);
+        user.setEmail(email);
         user.setPassword(hashedPassword);
-        user.setPostalCode(post);
+        user.setPostalCode(postCode);
         user.setAddress(address);
-        user.setPhoneNumber(namber);
+        user.setPhoneNumber(phoneNumber);
 
         HttpSession session = request.getSession(false);
         session.setAttribute("user", user);

@@ -154,12 +154,12 @@
               <div class="row">
               <div class="form-group col-sm-4">
                 <label for="subject">電話番号</label>
-                <input type="text" name="namber" class="form-control" id="subject" placeholder="例:096-123-456" value="<%= StringEscapeUtils.escapeHtml4(StringHelper.nullToBlank(user.getPhoneNumber())) %>">
+                <input type="text" name="number" class="form-control" id="subject" placeholder="例:012-3456-7890" value="<%= StringEscapeUtils.escapeHtml4(StringHelper.nullToBlank(user.getPhoneNumber())) %>">
                 <small class="form-text text-muted">ハイフンを使って電話番号を入力してください</small>
-                <% if(ErrorHelper.exist(errors, "namber")) { %>
+                <% if(ErrorHelper.exist(errors, "number")) { %>
                 <div class="invalid-feedback d-block">
                     <ul>
-                    <% for(String message : ErrorHelper.get(errors, "namber")) { %>
+                    <% for(String message : ErrorHelper.get(errors, "number")) { %>
                         <li><%= message %></li>
                     <% } %>
                     </ul>
