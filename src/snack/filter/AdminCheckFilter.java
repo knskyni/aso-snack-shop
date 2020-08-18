@@ -9,13 +9,14 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import snack.bean.UserBean;
 
-//@WebFilter("/*")
+@WebFilter("/*")
 public class AdminCheckFilter implements Filter {
     private final String[] path = {
             "/item/create/input", "/item/create/confirm", "/item/create/complete",
