@@ -7,3 +7,4 @@
 <script src="<%= rootURL %>/js/jquery-3.5.1.min.js"></script>
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 <script src="<%= rootURL %>/js/bootstrap.min.js"></script>
+<script src="<%= rootURL %>/js/sweeter.js"></script>
