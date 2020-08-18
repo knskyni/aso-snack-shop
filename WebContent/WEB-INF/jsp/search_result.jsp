@@ -20,6 +20,11 @@
     <jsp:include page="./common/head.jsp" />
 </head>
 <body>
+    <style>
+        section {
+            margin: 0 !important;
+        }
+    </style>
 	<jsp:include page="./header.jsp" />
     <section>
         <div class="container">
