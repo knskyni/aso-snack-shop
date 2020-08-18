@@ -79,23 +79,6 @@
 
     <jsp:include page="./common/javascript.jsp" />
     <script>
-    function updateCart(itemId, itemCount) {
-        $.ajax({
-            url:'./cart/add',
-            type:'GET',
-            data:{
-                'id': itemId,
-                'count': itemCount
-            }
-        })
-        .done((data) => {
-            location.reload();
-        })
-        .fail( (jqXHR, textStatus, errorThrown) => {
-            alert('更新に失敗しました。');
-        });
-    }
-
     $(function(){
         $('button').on('click', function(){
         	let itemRow = $(this).parents('.row').parents('.row');
