@@ -46,11 +46,6 @@ UserBean user = (UserBean)session.getAttribute("user");
                 <label for="subject">メールアドレス</label>
                  <%= user.getEmail() %>
             </div>
-            <div class="form-group">
-                <label for="subject">パスワード</label>
-               <%= user.getPassword() %>
-
-              </div>
 				<div class="row">
                    <div class="form-group col-sm-4">
                    <label for="subject">郵便番号</label>
