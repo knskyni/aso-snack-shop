@@ -13,12 +13,18 @@
 <body>
     <jsp:include page="../header.jsp" />
     <section>
-    	<div class="container">
-    		<h2>登録完了しました。</h2>
-    		<div class="text-center">
-    			<button type="button" class="btn btn-primary">TOP</button>
-    		</div>
-    	</div>
+        <div class="container">
+            <div class="text-center">
+                <h2 class="text-center">登録完了しました。</h2>
+                <hr>
+                <p>
+                    会員情報を登録しました。<br>
+                    以下のボタンからログインしてください。
+                </p>
+                <hr>
+                <a href="../login" class="btn btn-primary">ログイン</a>
+            </div>
+        </div>
     </section>
 
     <jsp:include page="../footer.jsp" />
