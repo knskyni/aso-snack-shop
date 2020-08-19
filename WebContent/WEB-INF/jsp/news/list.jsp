@@ -33,18 +33,13 @@
     <section>
         <div class="container">
             <h1 align="center">お知らせ一覧</h1>
-            <div class="row">
-                <div class="col-6">
-                    <a href="home" class="btn btn-primary">HOME</a>
-                </div>
-            <%if(userInfo == null){}else if(userInfo.getType() == "admin"){ %>
-                <div class="col-6" align="right">
-                    <a href="create/input" class="btn btn-primary">お知らせを追加</a>
-                </div>
-            <%} %>
+        <% if(userInfo != null && userInfo.getType().equals("admin")) { %>
+            <div class="text-center my-3">
+                <a href="create/input" class="btn btn-primary">お知らせを追加</a>
             </div>
+        <% } %>
 
-            <table class="table table-hover">
+            <table class="table table-hover" style="border-bottom: 1px solid #dee2e6;">
             <%for(NewsBean newsBean : news) { %>
                 <tr>
                     <th><%= sdf.format(newsBean.getUpdatedAt()) %></th>
