@@ -111,7 +111,7 @@ public class UserUpdateInputServlet extends HttpServlet {
         if(errors.isEmpty()) {
             UserModel userModel = new UserModel();
             userModel.update(updateUserInfo);
-            response.sendRedirect("/user/detail");
+            response.sendRedirect("detail");
         } else {
             request.setAttribute("errors", errors);
             RequestDispatcher rd = request.getRequestDispatcher("../WEB-INF/jsp/user/update_input.jsp");
