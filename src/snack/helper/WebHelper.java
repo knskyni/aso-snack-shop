@@ -39,6 +39,7 @@ public class WebHelper {
 
     public static String saveFileFromPart(HttpServletRequest request, String name, String path) throws ServletException, IOException, FormFileEmptyException {
         Part part = request.getPart(name);
+        path = System.getProperty("user.home") + "/B5_sweeter/" + path;
 
         if(part.getHeader("Content-Disposition").contains("filename=\"\"")) {
             throw new FormFileEmptyException();

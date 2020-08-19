@@ -57,7 +57,7 @@ public class ItemCreateInputServlet extends HttpServlet {
 
         // 画像のチェック
         try {
-            imagePath = WebHelper.saveFileFromPart(request, "image", getServletContext().getRealPath("img/item/"));
+            imagePath = WebHelper.saveFileFromPart(request, "image", "images/items/");
         } catch(FormFileEmptyException e) {
             errors = ErrorHelper.add(errors, "image", "画像ファイルが選択されていません。");
         }

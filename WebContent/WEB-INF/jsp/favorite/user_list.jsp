@@ -30,7 +30,7 @@
             <div class="card">
                 <div class="row">
                     <div class="col-md-4 text-center">
-                        <img style="max-width: 300px; max-height: 200px;" src="<%= rootURL + "/img/item/" + item.getImagePath() %>">
+                        <img style="max-width: 300px; max-height: 200px;" src="<%= rootURL + "/file/view?name=images/items/" + item.getImagePath() %>">
                     </div>
                     <div class="col-md-8" style="min-height: 1px; padding: 1.25rem;">
                         <h4 class="card-title"><%= item.getName() %></h4>
