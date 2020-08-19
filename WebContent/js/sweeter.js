@@ -25,6 +25,7 @@ function updateFavorite(itemId) {
     })
     .done((data) => {
     	alert('お気に入り追加しました。');
+		location.reload();
     })
     .fail((jqXHR, textStatus, errorThrown) => {
         alert('更新に失敗しました。');

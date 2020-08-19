@@ -9,6 +9,7 @@
     String rootURL = WebHelper.getRootURL(request);
     UserBean userInfo = (UserBean)session.getAttribute("userInfo");
     ItemBean item = (ItemBean)request.getAttribute("itemview");
+    boolean faved = (boolean)request.getAttribute("faved");
 %>
 <!DOCTYPE html>
 <html>
@@ -32,7 +33,7 @@
                     評価: <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
                 <% if(userInfo != null) { %>
                     <div class="mt-2">
-                        <button id="favorite" class="btn btn-primary float-left">お気に入りに追加</button>
+                        <button id="favorite" class="btn btn-primary float-left">お気に入り<%= faved ? "から削除" : "に追加" %></button>
                         <button id="cart" class="btn btn-primary float-right">カートに入れる</button>
                         <button id="purchase_auth" class="btn btn-primary float-right mr-3">今すぐ購入する</button>
                     </div>
