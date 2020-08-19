@@ -88,6 +88,8 @@ public class PurchaseComfirmServlet extends HttpServlet {
         PurchaseModel purchaseModel = new PurchaseModel();
         purchaseModel.execute(purchaseBean);
 
+        session.removeAttribute("cart");
+
         response.sendRedirect("complete");
     }
 }
