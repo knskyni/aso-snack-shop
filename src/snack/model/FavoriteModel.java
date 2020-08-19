@@ -46,4 +46,20 @@ public class FavoriteModel {
 
         return items;
     }
+
+    public boolean exist(int userId, int itemId) {
+        FavoriteDao favDao = new FavoriteDao();
+        boolean result = false;
+
+        try {
+            favDao.connect();
+            result = favDao.exist(userId, itemId);
+        } catch(Exception e) {
+            e.printStackTrace();
+        } finally {
+            favDao.close();
+        }
+
+        return result;
+    }
 }
