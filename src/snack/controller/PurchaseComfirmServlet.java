@@ -88,7 +88,6 @@ public class PurchaseComfirmServlet extends HttpServlet {
         PurchaseModel purchaseModel = new PurchaseModel();
         purchaseModel.execute(purchaseBean);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("../WEB-INF/jsp/purchase/complete.jsp");
-        dispatcher.forward(request, response);
+        response.sendRedirect("complete");
     }
 }
