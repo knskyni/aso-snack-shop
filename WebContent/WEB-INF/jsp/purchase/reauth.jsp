@@ -12,7 +12,7 @@
     <jsp:include page="../common/head.jsp" />
 </head>
 <% String msg  = (String)request.getAttribute("msg");
-   UserBean userInfo = (UserBean)session.getAttribute("userInfo");
+   String email = (String)request.getAttribute("email");
 %>
 <body>
     <jsp:include page="../header.jsp" />
@@ -26,7 +26,7 @@
                 <%} %>
                 </font>
             </p>
-            <label>Eメール：<%=userInfo.getEmail() %></label><br>
+            <label>Eメール：<%=email %></label><br>
             <input type="password" class="form-control" name="password" placeholder="パスワード"><br>
             <button type="submit" class="btn btn-warning">購入支払いへ</button>
         </form>
