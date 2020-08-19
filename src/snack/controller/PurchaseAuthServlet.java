@@ -21,9 +21,17 @@ public class PurchaseAuthServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(true);
         HashMap<Integer,Integer> carts = (HashMap<Integer,Integer>)session.getAttribute("cart");
+        UserBean userInfo = (UserBean)session.getAttribute("userInfo");
+
+        int id = userInfo.getId();
+
+        UserModel userModel = new UserModel();
+        String email = userModel.show(id).getEmail();
+
+        request.setAttribute("email", email);
 
         if(carts == null) {
-            response.sendError(404);
+            response.sendError(400);
             return;
         }
 
@@ -34,19 +42,25 @@ public class PurchaseAuthServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(true);
-        UserBean userInfo = (UserBean)session.getAttribute("userInfo");
-        String password = (String)request.getParameter("password");
 
-        String email = userInfo.getEmail();
+        String password = (String)request.getParameter("password");
+        UserBean userInfo = (UserBean)session.getAttribute("userInfo");
+
+        int id = userInfo.getId();
+
         UserModel userModel = new UserModel();
-        UserBean userAuth = userModel.reauth(email, password);
+        String email = userModel.show(id).getEmail();
+
+        UserModel authModel = new UserModel();
+        UserBean userAuth = authModel.reauth(email, password);
 
         if(userAuth == null) {
             String msg = "ログインに失敗しました。ログイン内容を確認してください";
 
+            request.setAttribute("email", email);
             request.setAttribute("msg", msg);
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("./WEB-INF/jsp/purchase/reauth.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("../WEB-INF/jsp/purchase/reauth.jsp");
             dispatcher.forward(request, response);
         } else {
             session.setAttribute("userAuth", userAuth);
