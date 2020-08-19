@@ -18,59 +18,42 @@ UserBean user = (UserBean)session.getAttribute("user");
 %>
     <jsp:include page="../header.jsp" />
     <section>
-        <div class="container">
-            <h2>会員登録</h2>
-            <hr>
-            <form action="confirm" method="POST">
-              <div class="row">
-  				<div class="form-group col-sm-6">
-    				<label for="text4c">名前</label>
-    				<%= user.getLastName() %>
-
-  				</div>
-  				<div class="form-group col-sm-6">
-    				<label for="text4d">　</label>
-    				<%= user.getFirstName() %>
-  				</div>
-  			</div>
-  			<div class="row">
-  				<div class="form-group col-sm-6">
-					<%= user.getLastNameFurigana() %>
-
-  				</div>
-  				<div class="form-group col-sm-6">
-    				<%= user.getFirstNameFurigana() %>
-  				</div>
-  			</div>
-  			<div class="form-group">
-                <label for="subject">メールアドレス</label>
-                 <%= user.getEmail() %>
+    <div class="container">
+        <h2>会員登録</h2>
+        <hr>
+        <div class="row border-bottom">
+            <label class="col-sm-2 col-form-label text-center border-right py-3">お名前</label>
+            <div class="col-sm-10 col-form-label py-3">
+                <%= user.getLastName() %> <%= user.getFirstName() %>(<%= user.getLastNameFurigana() %> <%= user.getFirstNameFurigana() %>)
             </div>
-				<div class="row">
-                   <div class="form-group col-sm-4">
-                   <label for="subject">郵便番号</label>
-                      <%=user.getPostalCode() %>
-                   </div>
-                </div>
-             <div>
-			<div class="form-group">
-                <label for="subject">住所</label>
-                   <%=user.getAddress() %>
-                </div>
-              <div class="row">
-              <div class="form-group col-sm-4">
-                <label for="subject">電話番号</label>
-                <%=user.getPhoneNumber() %>
-              </div>
-              </div>
-            <div class="row">
-                <div class="col-sm-6"><button type="button" onclick="location.href='input'" class="btn btn-light" >戻る</button></div>
-                <div class="col-sm-6"><button type="submit" class="btn btn-primary">登録へ</button></div>
+        </div>
+        <div class="row border-bottom">
+            <label class="col-sm-2 col-form-label text-center border-right py-3">メールアドレス</label>
+            <div class="col-sm-10 col-form-label py-3">
+                <%= user.getEmail() %>
             </div>
+        </div>
+        <div class="row border-bottom">
+            <label class="col-sm-2 col-form-label text-center border-right py-3">郵便番号</label>
+            <div class="col-sm-10 col-form-label py-3">
+                〒<%= user.getPostalCode() %><br>
+                <%= user.getAddress() %>
             </div>
-            </form>
+        </div>
+        <div class="row">
+            <label class="col-sm-2 col-form-label text-center border-right py-3">電話番号</label>
+            <div class="col-sm-10 col-form-label py-3">
+                <%= user.getPhoneNumber() %>
+            </div>
+        </div>
+        <form action="confirm" method="POST">
+            <div class="text-center">
+                <button type="button" onclick="location.href='input'" class="btn btn-light mr-4" >修正する</button>
+                <button type="submit" class="btn btn-primary">登録する</button>
+            </div>
+        </form>
     </section>
-
+    <jsp:include page="../footer.jsp" />
     <jsp:include page="../common/javascript.jsp" />
 </body>
 </html>
