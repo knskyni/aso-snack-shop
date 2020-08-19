@@ -48,7 +48,7 @@
                 <div class="col-md-3">
                     <div class="card h-100">
                       <div class="text-center d-flex align-items-center justify-content-center" style="height: 150px;">
-                        <img style="max-height: 150px; max-width: 100%;" src="<%= rootURL + "/img/item/" + items.get(i).getImagePath() %>" alt="Card image cap">
+                        <img style="max-height: 150px; max-width: 100%;" src="<%= rootURL + "/file/view?name=images/items/" + items.get(i).getImagePath() %>" alt="Card image cap">
                       </div>
                       <div class="card-body">
                         <h5 class="card-title"><%= items.get(i).getName() %></h5>

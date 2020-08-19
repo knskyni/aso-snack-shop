@@ -49,7 +49,7 @@
                     </tr>
                     <tr>
                         <th scope="row">画像</th>
-                        <td><img class="img-fluid" style="max-height: 200px;" src="<%= rootURL + "/img/item/" + item.getImagePath() %>"></td>
+                        <td><img class="img-fluid" style="max-height: 200px;" src="<%= rootURL + "/file/view?name=images/items/" + item.getImagePath() %>"></td>
                     </tr>
                     <tr>
                         <th scope="row">価格</th>

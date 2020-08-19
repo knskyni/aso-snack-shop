@@ -22,7 +22,7 @@
     <section>
         <div class="container">
             <div class="card mt-4">
-                <img class="card-img-top img-fluid" src="<%= rootURL + "/img/item/" + item.getImagePath() %>" alt="">
+                <img class="card-img-top img-fluid" src="<%= rootURL + "/file/view?name=images/items/" + item.getImagePath() %>" alt="">
                 <div class="card-body">
                     <h3 class="card-title"><%= StringEscapeUtils.escapeHtml4(item.getName()) %></h3>
                     <h4><%= String.format("%,d", item.getPrice()) %>円</h4>
