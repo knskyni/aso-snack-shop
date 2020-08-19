@@ -59,7 +59,7 @@
             -->
         </div>
     </section>
-
+    <jsp:include page="../footer.jsp" />
     <jsp:include page="../common/javascript.jsp" />
     <script type="text/javascript">
     $(function(){
