@@ -32,7 +32,7 @@
             <% totalPrice += item.getPrice() * item.getCount(); %>
             <div class="row" data-id="<%= item.getId() %>">
                 <div class="col-md-2">
-                    <img class="img-fluid" style="max-height: 200px;" src="<%= rootURL + "/img/item/" + item.getImagePath() %>">
+                    <img class="img-fluid" style="max-height: 200px;" src="<%= rootURL + "/file/view?name=images/items/" + item.getImagePath() %>">
                 </div>
                 <div class="col-md-6">
                     <h4 class="product-name">
