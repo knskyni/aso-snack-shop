@@ -28,7 +28,6 @@
     </section>
 
     <jsp:include page="../footer.jsp" />
-
     <jsp:include page="../common/javascript.jsp" />
 </body>
 </html>
