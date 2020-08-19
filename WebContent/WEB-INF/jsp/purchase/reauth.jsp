@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="snack.bean.UserBean" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,9 @@
 
     <jsp:include page="../common/head.jsp" />
 </head>
-<% String msg  = (String)request.getAttribute("msg"); %>
+<% String msg  = (String)request.getAttribute("msg");
+   UserBean userInfo = (UserBean)session.getAttribute("userInfo");
+%>
 <body>
     <jsp:include page="../header.jsp" />
     <div class="container">
@@ -23,7 +26,7 @@
                 <%} %>
                 </font>
             </p>
-            <input type="text" class="form-control" name="email" placeholder="メールアドレス"><br>
+            <label>Eメール：<%=userInfo.getEmail() %></label><br>
             <input type="password" class="form-control" name="password" placeholder="パスワード"><br>
             <button type="submit" class="btn btn-warning">購入支払いへ</button>
         </form>
