@@ -35,7 +35,7 @@
                     <div class="col-md-8" style="min-height: 1px; padding: 1.25rem;">
                         <h4 class="card-title"><%= item.getName() %></h4>
                         <p class="card-text"><%= item.getDescription() %></p>
-                        <a class="btn btn-primary" href="/item/show?id=<%= item.getId() %>">商品ページ</a>
+                        <a class="btn btn-primary" href="../item/show?id=<%= item.getId() %>">商品ページ</a>
                     </div>
                 </div>
             </div>
