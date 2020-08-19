@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ page import="snack.bean.UserBean" %>
 <%@ page import="snack.helper.WebHelper" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.HashMap" %>
 <%
     String rootURL = WebHelper.getRootURL(request);
     UserBean userInfo = (UserBean)session.getAttribute("userInfo");
@@ -16,48 +18,51 @@
         <ul class="navbar-nav mr-auto">
     <% if(userInfo == null) { %>
             <li class="nav-item">
-                <a class="nav-link" href="<%= rootURL %>/news/list">お知らせ</a>
+                <a class="nav-link active" href="<%= rootURL %>/news/list">お知らせ</a>
             </li>
     <% } else if(userInfo.getType().equals("user")) { %>
             <li class="nav-item">
-                <a class="nav-link" href="<%= rootURL %>/favorite/list">お気に入り</a>
+                <a class="nav-link active" href="<%= rootURL %>/favorite/list">お気に入り</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<%= rootURL %>/news/list">お知らせ</a>
+                <a class="nav-link active" href="<%= rootURL %>/news/list">お知らせ</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<%= rootURL %>/user/detail">会員情報</a>
+                <a class="nav-link active" href="<%= rootURL %>/user/detail">会員情報</a>
             </li>
     <% } else if(userInfo.getType().equals("admin")) { %>
             <li class="nav-item">
-                <a class="nav-link" href="<%= rootURL %>/item/create/input">商品登録</a>
+                <a class="nav-link active" href="<%= rootURL %>/item/create/input">商品登録</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<%= rootURL %>/news/list">お知らせ一覧</a>
+                <a class="nav-link active" href="<%= rootURL %>/news/list">お知らせ一覧</a>
             </li>
     <% } %>
         </ul>
 
-        <form action="<%= rootURL %>/search" method="GET" class="form-inline mt-2 mt-md-0">
-            <input class="form-control mr-sm-2" type="text" name="word" placeholder="商品名で検索" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
-        </form>
+
         <div>
             <ul class="navbar-nav mr-auto">
-            <% if(userInfo != null) { %>
+                <li class="nav-item text-center">
+                    <form action="<%= rootURL %>/search" method="GET" class="form-inline mt-2 mt-md-0">
+                        <input class="form-control mr-sm-2" type="text" name="word" placeholder="商品名で検索" aria-label="Search">
+                        <button class="btn btn-danger my-2 my-sm-0" type="submit">検索</button>
+                    </form>
+                </li>
+                <li class="nav-item text-center">
+        <% if(userInfo != null) { %>
             <% if(userInfo.getType().equals("user")) { %>
-                <li class="nav-item">
-                    <a class="nav-link" href="<%= rootURL %>/cart">カート</a>
-                </li>
+                <%
+                    Map<Integer, Integer> cart = (Map<Integer, Integer>)session.getAttribute("cart");
+                    if(cart == null) cart = new HashMap<Integer, Integer>();
+                %>
+                <a class="btn btn-info ml-3" href="<%= rootURL %>/cart">カート<span class="badge badge-light badge-pill ml-2"><%= cart.size() %></span></a>
             <% } %>
-                <li class="nav-item">
-                    <a class="nav-link" href="<%= rootURL %>/logout">ログアウト</a>
+                <a class="btn btn-success ml-3" href="<%= rootURL %>/logout">ログアウト</a>
+        <% } else { %>
+                <a class="btn btn-success ml-3" href="<%= rootURL %>/login">ログイン</a>
+        <% } %>
                 </li>
-            <% } else { %>
-                <li class="nav-item">
-                    <a class="nav-link" href="<%= rootURL %>/login">ログイン</a>
-                </li>
-            <% } %>
             </ul>
         </div>
     </div>
