@@ -17,7 +17,7 @@ public class UserDao extends DaoBase{
         UserBean userbean = null;
 
         try {
-            stmt = con.prepareStatement("SELECT * FROM `users` WHERE `email` = ?;");
+            stmt = con.prepareStatement("SELECT * FROM `users` WHERE `email` = ? AND `status` = 1;");
 
             stmt.setString(1, email);
             rs = stmt.executeQuery();
