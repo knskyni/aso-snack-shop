@@ -26,6 +26,7 @@ public class AdminCheckFilter implements Filter {
             "/news/update/input", "/news/update/confirm", "/news/update/complete",
             "/news/delete/confirm", "/news/delete/complete"
             };
+    private final String[] exclude = {"/cart/list", "/cart/add", "/favorite/list", "/favorite/add", "/purchase/auth", "/purchase/select", "/purchase/comfirm", "/purchase/complete"};
 
     @Override
     public void destroy() {
@@ -35,18 +36,24 @@ public class AdminCheckFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         String accessPath = ((HttpServletRequest)request).getServletPath();
-        HttpSession session = ((HttpServletRequest)request).getSession(false);
+        HttpSession session = ((HttpServletRequest)request).getSession(true);
+        UserBean userInfo = (UserBean)session.getAttribute("userInfo");
 
         if(Arrays.asList(path).contains(accessPath)) {
-            if(session != null) {
-                UserBean userInfo = (UserBean)session.getAttribute("userInfo");
-                if(userInfo != null && userInfo.getType().equals("admin")) {
-                    chain.doFilter(request, response);
-                    return;
-                }
+            if(userInfo != null && userInfo.getType().equals("admin")) {
+                chain.doFilter(request, response);
+                return;
             }
             ((HttpServletResponse)response).sendError(403);
             return;
+        }
+
+        // 管理者でアクセスできないページをブロック
+        if(Arrays.asList(exclude).contains(accessPath)) {
+            if(userInfo != null && userInfo.getType().equals("admin")) {
+                ((HttpServletResponse)response).sendError(403);
+                return;
+            }
         }
 
         chain.doFilter(request, response);
