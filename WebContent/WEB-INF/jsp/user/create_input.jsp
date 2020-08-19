@@ -102,7 +102,7 @@
               </div>
               <div class="form-group">
                 <label for="subject">パスワード</label>
-                <input type="password" name="pass" class="form-control" id="subject" placeholder="パスワード" value="">
+                <input type="password" name="pass" class="form-control" id="subject" placeholder="パスワード">
                 <small class="form-text text-muted">英数字・記号のみ使用可能　大文字・小文字は区別します</small>
                 <small class="form-text text-muted">８文字以上１２８文字以内のパスワードを入力してください。</small>
                 <% if(ErrorHelper.exist(errors, "pass")) { %>
@@ -118,7 +118,7 @@
               </div>
               <div class="form-group">
                 <label for="subject">パスワード(確認用)</label>
-                <input type="password" name="Kpass" class="form-control" id="subject" placeholder="パスワード" required>
+                <input type="password" name="Kpass" class="form-control" id="subject" placeholder="パスワード">
                 <small class="form-text text-muted">上のパスワードと同じパスワードを入力してください</small>
               </div>
 
