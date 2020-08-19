@@ -33,9 +33,11 @@ public class PurchaseAuthServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String email = (String)request.getParameter("email");
+        HttpSession session = request.getSession(true);
+        UserBean userInfo = (UserBean)session.getAttribute("userInfo");
         String password = (String)request.getParameter("password");
 
+        String email = userInfo.getEmail();
         UserModel userModel = new UserModel();
         UserBean userAuth = userModel.reauth(email, password);
 
@@ -44,10 +46,9 @@ public class PurchaseAuthServlet extends HttpServlet {
 
             request.setAttribute("msg", msg);
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("./WEB-INF/jsp/purchase/auth.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("./WEB-INF/jsp/purchase/reauth.jsp");
             dispatcher.forward(request, response);
         } else {
-            HttpSession session = request.getSession(true);
             session.setAttribute("userAuth", userAuth);
             response.sendRedirect("select");
         }
