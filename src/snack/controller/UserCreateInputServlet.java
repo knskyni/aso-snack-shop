@@ -77,14 +77,22 @@ public class UserCreateInputServlet extends HttpServlet {
         // パスワード
         if(password.isEmpty()) {
             errors = ErrorHelper.add(errors, "pass", "入力してください。");
-        } else if (!password.matches("^[a-zA-Z0-9\\d]{8,128}$")) {
-            errors = ErrorHelper.add(errors, "pass", "半角英数字で入力してください");
-        } else if(!password.equals(passwordConfirm)) {
+        }else if (!password.matches("^[a-zA-Z0-9\\d]+$")) {
+            errors = ErrorHelper.add(errors, "pass", "半角英数字で入力してください。");
+        }//else if (!password.matches("^[a-zA-Z0-9\\d]{8,128}$")) {
+            //errors = ErrorHelper.add(errors, "pass", "8文字以上128文字以内で入力してください");
+            //else if(!password.equals(passwordConfirm)) {
+            //errors = ErrorHelper.add(errors, "pass", "上のパスワードと一致しません");
+        //}
+        //}//else if(password.length() > 128) {
+            //errors = ErrorHelper.add(errors, "pass", "1文字以上、128文字以内で入力してください。");
+        //} //else if (!password.matches("^[0-9a-zA-Z]+$")) {
+            //errors = ErrorHelper.add(errors, "pass", "半角英数字ではありません");
+        //}
+        if(passwordConfirm.isEmpty()) {
+            errors = ErrorHelper.add(errors, "Kpass", "入力してください。");
+        }else if(!password.equals(passwordConfirm)) {
             errors = ErrorHelper.add(errors, "pass", "上のパスワードと一致しません");
-        } else if(password.length() > 128) {
-            errors = ErrorHelper.add(errors, "pass", "1文字以上、128文字以内で入力してください。");
-        } else if (!password.matches("^[0-9a-zA-Z]+$")) {
-            errors = ErrorHelper.add(errors, "pass", "半角英数字ではありません");
         }
 
         // メールアドレス
