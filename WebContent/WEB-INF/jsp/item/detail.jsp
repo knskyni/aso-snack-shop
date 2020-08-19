@@ -79,6 +79,7 @@
         });
 
         $('#purchase_auth').on('click', function(){
+        	updateCart(<%=(item.getId())%>, 1);
         	location.href="../purchase/auth"
         });
 
