@@ -21,7 +21,7 @@ String date = (String)session.getAttribute("date");
         <label>確認のEメールを送信しました。</label><br>
         <label>発送元 : XXXX.japan</label><br>
         <label>お届け予定日：</label><label><%=date %></label><br>
-        <Button type="button" class="btn btn-warning"  onclick="location.href='home'">ショッピングを続ける</Button>
+        <Button type="button" class="btn btn-warning" onclick="location.href='../home'">ショッピングを続ける</Button>
     </div>
     <jsp:include page="../footer.jsp" />
 
