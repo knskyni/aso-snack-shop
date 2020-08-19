@@ -29,14 +29,21 @@
                 <div class="card-body">
                     <h3 class="card-title"><%= StringEscapeUtils.escapeHtml4(item.getName()) %></h3>
                     <h4><%= String.format("%,d", item.getPrice()) %>円</h4>
-                    <p class="card-text"><%= StringEscapeUtils.escapeHtml4(item.getDescription()) %></p>
+                    <p class="card-text"><%= item.getDescription().replaceAll("\n", "<br>") %></p>
                     評価: <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
                 <% if(userInfo != null) { %>
+                    <% if(userInfo.getType().equals("user")) { %>
                     <div class="mt-2">
                         <button id="favorite" class="btn btn-primary float-left">お気に入り<%= faved ? "から削除" : "に追加" %></button>
                         <button id="cart" class="btn btn-primary float-right">カートに入れる</button>
                         <button id="purchase_auth" class="btn btn-primary float-right mr-3">今すぐ購入する</button>
                     </div>
+                    <% } else { %>
+                    <div class="mt-2 text-center">
+                        <a href="update/input?id=<%= item.getId() %>" class="btn btn-primary mr-4">この商品を編集する</a>
+                        <a href="delete/confirm?id=<%= item.getId() %>" class="btn btn-danger">この商品を削除する</a>
+                    </div>
+                    <% } %>
                 <% } %>
                 </div>
             </div>
