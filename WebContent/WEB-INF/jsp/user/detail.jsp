@@ -48,19 +48,10 @@ UserBean user = (UserBean)request.getAttribute("user");
                 </tbody>
             </table>
 
-            <div class="row">
-                <div class="col text-left">
-                    <button type="button" onclick="history.back()" class="btn btn-light px-5">戻る</button>
-                </div>
-                <div class="col text-center">
-                    <button type="button" onclick="location.href='delete/confirm'"class="btn btn-danger px-5">退会</button>
-                </div>
-                <div class="col text-center">
-                    <button type="button" onclick="location.href='../account/change-password/input'"class="btn btn-warning px-3">パスワード変更</button>
-                </div>
-                <div class="col text-right">
-                    <button type="button" onclick="location.href='update'"class="btn btn-primary px-5">変更</button>
-                </div>
+            <div class="text-center mt-4">
+                <button type="button" onclick="location.href='delete/confirm'"class="btn btn-danger px-5 mr-5">退会</button>
+                <button type="button" onclick="location.href='../account/change-password/input'"class="btn btn-warning px-3 mr-5">パスワード変更</button>
+                <button type="button" onclick="location.href='update'"class="btn btn-primary px-5">変更</button>
             </div>
             </div>
     </section>
