@@ -33,6 +33,7 @@ public class UserDao extends DaoBase{
                 userbean = new UserBean();
                 userbean.setId(rs.getInt("id"));
                 userbean.setType("user");
+                userbean.setEmail(rs.getString("email"));
             }
         } catch(Exception e) {
             e.printStackTrace();
