@@ -35,7 +35,7 @@ public class ItemViewServlet extends HttpServlet{
         UserBean userInfo = (UserBean)session.getAttribute("userInfo");
 
         // ユーザーがお気に入り追加しているか
-        if(userInfo != null && userInfo.getType().equals("admin")) {
+        if(userInfo != null && userInfo.getType().equals("user")) {
             FavoriteModel favModel = new FavoriteModel();
             boolean faved = favModel.exist(userInfo.getId(), id);
 
