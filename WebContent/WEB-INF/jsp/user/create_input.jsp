@@ -119,6 +119,15 @@
                     <label for="subject">パスワード(確認用)</label>
                     <input type="password" name="Kpass" class="form-control" id="subject" placeholder="パスワード">
                     <small class="form-text text-muted">上のパスワードと同じパスワードを入力してください</small>
+                <% if(ErrorHelper.exist(errors, "Kpass")) { %>
+                    <div class="invalid-feedback d-block">
+                        <ul>
+                        <% for(String message : ErrorHelper.get(errors, "Kpass")) { %>
+                            <li><%= message %></li>
+                        <% } %>
+                        </ul>
+                    </div>
+                <% } %>
                 </div>
 
                 <div class="row">
@@ -134,38 +143,10 @@
                             <% } %>
                             </ul>
                         </div>
-                        <% } %>
-              </div>
-              <div class="form-group">
-                <label for="subject">パスワード(確認用)</label>
-                <input type="password" name="Kpass" class="form-control" id="subject" placeholder="パスワード">
-                <small class="form-text text-muted">上のパスワードと同じパスワードを入力してください</small>
-                <% if(ErrorHelper.exist(errors, "Kpass")) { %>
-                <div class="invalid-feedback d-block">
-                    <ul>
-                    <% for(String message : ErrorHelper.get(errors, "Kpass")) { %>
-                        <li><%= message %></li>
                     <% } %>
-                    </ul>
-                </div>
-                <% } %>
-              </div>
-
-				<div class="row">
-              <div class="form-group col-sm-4">
-                <label for="subject">郵便番号</label>
-                <input type="text" name="post" class="form-control" id="subject" placeholder="例:812-0016" value="<%= StringEscapeUtils.escapeHtml4(StringHelper.nullToBlank(user.getPostalCode())) %>">
-                <small class="form-text text-muted">ハイフンを使って入力してください</small>
-                <% if(ErrorHelper.exist(errors, "post")) { %>
-                <div class="invalid-feedback d-block">
-                    <ul>
-                    <% for(String message : ErrorHelper.get(errors, "post")) { %>
-                        <li><%= message %></li>
-                    <% } %>
-                    </ul>
                     </div>
-                    <% } %>
                 </div>
+
                 <div class="form-group">
                     <label for="subject">住所</label>
                     <input type="text" name="address" class="form-control" id="subject" placeholder="例:福岡県福岡市博多区博多駅南2-12-32" value="<%= StringEscapeUtils.escapeHtml4(StringHelper.nullToBlank(user.getAddress())) %>">
@@ -179,6 +160,7 @@
                     </div>
                 <% } %>
                 </div>
+
                 <div class="row">
                     <div class="form-group col-sm-4">
                         <label for="subject">電話番号</label>
@@ -195,13 +177,8 @@
                     <% } %>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <button type="button" onclick="location.href='show'" class="btn btn-light" >戻る</button>
-                </div>
-                <div class="col-sm-6">
-                    <button type="submit" class="btn btn-primary">確認</button>
-                </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">確認</button>
             </div>
         </form>
     </div>
