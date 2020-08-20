@@ -77,9 +77,9 @@ public class UserCreateInputServlet extends HttpServlet {
         // パスワード
         if(password.isEmpty()) {
             errors = ErrorHelper.add(errors, "pass", "入力してください。");
-        } else if (!password.matches("^[a-zA-Z\\d]{8,100}$")) {
+        }else if (!password.matches("^[a-zA-Z0-9]+$")) {
             errors = ErrorHelper.add(errors, "pass", "半角英数字で入力してください。");
-        } else if(password.length() < 8 || password.length() > 128) {
+        }else if(password.length() < 8 || password.length() > 128) {
             errors = ErrorHelper.add(errors, "pass", "8文字以上、128文字以内で入力してください。");
         }if(passwordConfirm.isEmpty()) {
             errors = ErrorHelper.add(errors, "Kpass", "入力してください。");
