@@ -16,7 +16,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>"<%= searchWord %>"の検索結果 | Sweeter</title>
+    <title>"<%= StringEscapeUtils.escapeHtml4(searchWord) %>"の検索結果 | Sweeter</title>
     <jsp:include page="./common/head.jsp" />
 </head>
 <body>
@@ -29,12 +29,12 @@
     <section>
         <div class="container">
             <!-- ここにHTMLを書き始める -->
-            <h2>"<%= searchWord %>"の検索結果</h2>
+            <h2>"<%= StringEscapeUtils.escapeHtml4(searchWord) %>"の検索結果</h2>
             <hr>
             <div class="row mb-4">
                 <form action="search" method="GET" class="form-inline w-100">
                     <div class="col-9 col-md-11 pr-0">
-                        <input class="form-control w-100" type="text" name="word" placeholder="商品名で検索" aria-label="Search" value="<%= searchWord %>">
+                        <input class="form-control w-100" type="text" name="word" placeholder="商品名で検索" aria-label="Search" value="<%= StringEscapeUtils.escapeHtml4(searchWord) %>">
                     </div>
                     <div class="col-3 col-md-1">
                         <button class="btn btn-primary w-100" type="submit">検索</button>
