@@ -108,8 +108,8 @@ public class UserCreateInputServlet extends HttpServlet {
         // 電話番号
         if(phoneNumber.isEmpty()) {
             errors = ErrorHelper.add(errors, "number", "入力してください。");
-        } else if(phoneNumber.isEmpty() ||!phoneNumber.matches("[0-9a-zA-Z\\-\\_]+")) {
-            errors = ErrorHelper.add(errors, "number", "*ハイフンを使って電話番号を入力してください");
+        } else if(phoneNumber.isEmpty() ||!phoneNumber.matches("^0[789]0-[0-9]{4}-[0-9]{4}$")) {
+            errors = ErrorHelper.add(errors, "number", "*ハイフンがないか正しく電話番号を入力してください");
         } else if(phoneNumber.length() > 13) {
             errors = ErrorHelper.add(errors, "number", "1文字以上、13文字以内で入力してください。");
         }
