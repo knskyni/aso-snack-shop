@@ -53,10 +53,10 @@ public class UserUpdateInputServlet extends HttpServlet {
         if(firstName.isEmpty()) {
             errors = ErrorHelper.add(errors, "firstName", "*名を入力してください");
         }
-        if(lastNameFurigana.isEmpty() || lastNameFurigana.matches("^[\\u30A0-\\u30FF]+$")) {
+        if(lastNameFurigana.isEmpty() || !lastNameFurigana.matches("^[\\u3040-\\u309F]+$")) {
             errors = ErrorHelper.add(errors, "lastNameFurigana", "*せいをひらがなで入力してください");
         }
-        if(firstNameFurigana.isEmpty() || firstNameFurigana.matches("^[\\u30A0-\\u30FF]+$")) {
+        if(firstNameFurigana.isEmpty() || !firstNameFurigana.matches("^[\\u3040-\\u309F]+$")) {
             errors = ErrorHelper.add(errors, "firstNameFurigana", "*めいをひらがなで入力してください");
         }
         if(email.isEmpty()) {
