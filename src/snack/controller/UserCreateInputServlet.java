@@ -84,7 +84,7 @@ public class UserCreateInputServlet extends HttpServlet {
         }if(passwordConfirm.isEmpty()) {
             errors = ErrorHelper.add(errors, "Kpass", "入力してください。");
         }else if(!password.equals(passwordConfirm)) {
-            errors = ErrorHelper.add(errors, "pass", "上のパスワードと一致しません");
+            errors = ErrorHelper.add(errors, "Kpass", "上のパスワードと一致しません");
         }
 
         // メールアドレス
@@ -99,7 +99,7 @@ public class UserCreateInputServlet extends HttpServlet {
         // 郵便番号
         if(postCode.isEmpty()) {
             errors = ErrorHelper.add(errors, "post", "入力してください。");
-        } else if (!postCode.matches("[0-9a-zA-Z\\-\\_]+")) {
+        } else if (!postCode.matches("^[0-9]{3}-[0-9]{4}$")) {
             errors = ErrorHelper.add(errors, "post", "ハイフンがないか半角数字ではありません");
         } else if(postCode.length() > 8) {
             errors = ErrorHelper.add(errors, "post", "1文字以上、8文字以内で入力してください。");
