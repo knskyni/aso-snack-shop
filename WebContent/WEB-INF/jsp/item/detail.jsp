@@ -33,6 +33,7 @@
                         <button id="favorite" class="btn btn-primary float-left">お気に入りに追加</button>
                         <button id="cart" class="btn btn-primary float-right">カートに入れる</button>
                         <button id="purchase_auth" class="btn btn-primary float-right mr-3">今すぐ購入する</button>
+                        <button id="item/update/input" class="btn btn-primary float-right mr-3">編集</button>
                     </div>
                 <% } %>
                 </div>
@@ -77,6 +78,13 @@
             let count = $(this).val();
             updateCart(id, count);
           });
+        if ($('#foo').css('display') == 'block') {
+            // 表示されている場合の処理
+
+        } else {
+            // 非表示の場合の処理
+
+        }
     });
     </script>
 </body>
